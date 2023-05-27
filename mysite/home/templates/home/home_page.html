@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+
+{% load wagtailcore_tags %}
+{% load wagtailcore_tags snippet_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailroutablepage_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+
+
+
+
+<section id="main" class="bg-gray-200 dark:bg-gray-900 min-w-full">
+ <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+      {% for block in page.hero %}
+        {% if block.block_type == 'hero' %}
+        {% image block.value.image width-600 as photo %}
+        <img class="w-full dark:hidden rounded-lg" src={{photo.url}} alt="dashboard image">
+        <img class="w-full hidden dark:block" src="" alt="dashboard image">
+        <div class="mt-4 md:mt-0" >
+            <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-gray-700">{{ block.value.Title }}</span></h1>
+
+            <div id="main-text"><h3 class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">{{ block.value.text | richtext }}</h3></div>
+
+            {% for post in page.get_children %}
+
+            <a href="{{ post.url }}" hx-boost="true" 
+            {% endfor %}
+            class="cursor-pointer inline-flex items-center text-black bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+                View blog posts
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<aside aria-label="Related articles" class="py-8 lg:py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="px-4 mx-auto max-w-screen-xl">
+        <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">Related articles</h2>
+        <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            <article class="max-w-xs">
+                <a href="#">
+                    <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png" class="mb-5 rounded-lg" alt="Image 1">
+                </a>
+                <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+                    <a href="#">Our first office</a>
+                </h2>
+                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
+                <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
+                    Read in 2 minutes
+                </a>
+            </article>
+            <article class="max-w-xs">
+                <a href="#">
+                    <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png" class="mb-5 rounded-lg" alt="Image 2">
+                </a>
+                <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+                    <a href="#">Enterprise design tips</a>
+                </h2>
+                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
+                <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
+                    Read in 12 minutes
+                </a>
+            </article>
+            <article class="max-w-xs">
+                <a href="#">
+                    <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-3.png" class="mb-5 rounded-lg" alt="Image 3">
+                </a>
+                <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+                    <a href="#">We partnered with Google</a>
+                </h2>
+                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
+                <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
+                    Read in 8 minutes
+                </a>
+            </article>
+            <article class="max-w-xs">
+                <a href="#">
+                    <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-4.png" class="mb-5 rounded-lg" alt="Image 4">
+                </a>
+                <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+                    <a href="#">Our first project with React</a>
+                </h2>
+                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
+                <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
+                    Read in 4 minutes
+                </a>
+            </article>
+        </div>
+    </div>
+  </aside>
+</body>
+
+
+
+
+
+
+
+
+</div> 
+
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt="">
+        </div>
+    </div>
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt="">
+        </div>
+    </div>
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt="">
+        </div>
+    </div>
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt="">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt="">
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+    <div class="grid grid-flow-col gap-4">
+      <a class="link link-hover">About us</a> 
+      <a class="link link-hover">Contact</a> 
+      <a class="link link-hover">Jobs</a> 
+      <a class="link link-hover">Press kit</a>
+    </div> 
+    <div>
+      <div class="grid grid-flow-col gap-4">
+        <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a> 
+        <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg></a> 
+        <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+      </div>
+    </div> 
+    <div>
+      <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+    </div>
+  </footer>
+
+
+
+{% endblock %}

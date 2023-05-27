@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailcore_tags snippet_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+
+<!-- 
+Install the "flowbite-typography" NPM package to apply styles and format the article content: 
+
+URL: https://flowbite.com/docs/components/typography/ 
+-->
+
+<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
+    {% image self.blog_image fill-300x100 as banner %}
+    <img class="rounded-lg mx-auto w-screen" src="{{ banner.url }}">
+
+    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+        <article
+            class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+
+            <header class="mb-4 lg:mb-6 not-format">
+                {% for author in self.blog_authors.all %}
+
+                <address class="flex items-center mb-6 not-italic">
+
+                    <div
+                        class="pt-10 inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                        {% if author.author.image %}
+                        {% image author.author.image width-400 as photo %}
+                        <img
+                            class="mr-4 w-16 h-16 rounded-full hover:opacity-50 "
+                            src="{{ photo.url }}" alt="Jese Leos">
+                        {% endif %}
+                        <div>
+                            <a href="#" rel="author"
+                                class="text-xl font-bold text-green-900 dark:text-white">{{ author.author.name }}</a>
+
+                            {% if author.author.bio %}
+                            <p
+                                class="text-base font-light text-gray-500 text-sky-300 dark:text-gray-400">{{ author.author.bio }}</p>
+                            {% endif %}
+                            <p
+                                class="text-base font-light text-gray-500 dark:text-gray-400"><time
+                                    pubdate datetime="2022-02-08"
+                                    title="February 8th, 2022">Feb. 8, 2022</time></p>
+                        </div>
+                    </div>
+                </address>
+
+                {% endfor %}</header>
+
+            {% for block in page.content %}
+
+            {% if block.block_type == 'title_and_text' %}
+            <div class="flex-col -space-y-5 ">
+
+                <div>
+                    <h1 class="text-slate-700">{{ block.value.title }}</h1>
+                </div>
+                <div>
+                    <p class="text-sm text-emerald-600 italic">{{ block.value.text }}</p>
+                </div>
+            </div>
+            {% else %}
+
+            <section class="block-{{ block.block_type }}">
+                {% include_block block %}
+            </section>
+            {% endif %}
+
+            {% endfor %}
+
+        </div>
+    </div>
+</footer>
+
+{% endblock %}

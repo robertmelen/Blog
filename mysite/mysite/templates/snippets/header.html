@@ -1,0 +1,26 @@
+{% load wagtailimages_tags %}
+
+
+    
+<nav class="bg-white border-gray-200 px-4 lg:px- py-2.5 dark:bg-gray-800">
+    <div class="flex flex-wrap justify-between items-center">
+        <div class="flex-col items-center">
+            <a href="/" hx-boost="true">
+                {% for header in home_page_objects %}
+                {% image header.home_header.logo width-300 as logo_photo %}
+                <img src="{{logo_photo.url}}" class="mr-3 h-8" alt="logo here" />
+                {% endfor %}
+            </a>
+            <div class="self-center text-sm font-semibold dark:text-white text-green-600 sm:ml-2">
+                {% for header in home_page_objects %}
+                {{ header.home_header.text }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+               
+                <!-- Notifications -->
+               
+              
