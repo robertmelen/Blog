@@ -16,8 +16,10 @@ URL: https://flowbite.com/docs/components/typography/
 -->
 
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
-    {% image self.blog_image fill-300x100 as banner %}
-    <img class="rounded-lg mx-auto w-screen" src="{{ banner.url }}">
+    {% image self.blog_image width-1200  as banner %}
+    <div class="flex justify-center drop-shadow-xl">
+        <img class="rounded-lg" src="{{ banner.url }}">
+    </div>
 
     <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
         <article
