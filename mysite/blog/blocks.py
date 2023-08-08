@@ -1,6 +1,7 @@
 from wagtail import blocks
 from wagtail.templatetags.wagtailcore_tags import richtext
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.embeds.blocks import EmbedBlock
 
 class TitleAndTextBlock(blocks.StructBlock):
     """Title and text and nothing else."""
@@ -36,16 +37,57 @@ class WritingBlock(blocks.StructBlock):
 
     
 class CodeBlock(blocks.StructBlock):
+
+        CODE_CHOICES = [
+                ('python', 'python'),
+                ('javascript', 'javascript'),
+                ('css', 'css'),
+                ('html', 'html'),
+               ('django', 'django'),
+                ]
+
+
         
-        code_text = blocks.TextBlock(required=False, max_length=2000)
+        language = blocks.ChoiceBlock(choices=CODE_CHOICES, default="python")
+        text = blocks.TextBlock()
 
         class Meta:  # noqa
                 template = "streams/code_block.html"
                 icon = "placeholder"
                 label = "Code"
 
-             
-             
+
+class QuoteBlock(blocks.StructBlock):
+      
+      quote_text = blocks.TextBlock(required=False, max_length=2000)
+
+      class Meta:  # noqa
+                template = "streams/quote_block.html"
+                icon = "placeholder"
+                label = "Quote"
+      
+class GalleryBlock(blocks.StructBlock):
+      
+      gallery_images = blocks.ListBlock(ImageChooserBlock)
+      gallery_heading = blocks.TextBlock(max_length=200)
+
+      class Meta:  # noqa
+                template = "streams/gallery_block.html"
+                icon = "placeholder"
+                label = "Gallery"
+
+class EmbedBlock(blocks.StructBlock):
+       
+       embed = EmbedBlock()
+
+       class Meta: 
+                template = "streams/embed_block.html"
+                icon = "placeholder"
+                label = "Embed" 
+
+     
+
+       
              
 
  

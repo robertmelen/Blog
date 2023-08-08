@@ -1,5 +1,6 @@
 from django import template
-from home.models import Header, HomePage, Page
+import re
+from home.models import Header, HomePage, Page, Gallery
 
 register = template.Library()
 
@@ -30,3 +31,30 @@ def breadcrumbs(context):
         'ancestors': ancestors,
         'request': context['request'],
     }
+
+
+@register.inclusion_tag('snippets/gallery.html', takes_context=True)
+def gallery(context):
+    return {
+        'gallery': Gallery.objects.all(),
+        'request': context['request'],}
+
+
+
+
+
+
+
+
+@register.filter(name="embedurl")
+def get_embed_url_with_parameters(url):
+    if "youtube.com" in url or "youtu.be" in url:
+        regex = r"(?:https:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)"  # Get video id from URL
+        embed_url = re.sub(
+            regex, r"https://www.youtube.com/embed/\1", url
+        )  # Append video id to desired URL
+        print(embed_url)
+        embed_url_with_parameters = embed_url + "?rel=0"  # Add additional parameters
+        return embed_url_with_parameters
+    else:
+        return None

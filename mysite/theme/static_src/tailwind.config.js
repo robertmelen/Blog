@@ -4,6 +4,9 @@
  * If you need the full config, get it from here:
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
+const colors = require('tailwindcss/colors')
+
+
 
 module.exports = {   darkMode: 'class',
     content: [
@@ -55,7 +58,16 @@ module.exports = {   darkMode: 'class',
 
           
           colors: {
-            primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a"}
+            transparent: 'transparent',
+            current: 'currentColor',
+            black: colors.black,
+            white: colors.white,
+            gray: colors.gray,
+            emerald: colors.emerald,
+            indigo: colors.indigo,
+            yellow: colors.yellow,
+            green: colors.green,
+            blue: colors.blue,
           }
         },
         fontFamily: {

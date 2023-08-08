@@ -37,3 +37,17 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
+
+
+ 
+.htmx-indicator{
+    opacity:0;
+    transition: opacity 500ms ease-in;
+}
+
+.spinner{
+    display:none;
+}
+.htmx-request .spinner{
+    display:inline;
+}

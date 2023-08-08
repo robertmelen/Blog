@@ -1,0 +1,28 @@
+{% load wagtailimages_tags %}
+
+
+    {{ self.gallery_heading }}
+   
+    
+    
+
+
+
+
+    
+<div class="grid grid-cols-2 gap-2 ">
+    {% for imgg in self.gallery_images %}
+    {% image imgg fill-600x400 as img %}
+    <div>
+    
+        <img class="h-auto max-w-full rounded-lg shadow-2xl " src="{{ img.url }}" alt="">
+        
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+    

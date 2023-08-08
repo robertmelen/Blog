@@ -187,3 +187,8 @@ INTERNAL_IPS = [
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
+

@@ -1,3 +1,13 @@
-<div class="mockup-code">
-    <pre data-prefix="$"><code>{{ self.code_text}}</code></pre> 
-</div>
+
+{% load wagtailcore_tags %}
+<section>
+    <pre class="max-w-xs overflow-hidden sm:max-w-fit"><code id="output" class="language-{{ self.language }}">{{ self.text }}</code></pre>
+</section>
+<button _="on click
+get the innerText of #output
+then writeText(the result) with the navigator's clipboard
+wait 0.5s 
+put 'Copied to clipboard!' into me wait 5s then put 'copy again' into me"
+              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Copy
+</button>
+<div id=""></div>

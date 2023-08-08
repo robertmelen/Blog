@@ -31,6 +31,8 @@ class HeroBlock(blocks.StructBlock):
     Title = blocks.CharBlock()
     image =  ImageChooserBlock()
     text = blocks.CharBlock()
+    about = blocks.TextBlock()
+    about_image = ImageChooserBlock()
    
 
 
@@ -61,10 +63,14 @@ class HomePage(Page):
 
     subpage_types = ['blog.BlogListingPage']
 
+    def get_recent_blogs(self):
+        max_count = 4 # max count for displaying post
+        return  BlogDetailPage.objects.all().order_by('-first_published_at')[:max_count]
+
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context['menu_objects'] = BlogListingPage.objects.live().child_of(self)
-        print(context)
+        context['recent_posts'] = self.get_recent_blogs()
         return context
 
 
@@ -72,11 +78,13 @@ class HomePage(Page):
         # Add extra variables and return the updated context
        
 
-    # #checking fot htmx request working
-    # def serve(self, request):
-    #     if request.htmx:
-    #         print("yes")
-    #     return super().serve(request)
+    #checking fot htmx request working
+    def serve(self, request, *args, **kwargs):
+        if request.htmx:
+            if request.GET.get('bio'):
+                context = super().get_context(request, *args, **kwargs)
+                return render(request, "partials/bio.html", context)
+        return super().serve(request)
 
    
                
@@ -104,6 +112,7 @@ class Header(models.Model):
         FieldPanel('logo'),
         FieldPanel('text'),])
     ]
+
 
     def __str__(self):
         return self.text
@@ -136,3 +145,25 @@ class Header_Photo(models.Model):
         return self.image.title
     
 
+@register_snippet
+class Gallery(models.Model):
+    images = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    
+    
+
+    panels = [
+        FieldPanel('images'),
+       
+    ]
+
+    class Meta:
+        verbose_name = "Gallery Image"
+
+    def __str__(self):
+        return self.images.title

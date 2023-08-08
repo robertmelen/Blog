@@ -2,7 +2,7 @@
 
 
 
-<figure class="max-w-lg mx-auto">
+
     {% with small_image_block=self.small_image %}
         {% if small_image_block %}
             {% image self.small_image width-100 as photo %}
@@ -14,21 +14,26 @@
 
     {% with medium_image_block=self.medium_image %}
         {% if medium_image_block %}
-            {% image self.medium_image width-600 as photo %}
+            {% image self.medium_image width-800 as photo %}
     
    
-    <img class="h-auto max-w-full rounded-lg" src="{{ photo.url }}" alt="image description">
-    <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{ self.text }}</figcaption>
+    <img class="rounded-lg shadow-2xl" src="{{ photo.url }}" alt="image description">
+    <figcaption class="mt-2 text-sm text-left text-gray-500 dark:text-gray-400">{{ self.text }}</figcaption>
     {% endif %}
     {% endwith %}
 
     {% with large_image_block=self.large_image %}
         {% if large_image_block %}
-         {% image self.large_image width-1000 as photo %}
+         {% image self.large_image width-1200 as photo %}
 
+    
+    <img class="rounded-lg shadow-xl p-2 border-cyan-900"  src="{{ photo.url }}" alt="image description">
+    
 
-    <img class="h-auto max-w-full rounded-lg" src="{{ photo.url }}" alt="image description">
-    <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{ self.text }}</figcaption>
+    
+    
+    <div class="text-xs text-gray-500 dark:text-gray-400 text-center">{{ self.text }}</div>
+    <hr>
     {% endif %}
     {% endwith %}
 
@@ -39,4 +44,4 @@
 {% endwith %}
     
 
-  </figure>
+  

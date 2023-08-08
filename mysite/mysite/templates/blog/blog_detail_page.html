@@ -1,12 +1,9 @@
-{% extends "base.html" %}
-
-{% load wagtailcore_tags %}
-{% load wagtailcore_tags snippet_tags %}
-{% load wagtailimages_tags %}
-{% load wagtailimages_tags wagtailcore_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
-
+{% extends "base.html" %} 
+{% load wagtailcore_tags %} 
+{% load wagtailcore_tags snippet_tags %} 
+{% load wagtailimages_tags %} 
+{% load wagtailimages_tags wagtailcore_tags %} 
+{% block body_class %}template-homepage{% endblock %} 
 {% block content %}
 
 <!-- 
@@ -15,70 +12,156 @@ Install the "flowbite-typography" NPM package to apply styles and format the art
 URL: https://flowbite.com/docs/components/typography/ 
 -->
 
-<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
-    {% image self.blog_image width-1200  as banner %}
-    <div class="flex justify-center drop-shadow-xl">
-        <img class="rounded-lg" src="{{ banner.url }}">
-    </div>
+<!--Wrapper for detail page-->
 
-    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-        <article
-            class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+<div class="p-2 sm:container mx-auto md:px-64" hx-boost="true">
+  
 
-            <header class="mb-4 lg:mb-6 not-format">
-                {% for author in self.blog_authors.all %}
+  <div class="flex justify-between">
+    
+      {% if page.next_post %}
+      <a href="{{ page.next_post.url }}">Next</a>
+      {% endif %}
+      
+      <a href="{{ page.previous_post.url }}">Previous</a>
+     
+     
+  </div>
 
-                <address class="flex items-center mb-6 not-italic">
+    <!--Main blog image-->
 
-                    <div
-                        class="pt-10 inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                        {% if author.author.image %}
-                        {% image author.author.image width-400 as photo %}
-                        <img
-                            class="mr-4 w-16 h-16 rounded-full hover:opacity-50 "
-                            src="{{ photo.url }}" alt="Jese Leos">
-                        {% endif %}
-                        <div>
-                            <a href="#" rel="author"
-                                class="text-xl font-bold text-green-900 dark:text-white">{{ author.author.name }}</a>
 
-                            {% if author.author.bio %}
-                            <p
-                                class="text-base font-light text-gray-500 text-sky-300 dark:text-gray-400">{{ author.author.bio }}</p>
-                            {% endif %}
-                            <p
-                                class="text-base font-light text-gray-500 dark:text-gray-400"><time
-                                    pubdate datetime="2022-02-08"
-                                    title="February 8th, 2022">Feb. 8, 2022</time></p>
-                        </div>
-                    </div>
-                </address>
+  <!--Wrapper for content-->
+  <div class="flex justify-center">
 
-                {% endfor %}</header>
-
-            {% for block in page.content %}
-
-            {% if block.block_type == 'title_and_text' %}
-            <div class="flex-col -space-y-5 ">
-
-                <div>
-                    <h1 class="text-slate-700">{{ block.value.title }}</h1>
-                </div>
-                <div>
-                    <p class="text-sm text-emerald-600 italic">{{ block.value.text }}</p>
-                </div>
-            </div>
-            {% else %}
-
-            <section class="block-{{ block.block_type }}">
-                {% include_block block %}
-            </section>
-            {% endif %}
-
-            {% endfor %}
-
+    <!--Author-->
+    <div class="flex flex-col items-center p-10">
+      <div class="inline-flex space-x-2"> 
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
+        </svg>
+        {% for author in self.blog_authors.all %} {% if author.author.image %}
+        {% image author.author.image width-100 as photo %}
+        <div>
+          <img
+            class="w-5 h-5 rounded-full hover:opacity-50"
+            src="{{ photo.url }}"
+            alt=""
+          />
         </div>
-    </div>
-</footer>
+        <div class="flex flex-col">
+          <div>
+            <span class="text-3xl text-slate-800 font-semibold dark:text-white"
+              >{{author.author.name }}</span>
+              <svg class="inline-block w-2 h-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+              </svg>
 
-{% endblock %}
+            {% if author.author.bio %}
+            <span class="text-sm text-black dark:text-gray-400"
+              >{{author.author.bio }}</span
+            >
+            {% endif %}
+          </div>
+          <hr class="p-1">
+        </div>
+
+        {% endif %}
+      </div>
+      <div>
+        <span class="mr-2 text-xs text-black">Posted in:</span>
+        {% with categories=page.categories.all %} {% if categories %} 
+        {% for category in categories %}
+
+        <span
+          class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
+          >{{category.name }}
+        </span>
+
+        {% endfor %} 
+        {% endif %} 
+        {% endwith %}
+      </div>
+
+      <!--Tags-->
+      <div class="inline-flex space-x-3" hx-boost="true">
+        <div class="flex flex-wrap">
+          {% if page.tags.count %}
+          <div>
+            <h6 class="text-xs pt-2 pr-2">Tags</h6>
+          </div>
+          {% for tag in page.tags.all %} {# Loop through all the existing tags#}
+
+          <a
+            href="{{ self.get_parent.url }}?tag={{ tag.slug }}"
+            class="bg-green-50 hover:bg-pink-50 text-green-600 text-xs sm:text-sm font-medium mr-2 mt-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-pink-200 transition-transform transform hover:-rotate-3"
+          >
+            {{ tag }}</a
+          ><br />
+
+          {% endfor %} 
+          {% endif %}
+        </div>
+      </div>
+      
+  {% image self.blog_image width-1200 as banner %}
+  <div class="flex justify-center drop-shadow-xl border-x-lime-300 pt-10">
+    <img class="shadow-2xl rounded-lg" src="{{ banner.url }}" />
+  </div>
+      
+      <!--Streamfeild content-->
+      {% for block in page.content %} {% if block.block_type == 'title_and_text' %}
+
+      <div class="pt-10 md:pl-48 md:pr-48">
+        <h6 class="text-4xl text-slate-600 text-center font-extrabold">
+          {{ block.value.title }}
+        </h6>
+        <hr />
+
+        <p class="text-lg text-emerald-600 italic text-center pt-5 font-thin">
+          {{ block.value.text}}
+        </p>
+      </div>
+
+     
+
+      {% else %}
+      {% if block.block_type == 'embed' %}
+      <div class="relative min-w-full" style="padding-top: 56.25%">
+        <iframe class="absolute inset-0 w-full h-full p-10" src="{{ block.value.embed.url |embedurl}}" frameborder="0" …></iframe>
+      </div>
+
+       
+   
+      {% endif %}
+      
+
+      <section
+        
+        class="block-{{ block.block_type }}">
+        <div class="prose max-w-full lg:prose-xl">
+        {% include_block block %}
+        
+        </div>
+
+
+
+
+      </section>
+      {% endif %} 
+
+      
+      
+
+
+      {% endfor %}
+    </div>
+
+    {% endfor %}
+  </div>
+
+  {% endblock %}
+ 
+</div>
+
+
