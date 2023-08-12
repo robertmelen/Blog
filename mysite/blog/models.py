@@ -19,7 +19,7 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 from blog import blocks as my_blocks
 
-from wagtail.contrib.routable_page.models import RoutablePageMixin, path, route
+from wagtail.contrib.routable_page.models import RoutablePageMixin, path, route, re_path
 
 from django.http import HttpResponse
 
@@ -118,62 +118,63 @@ class BlogListingPage(RoutablePageMixin, Page):
         else:
             return 'blog/blog_listing_page.html'
         
-    def get_posts(self):
-        return BlogListingPage.objects.descendant_of(self).live()
+    
+   
+    
         
-    @route(r'^tag/(?P<tag>[-\w]+)/$')
-    def post_by_tag(self, request, tag, *args, **kwargs):
-        self.posts = self.get_posts().filter(tags__slug=tag)
-        return self.render(request)
-
-
-
+       
+ 
 
 
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
         context["posts"] = BlogDetailPage.objects.live().public().order_by('-first_published_at')
-
         
     
-      
-            
-        
-      
-        
-        paginator = Paginator(context["posts"], 2)
-       
+    
+
+    
+        paginator = Paginator(context["posts"], 4)
         page = request.GET.get("page")
         try:
-           
-            posts = paginator.page(page)
-            
+           posts = paginator.page(page)
         except PageNotAnInteger:
-            
             posts = paginator.page(1)
         except EmptyPage:
-           
-            posts = paginator.page(paginator.num_pages)
+           posts = paginator.page(paginator.num_pages)
+        context["posts"] = posts
+        return context
 
 
-        if request.GET.get('tag', None):
-            tags = request.GET.get('tag')
-            posts = posts.filter(tags__slug__in=[tags]) 
+        # if request.GET.get('tag', None):
+        #     tags = request.GET.get('tag')
+        #     posts = posts.filter(tags__slug__in=[tags]) 
 
        
 
        
-       
+    @re_path(r'^tagged/(\w+)/$')
+    def post_by_tag(self, request, tag, *args, **kwargs):
+        print(tag)
+        
+        
+        all_post = BlogDetailPage.objects.all()
+        
+        context = all_post.filter(tags__name=tag)
+        print(context)   
+        return self.render(request, template="partials/blog_by_tag.html", context_overrides = {'posts': context, 'tagged':tag})  
+   
 
 
+        # tagged_posts = BlogListingPage.filter(tags__slug=tag)
+        # return self.render(request)
 
        
     
         
       
-        context["posts"] = posts
-        return context
+        
     
   
                 

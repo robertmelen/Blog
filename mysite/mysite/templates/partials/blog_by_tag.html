@@ -1,0 +1,15 @@
+{% load wagtailcore_tags %}
+<div id="tag-name"><h1 class="inline-block text-sm font-bold">Other posts tagged</h1> <span class="bg-green-50 hover:bg-pink-50 text-green-600 
+        text-xs sm:text-sm font-medium mr-2 mt-2 px-2.5 py-0.5 rounded dark:bg-gray-700
+         dark:text-blue-400 border-pink-200 transition-transform transform hover:-rotate-3">{{tagged}}</span></div> 
+{% for post in posts %}
+<div class="inline-flex post-titles">
+    <a hx-boost="true" href="{% pageurl post%}">{{post.title}}------</a>
+</div>
+{% endfor %}
+<button _="on click hide me then 
+         hide #tag-name
+        then add .hidden to <div.post-titles/>">Clear</button>
+
+
+
