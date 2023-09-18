@@ -8,9 +8,15 @@
             <a href="/" hx-boost="true">
                 {% for header in home_page_objects %}
                 {% image header.home_header.logo width-300 as logo_photo %}
-                <img src="{{logo_photo.url}}" class="mr-3 h-8" alt="logo here" />
+                <img _="on scroll from the window
+    
+   
+        
+                if window's scrollY > 600 and window's innerWidth > 600 transition my *opacity to 0 
+                else if window's scrollY < 600 transition my *opacity to 1" src="{{logo_photo.url}}" class="mr-3 h-6 sm:h-8" alt="logo here" />
                 {% endfor %}
             </a>
+            
             <div class="self-center text-sm font-semibold dark:text-white text-green-600 sm:ml-2">
                 {% for header in home_page_objects %}
                 {{ header.home_header.text }}

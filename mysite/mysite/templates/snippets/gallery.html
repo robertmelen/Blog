@@ -2,57 +2,47 @@
 
 
 
-<div class="container mx-auto">
-    <div>Just some images I like....</diV>
-<div id="gallery" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    {% for img in gallery %}
-    <div class="grid gap-4">
-        
-        <div>
-            
-            {% image img.images width-600 as gallery_photos %}
-            <img class="h-auto max-w-full rounded-lg" src="{{ gallery_photos.url }}" alt="">
-            <button _="on click toggle between .hidden and .flex on #testModal">Test</button>
 
-            <div class="container mx-auto">
-                <div id="testModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-2xl max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
-                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                    Terms of Service
-                                </h3>
-                                <button _="on click toggle between .flex and .hidden on #testModal" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="p-6 space-y-6">
-                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                    With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                                </p>
-                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                    The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                                </p>
-                            </div>
-                            <!-- Modal footer -->
-                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="defaultModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-                                <button data-modal-hide="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-       </diV>
-        
-        
-    </div>
-    {% endfor %}
-        
+
+
+<div id="Gallery-section"  class="container mx-auto overflow-hidden pt-10">
+
+   
     
+
+    <div class="flex flex-col ">
+        {% for img in gallery %}
+      
+        <hr>
+        <div class="mx-auto">
+        <h1 id="text-tester" class="image-text -translate-x-10 text-2xl p-10 font-extrabold dark:text-white">{{ img.title }}<small class="translate-x-10 ml-2 font-Poppins text-xs text-gray-500 dark:text-gray-400">
+           {{ img.caption }}</small></h1>
+           
+           
+            
+                {% image img.images width-1200 as gallery_photos %}
+            <img id="image" _="on intersection(intersecting) having threshold 0.2 if intersecting remove .-translate-x-10 from the previous <h1.image-text/> then add .translate-x-10 .duration-1000 to the previous <h1.image-text/>
+            then remove .translate-x-5 from me then add .-translate-x-5 .duration-1000"
+             class="translate-x-5 max-max-lg rounded-lg shadow-md items-center" src="{{ gallery_photos.url }}" alt="">
+             <ul id="exif-data"></ul>
+            
+        </div>
+        
+       
+        {% endfor %}
+    </div>
+
+
 </div>
-</div>
+<script>
+window.onload=getExif;
+function getExif() {
+    var img1 = document.getElementById("image");
+    EXIF.getData(img1, function() {
+        var make = EXIF.getTag(this, "Date");
+        var model = EXIF.getTag(this, "Model");
+        var makeAndModel = document.getElementById("exif-data");
+        makeAndModel.innerHTML = `${make} ${model}`;
+    });
+}
+</script>

@@ -47,7 +47,12 @@ module.exports = {   darkMode: 'class',
         
     ],
     theme: {
+
+     
         extend: {
+            fontFamily:{
+          Poppins: ["Poppins", "sans-serif"],
+          Cursive :['Pacifico', "cursive"],},
 
           animation: {typing: "typing 2s steps(14)"},
           keyframes: {typing: {
@@ -71,6 +76,11 @@ module.exports = {   darkMode: 'class',
           }
         },
         fontFamily: {
+
+          weird:['Noto Sans Linear B', "sans-serif"],
+
+       
+
           'body': [
         'Inter', 
         'ui-sans-serif', 

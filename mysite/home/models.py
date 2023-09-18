@@ -47,7 +47,14 @@ class HomePage(Page):
     hero = StreamField([
         ('hero', HeroBlock()),
     ], use_json_field=True, max_num = 1)
-
+    gallery_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    
    
 
     content_panels = Page.content_panels + [
@@ -56,6 +63,7 @@ class HomePage(Page):
         FieldPanel('body'),
         FieldPanel('date'),
         FieldPanel('hero'),
+        FieldPanel('gallery_image'),
        
         
         
@@ -154,11 +162,19 @@ class Gallery(models.Model):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    title = models.CharField(max_length=500, null=True, blank=True)
+    caption = models.CharField(max_length=500, null=True, blank=True )
     
+
+
+   
     
 
     panels = [
         FieldPanel('images'),
+        FieldPanel('title'),
+        FieldPanel('caption'),
+        
        
     ]
 

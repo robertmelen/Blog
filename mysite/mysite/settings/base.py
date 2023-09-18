@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     "wagtail.contrib.routable_page",
     'django_extensions',
+    'wagtail_icon_picker',
     
     
 ]

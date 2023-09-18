@@ -4,6 +4,8 @@ from taggit.models import TaggedItemBase
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
+from readtime import of_html, of_markdown, of_text
+
 
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
@@ -14,6 +16,7 @@ from django.shortcuts import render
 from wagtail.snippets.models import register_snippet
 from wagtail import blocks
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from modelcluster.models import ClusterableModel
 
 
 
@@ -24,6 +27,9 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, path, route,
 from django.http import HttpResponse
 
 from django.utils.text import slugify
+
+from wagtail_icon_picker.fields import IconField
+from wagtail_icon_picker.edit_handlers import IcofontIconPickerPanel, BoxiconsPickerPanel
 
 
 
@@ -49,7 +55,7 @@ class BlogAuthorsOrderable(Orderable):
 
 
 
-class BlogAuthor(models.Model):
+class BlogAuthor(ClusterableModel):
     name = models.CharField(max_length=200)
     bio = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True)
@@ -80,7 +86,10 @@ class BlogAuthor(models.Model):
             FieldPanel("instagram"),
         ],
         heading="Social"
-    )
+    ),
+    
+    InlinePanel('author_socials', label="Socials"),
+
 ]
     
     def __str__(self):
@@ -93,14 +102,34 @@ class BlogAuthor(models.Model):
 register_snippet(BlogAuthor)
 
 
+SOCIAL_CHOICES = (
+    ("Facebook", "Facebook"),
+    ("Twitter", "Twitter"),
+    ("Github", "Github"),
 
+   )
 
+class AuthorSocials(Orderable):
+    page = ParentalKey("blog.BlogAuthor", on_delete=models.CASCADE, related_name='author_socials')
+    network = models.CharField(max_length = 20, choices = SOCIAL_CHOICES, default="Facebook")
+    url = models.URLField()
 
+    panels = [
+       
+        FieldPanel('url'),
+        FieldPanel('network'),
+        
+
+       
+        
+    ]
+    
+
+    
 
 class BlogListingPage(RoutablePageMixin, Page):
     """Listing page lists all the Blog Detail Pages."""
 
-    
     custom_title = models.CharField(
         max_length=100,
         blank=False,
@@ -119,22 +148,11 @@ class BlogListingPage(RoutablePageMixin, Page):
             return 'blog/blog_listing_page.html'
         
     
-   
-    
-        
-       
- 
-
-
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
         context["posts"] = BlogDetailPage.objects.live().public().order_by('-first_published_at')
         
-    
-    
-
-    
         paginator = Paginator(context["posts"], 4)
         page = request.GET.get("page")
         try:
@@ -147,42 +165,14 @@ class BlogListingPage(RoutablePageMixin, Page):
         return context
 
 
-        # if request.GET.get('tag', None):
-        #     tags = request.GET.get('tag')
-        #     posts = posts.filter(tags__slug__in=[tags]) 
-
-       
-
-       
     @re_path(r'^tagged/(\w+)/$')
     def post_by_tag(self, request, tag, *args, **kwargs):
-        print(tag)
-        
-        
         all_post = BlogDetailPage.objects.all()
-        
         context = all_post.filter(tags__name=tag)
         print(context)   
         return self.render(request, template="partials/blog_by_tag.html", context_overrides = {'posts': context, 'tagged':tag})  
    
 
-
-        # tagged_posts = BlogListingPage.filter(tags__slug=tag)
-        # return self.render(request)
-
-       
-    
-        
-      
-        
-    
-  
-                
-
-        
-          
-        
-        
     def get_paginated_posts(self, request, qs):
         # https://docs.djangoproject.com/en/4.0/topics/pagination/#using-paginator-in-a-view-function
         paginator = Paginator(qs, 2)
@@ -197,10 +187,6 @@ class BlogListingPage(RoutablePageMixin, Page):
         return posts
 
         
-
-
-
-
 class BlogDetailPage(Page):
     """Blog detail page."""
 
@@ -257,30 +243,25 @@ class BlogDetailPage(Page):
         
     ]
 
+    
+  
+
+
+
     @property
     def next_post(self):
         return self.get_next_sibling()
         
        
-        
-    
     @property
     def previous_post(self):
         return self.get_prev_sibling()
     
-    # @property
-    # def summary(self):
-    #     split = self.
-    #     return self.get_prev_sibling()
-        
-
-
+    
     def __str__(self):
         return self.custom_title
     
     
-
-
 @register_snippet
 class BlogCategories(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)

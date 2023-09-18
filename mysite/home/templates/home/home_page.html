@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-
+{% load read_time %}
 
 {% load wagtailcore_tags %}
 {% load wagtailcore_tags snippet_tags %}
@@ -14,12 +14,7 @@
 {% block content %}
 <script>
     
-window.onscroll=function(){
-   console.log( 
-     'top: '  + (window.pageYOffset || document.documentElement.scrollTop) + ' ' +
-     'left: ' + (window.pageXOffset || document.documentElement.scrollLeft)
-   );
-}
+
 </script>
 
 
@@ -70,7 +65,7 @@ window.onscroll=function(){
 
     <span >
       
-        <a _=""  hx-get="{{ current_site.root_url }}"  hx-vals='{"bio": "bio"}' hx-target="#main-text"  hx-swap="outerHTML"
+        <a _="on click hide me"  hx-get="{{ current_site.root_url }}"  hx-vals='{"bio": "bio"}' hx-target="#main-text"  hx-swap="outerHTML"
                 
                 
                 class="cursor-pointer inline-flex items-center text-black bg-green-400 hover:bg-pink-200 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 transition-transform transform hover:-rotate-6">
@@ -121,8 +116,8 @@ window.onscroll=function(){
             {% for x in recent_posts %}
             <article class="max-w-xs">
                 <a href="#">
-                    {% image x.blog_image width-600 as photo %}
-                    <img src="{{ photo.url }}" class="mb-5 rounded-lg" alt="Image 1">
+                    {% image x.blog_image fill-450x300 as photo %}
+                    <img src="{{ photo.url }}" class="mb-5 " alt="Image 1">
                 </a>
                 
                 <h2 class="group mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white transition duration-300">
@@ -131,29 +126,46 @@ window.onscroll=function(){
                 </h2>
               
                
-                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">{{ x.summary }} </p>
+                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">{{ x.summary|truncatewords:8 }} </p>
               
                
                 <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
-                    Read in 2 minutes
-                </a>
+                  </a>
+                  {{ x.content.first_block_by_name.text_body.value.rich_text | truncatewords:10 }}
+                  
+                  
+                  
+                  {{ x.content.block_by_name.text_body.value.rich_text  }}
+
+                 
             </article>
            {% endfor %}
+
+          
         </div>
     </div>
   </aside>
 
+  {% image self.specific.gallery_image original as gallery_image %}
 
+  <div id="gallery" class="hero min-h-screen " style="background-image: url({{ gallery_image.url }})">
+      <div class="hero-overlay bg-opacity-60"></div>
+      <div class="hero-content text-center text-neutral-content">
+        <div class="max-w-md">
+          <h1 class="mb-5 text-5xl font-bold">Photography</h1>
+          <p class="mb-5">This section let's me show just some of my favorite images that I have taken in my career.</p>
+          <button _="on click go to middle of #text-tester smoothly "class="btn btn-primary">Click to scroll</button>
+        </div>
+      </div>
+    </div>
+  
 
+   
 
 
 {% gallery %}
 
 
-<button _="on load transition my translate to 1000 then remove me"
- style="translate: 10px;">
-    Transition My Font Size
-    </button> 
 
 
 
