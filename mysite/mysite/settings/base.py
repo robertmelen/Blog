@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.routable_page",
     'django_extensions',
     'wagtail_icon_picker',
+    'storages',
     
     
 ]
@@ -156,11 +158,6 @@ STATICFILES_DIRS = [
 # See https://docs.djangoproject.com/en/4.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/static/"
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
 
 
 # Wagtail settings
@@ -192,4 +189,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
+
+WAGTAILIMAGES_IMAGE_MODEL = 'home.CustomImage'
+
+
+
+AWS_ACCESS_KEY_ID = 'AKIAQSL6YLOIHKD3E4EK'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'wagtailblog'
+AWS_DEFAULT_ACL = None
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+
+
+# s3 public media settings
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = "/static/"
+
+
+AWS_S3_FILE_OVERWRITE = False
+
+
 

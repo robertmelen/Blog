@@ -33,6 +33,7 @@ from wagtail_icon_picker.edit_handlers import IcofontIconPickerPanel, BoxiconsPi
 
 
 
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
         'BlogDetailPage',
@@ -60,7 +61,7 @@ class BlogAuthor(ClusterableModel):
     bio = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True)
     image = models.ForeignKey(
-        "wagtailimages.Image",
+        ('home.CustomImage'),
         on_delete=models.SET_NULL,
         null=True,
         blank=False,
@@ -197,7 +198,7 @@ class BlogDetailPage(Page):
         help_text='Overwrites the default title',
     )
     blog_image = models.ForeignKey(
-        "wagtailimages.Image",
+        ('home.CustomImage'),
         blank=False,
         null=True,
         related_name="+",

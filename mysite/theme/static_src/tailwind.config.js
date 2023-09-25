@@ -52,7 +52,10 @@ module.exports = {   darkMode: 'class',
         extend: {
             fontFamily:{
           Poppins: ["Poppins", "sans-serif"],
-          Cursive :['Pacifico', "cursive"],},
+          Cursive :["Pacifico", "cursive"],
+          Fuggles :["Fuggles", 'cursive'],
+          Crimson :["Crimson text", 'serif'],
+        },
 
           animation: {typing: "typing 2s steps(14)"},
           keyframes: {typing: {

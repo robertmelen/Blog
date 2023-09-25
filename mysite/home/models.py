@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image as PILImage
 
 # New imports added for ParentalKey, Orderable, InlinePanel
 from blog.models import BlogListingPage
@@ -26,6 +27,110 @@ from blog.models import BlogDetailPage
 from django_htmx.http import push_url
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
 
+from wagtail.images.models import Image, AbstractImage, AbstractRendition
+
+import math
+from fractions import Fraction
+from io import BytesIO
+import io
+
+
+
+def apex_to_shutter_speed(apex_value):
+    # Calculate the shutter speed in seconds
+    shutter_speed_seconds = math.pow(2, -apex_value)
+    return shutter_speed_seconds
+
+def convert_to_standard_shutter_speed(seconds):
+     # Calculate the reciprocal of the shutter speed in seconds
+    reciprocal = 1 / seconds
+    
+    # Define a list of common denominators for standard shutter speeds
+    common_denominators = [1, 2, 4, 8, 15, 30, 60, 125, 250, 500, 1000]
+    
+    # Find the closest denominator from the list
+    closest_denominator = min(common_denominators, key=lambda x: abs(reciprocal - round(reciprocal * x) / x))
+    
+    # Calculate the standard shutter speed fraction
+    standard_shutter_speed = Fraction(round(reciprocal * closest_denominator), closest_denominator)
+
+    return standard_shutter_speed
+    
+    
+
+
+
+class CustomImage(AbstractImage):
+    # Add any extra fields to image here
+
+    # To add a caption field:
+    caption = models.CharField(max_length=1000, blank=True)
+    camera = models.CharField(max_length=255, blank=True)
+    copyright = models.CharField(max_length=200, blank=True)
+    shutter = models.CharField(max_length=100, blank=True)
+
+    admin_form_fields = Image.admin_form_fields + (
+        # Then add the field names here to make them appear in the form:
+        'caption', 'camera', 'copyright', 'shutter',
+    )
+
+    def save(self, *args, **kwargs):
+        # Call the parent class's save method to perform the actual save operation
+        super().save(*args, **kwargs)
+
+        # Check if the image file exists
+        if self.file:
+            image_file = BytesIO(self.file.read())
+            
+            
+            # Open the image file using Pillow (PIL)
+            with PILImage.open(image_file) as img:
+                # Get the EXIF data from the image
+                exif_data = img._getexif()
+
+                # Extract the relevant EXIF information
+                if exif_data:
+                    # Get the 'ImageDescription' tag from EXIF for caption
+                    image_description = exif_data.get(270, '')  # 270 corresponds to 'ImageDescription' tag
+
+                    # Get the 'Model' tag from EXIF for camera model
+                    camera_model = exif_data.get(272, '')  # 272 corresponds to 'Model' tag
+                    copyright = exif_data.get(33432, '')
+                    shutter = exif_data.get(37377, '')
+
+                    # Only update the 'caption' field if it is currently blank
+                    if not self.caption:
+                        self.caption = image_description
+
+                    # Only update the 'camera_model' field if it is currently blank
+                    if not self.camera:
+                        self.camera = camera_model
+
+                    if not self.copyright:
+                        self.copyright = copyright
+
+                    if not self.shutter:
+                        apex_value = shutter
+                        shutter_speed_seconds = apex_to_shutter_speed(apex_value)
+                        standard_shutter_speed = convert_to_standard_shutter_speed(shutter_speed_seconds)
+                        self.shutter = standard_shutter_speed 
+
+        # Save the model again to store the updated fields
+        super().save(*args, **kwargs)
+
+   
+
+class CustomRendition(AbstractRendition):
+    image = models.ForeignKey(CustomImage, on_delete=models.CASCADE, related_name='renditions')
+
+    class Meta:
+        unique_together = (
+            ('image', 'filter_spec', 'focal_point_key'),
+        )
+
+
+
+
 
 class HeroBlock(blocks.StructBlock):
     Title = blocks.CharBlock()
@@ -48,7 +153,7 @@ class HomePage(Page):
         ('hero', HeroBlock()),
     ], use_json_field=True, max_num = 1)
     gallery_image = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -106,7 +211,7 @@ class HomePage(Page):
 @register_snippet
 class Header(models.Model):
     logo = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -135,7 +240,7 @@ class Header(models.Model):
 @register_snippet
 class Header_Photo(models.Model):
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -156,7 +261,7 @@ class Header_Photo(models.Model):
 @register_snippet
 class Gallery(models.Model):
     images = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
