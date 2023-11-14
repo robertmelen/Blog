@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image as PILImage
 
+
 # New imports added for ParentalKey, Orderable, InlinePanel
 from blog.models import BlogListingPage
 
@@ -17,6 +18,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail import blocks
 from wagtail.fields import StreamField
 from wagtail.blocks import RichTextBlock
+from wagtail.contrib.search_promotions.models import Query
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -25,7 +27,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, path
 
 from blog.models import BlogDetailPage
 from django_htmx.http import push_url
-from wagtail.contrib.routable_page.models import RoutablePageMixin, path
+from wagtail.contrib.routable_page.models import RoutablePageMixin, path, re_path
 
 from wagtail.images.models import Image, AbstractImage, AbstractRendition
 
@@ -110,7 +112,7 @@ class CustomImage(AbstractImage):
                         self.copyright = copyright
 
                     if not self.shutter:
-                        apex_value = shutter
+                        apex_value = float(shutter)
                         shutter_speed_seconds = apex_to_shutter_speed(apex_value)
                         standard_shutter_speed = convert_to_standard_shutter_speed(shutter_speed_seconds)
                         self.shutter = standard_shutter_speed 
@@ -141,7 +143,7 @@ class HeroBlock(blocks.StructBlock):
    
 
 
-class HomePage(Page):
+class HomePage(RoutablePageMixin, Page):
     home_header = models.ForeignKey('home.Header', null=True,
           blank=True,
           on_delete=models.SET_NULL,
@@ -151,7 +153,7 @@ class HomePage(Page):
     date = models.DateField("Post date")
     hero = StreamField([
         ('hero', HeroBlock()),
-    ], use_json_field=True, max_num = 1)
+    ],  use_json_field=True, null=True)
     gallery_image = models.ForeignKey(
         CustomImage,
         null=True,
@@ -174,7 +176,7 @@ class HomePage(Page):
         
     ]
 
-    subpage_types = ['blog.BlogListingPage']
+    subpage_types = ['blog.BlogListingPage', 'home.Terms']
 
     def get_recent_blogs(self):
         max_count = 4 # max count for displaying post
@@ -184,24 +186,75 @@ class HomePage(Page):
         context = super().get_context(request, *args, **kwargs)
         context['menu_objects'] = BlogListingPage.objects.live().child_of(self)
         context['recent_posts'] = self.get_recent_blogs()
+        context['tandc'] = Page.objects.type(Terms)
         return context
-
-
-
-        # Add extra variables and return the updated context
-       
-
-    #checking fot htmx request working
-    def serve(self, request, *args, **kwargs):
-        if request.htmx:
-            if request.GET.get('bio'):
-                context = super().get_context(request, *args, **kwargs)
-                return render(request, "partials/bio.html", context)
-        return super().serve(request)
-
+    
    
-               
-#orderables 
+
+    @path('blog-search/')
+    def blog_search(self, request,):
+        if request.htmx:
+            if request.GET:
+                return self.render(
+                        request,
+                        context_overrides={
+                            'test': "test"
+                            },
+                        template = "home/search.html",
+                    )
+            elif request.POST:
+                    search_query = request.POST.get('search-input')
+                    search_results = BlogDetailPage.objects.all().autocomplete(search_query)
+                    return self.render(
+                            request,
+                            context_overrides={
+                                'search_query': search_query,
+                                'search_results': search_results,
+                                },
+                            template = "home/search-results.html",
+                        )
+                
+        
+    @path('bio/')
+    def blog_bio(self, request,):
+     
+      return self.render(
+            request,
+            context_overrides={
+                'test': "test"
+                },
+            template = "partials/bio.html",
+        )
+    
+
+    @path('contact/')
+    def blog_contact(self, request,):
+        if request.POST:
+            return self.render(
+                    request,
+                    context_overrides={
+                        'test': "test"
+                        },
+                    template = "home/contact.html",
+                )
+    
+
+
+    
+    # def serve(self, request, *args, **kwargs):
+    #         if request.htmx:
+    #             if request.GET.get('bio'):
+    #                 context = super().get_context(request, *args, **kwargs)
+    #                 print("debug htmx")
+    #                 return render(request, "partials/bio.html", context)
+            
+    #         print("debug normal")
+        
+            
+        
+    #         return super().serve(request)
+                
+
 
 
 
@@ -288,3 +341,34 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.images.title
+        
+
+
+class Terms(Page):
+    text = RichTextField(blank=True, null=True)
+    created = models.DateField('Date', blank=True, null=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('text'),
+        
+    ]
+   
+    page_description = "Use this for Terms and Conditions"
+
+    def __str__(self):
+        return "this is a test"
+        
+
+    
+    # def serve(self, request, *args, **kwargs):
+    #     if request.htmx:
+    #         print("HTMX true")
+           
+    #         context = super().get_context(request, *args, **kwargs)
+    #         return render(request, "partials/terms.html", context)
+    
+    #     return super().serve(request)
+    
+
+
+   

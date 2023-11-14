@@ -48,14 +48,14 @@
 
 
  
-.htmx-indicator{
-    opacity:0;
-    transition: opacity 500ms ease-in;
-}
-
 .spinner{
-    display:none;
+    display: none;
 }
 .htmx-request .spinner{
-    display:inline;
+    display: inline;
 }
+.htmx-request.spinner{
+    display: inline;
+}
+
+

@@ -1,7 +1,12 @@
 
 {% load wagtailcore_tags %}
-<section>
-    <pre class="max-w-xs overflow-hidden sm:max-w-fit"><code id="output" class="language-{{ self.language }}">{{ self.text }}</code></pre>
+<section class="p-5 sm:p-0">
+    <pre class="sm:max-w-fit">
+        <code id="output"  class="language-{{ self.language }}">
+            
+            {{ self.text }}
+            
+        </code></pre>
 </section>
 <button _="on click
 get the innerText of #output

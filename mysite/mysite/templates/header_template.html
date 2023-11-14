@@ -4,6 +4,9 @@
 {% load static wagtailuserbar menus_tags %}
 
 {% get_menu "main" as navigation %}
+{% load wagtailroutablepage_tags %}
+{% load wagtailcore_tags %}
+{% load wagtailcore_tags snippet_tags %}
 
 <div _="on scroll from the window
     
@@ -24,19 +27,28 @@ else if window's scrollY < 400 remove .-translate-y-6 then settle
       </label>
       {% breadcrumbs %}
       </div>
-      <nav id="nav" class="hidden">
+      
+      <nav id="nav" class="hidden" >
       <ul tabindex="0" id="navMenu" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
      
         <li><a href="/" hx-boost="true">Homepage</a></li>
         {% for item in navigation.menu_items.all %}
         <li><a href='{{ item.link_page.url }}' hx-boost="true">{{ item.link_title }}</a></li>
         {% endfor %}
+
+        {% for term in tandc %}
+       
+        <li><a  href="{% pageurl term %}" >{{ term.title }}</a></li>
+        {% endfor %}
+        
       
       </ul>
       </nav>
     </div>
-    
+  
   </div>
+  
+  
   
   <div class="navbar-center">
       
@@ -45,18 +57,32 @@ else if window's scrollY < 400 remove .-translate-y-6 then settle
   </div>
 
 
-
-
   
-  <div class="navbar-end flex-wrap
-  ">
-  <button _="on click go to the top of the body smoothly end 
-   "id="header-button" type="button"  class="invisible opacity-0 text-white bg-blue-700
-    hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2
-     dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5">Back to top</button>
-    <button class="hidden sm:inline-flex btn btn-ghost btn-circle">
-      <svg xmlns="http://www.w3.org/2000/svg" class=" h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
+  <div  class="navbar-end flex flex-col sm:flex-row sm:flex-wrap gap-2
+  " >
+  
+    <button _="on click go to the top of the body smoothly end"
+    id="header-button" type="button"  class="hidden sm:flex invisible opacity-0 text-white bg-blue-700
+      hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2
+      dark:bg-blue-600 dark:hover:bg-blue-700 ocus:outline-none dark:focus:ring-blue-800 mt-5">Back to top</button>
+      {% is_homepage as homepage_test %}
+      
+      {% if homepage_test  %}
+      
+      <button _="" hx-post="{% routablepageurl page.get_site.root_page.specific 'blog_contact' %}" 
+      hx-vals='{"contact": "contact"}'
+      hx-target="#right-section"
+      class="text-xs sm:text-sm btn">Contact</button>
+      {% endif %}
+      <div class="flex sm:pr-5">
+        <button class="sm:inline-flex btn btn-ghost btn-circle" 
+        hx-get="{% routablepageurl page.get_site.root_page.specific 'blog_search' %}"
+        hx-vals='{"search-button": "search-button"}'
+        hx-target="#right-section">
+          <svg xmlns="http://www.w3.org/2000/svg" class=" h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </button>
+      </div>
+    
     
   </div>
  

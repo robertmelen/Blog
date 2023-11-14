@@ -1,47 +1,36 @@
 {% load wagtailimages_tags %}
-
-
-
-
-    {% with small_image_block=self.small_image %}
-        {% if small_image_block %}
-            {% image self.small_image width-100 as photo %}
-    
-   
-    <img class="h-auto max-w-full rounded-lg" src="{{ photo.url }}" alt="image description">
-    <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{ self.text }}</figcaption>
+<div  class="flex-col justify-center items-center">
+{% with small_image_block=self.small_image %}
+    {% if small_image_block %}
+        {% image self.small_image width-100 as photo %}
+        <img class="h-auto max-w-full rounded-lg"
+             src="{{ photo.url }}"
+             alt="image description">
+        <figcaption class=" text-sm text-center text-gray-500 dark:text-gray-400">{{ self.text }}</figcaption>
     {% endif %}
-
     {% with medium_image_block=self.medium_image %}
         {% if medium_image_block %}
             {% image self.medium_image width-800 as photo %}
-    
-   
-    <img class="rounded-lg shadow-2xl" src="{{ photo.url }}" alt="image description">
-    <figcaption class="mt-2 text-sm text-left text-gray-500 dark:text-gray-400">{{ self.text }}</figcaption>
-    {% endif %}
+            <img class="rounded-lg "
+                 src="{{ photo.url }}"
+                 alt="image description">
+            <figcaption class="text-sm text-left text-gray-500 dark:text-gray-400">{{ self.text }}</figcaption>
+        {% endif %}
     {% endwith %}
-
     {% with large_image_block=self.large_image %}
         {% if large_image_block %}
-         {% image self.large_image width-1200 as photo %}
-
-    
-    <img class="rounded-lg shadow-xl p-2 border-cyan-900"  src="{{ photo.url }}" alt="image description">
-    
-
-    
-    
-    <div class="text-xs text-gray-500 dark:text-gray-400 text-center">{{ self.text }}</div>
-    <hr>
-    {% endif %}
+            {% image self.large_image width-1200 as photo %}
+            <div class="flex flex-col">
+                <div>{{ self.text }}</div>
+            <img class="rounded-lg p-2 border-cyan-900"
+                 src="{{ photo.url }}"
+                 alt="image description">
+                 
+                 
+            
+        </div>
+          
+        {% endif %}
     {% endwith %}
-
-
-
-
-
 {% endwith %}
-    
-
-  
+</div>

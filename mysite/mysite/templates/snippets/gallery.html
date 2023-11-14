@@ -15,21 +15,29 @@
       
         <hr>
         <div class="mx-auto">
-        <h1 id="text-tester" class="image-text -translate-x-10 text-6xl sm:text-8xl font-thin text-gray-600 p-10 font-Fuggles dark:text-white">{{ img.title }}...<small class="translate-x-10 ml-2 font-Fuggles  text-black text-5xl">
-           {{ img.caption }}</small></h1>
+        
           
-           <div class="inline-flex gap-2 m">
-            
-           <button _="on click toggle between .hidden and .inline-flex on next <div.exif/>" class="font-extralight text-xs ml-10">
-           Info
-           </button>
-           <svg class="w-4 h-4  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 3h-2l-.447-.894A2 2 0 0 0 12.764 1H7.236a2 2 0 0 0-1.789 1.106L5 3H3a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V5a2 2 0 0 0-2-2Z"/>
-          </svg>
-            </diV>
+         
             
                 {% image img.images width-1200 as gallery_photos %}
+                <div class="flex flex-col">
+                    <div>
+                    <h1 id="text-tester" class="image-text -translate-x-10 text-6xl sm:text-8xl font-thin text-gray-600 font-sans dark:text-white">{{ img.title }}...<small class="translate-x-10 ml-2 font-Poppins  text-black text-5xl">
+                        {{ img.caption }}</small></h1>
+                
+                    </div>
+                    
+           <div class="inline-flex gap-2 p-2">
+                    
+                    <button _="on click toggle between .hidden and .inline-flex on next <div.exif/>" class="hover:scale-125 font-extralight text-xs ml-10">
+                    Image exif data
+                    
+                    <svg class="hover:scale-125 inline-block  w-5 h-5  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 3h-2l-.447-.894A2 2 0 0 0 12.764 1H7.236a2 2 0 0 0-1.789 1.106L5 3H3a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V5a2 2 0 0 0-2-2Z"/>
+                </svg>
+                </button>
+            </div>
                 <div id="" class="sm:gap-2 hidden exif">
                     {% if img.images.camera %}
                     <div id="exif-data" class="text-xs font-Poppins">Camera: {{ img.images.camera }}|</div>
@@ -40,16 +48,13 @@
                     {% if img.images.shutter %}
                     <div class="text-xs font-Poppins">Shutter Speed: 1/{{ img.images.shutter}}secs|</div>
                     {% endif %}
-                    {% if img.images.shutter %}
-                    <div class="text-xs font-Poppins">Shutter Speed: 1/{{ img.images.shutter}}secs|</div>
-                    {% endif %}
-                    {% if img.images.shutter %}
-                    <div class="text-xs font-Poppins">Shutter Speed: 1/{{ img.images.shutter}}secs|</div>
-                    {% endif %}
                 </div>
+            </div>
+                
+                
             <img id="image" _="on intersection(intersecting) having threshold 0.2 if intersecting remove .-translate-x-10 from the previous <h1.image-text/> then add .translate-x-10 .duration-1000 to the previous <h1.image-text/>
             then remove .translate-x-5 from me then add .-translate-x-5 .duration-1000"
-             class="translate-x-5 max-max-lg rounded-lg shadow-md items-center" src="{{ gallery_photos.url }}" alt="">
+             class="sm:translate-x-5 max-max-lg rounded-lg shadow-md items-center" src="{{ gallery_photos.url }}" alt="">
              
             
         </div>

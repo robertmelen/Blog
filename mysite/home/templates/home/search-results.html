@@ -1,0 +1,20 @@
+{% load wagtailcore_tags %}
+
+
+
+    {% if search_results %}
+            
+                {% for result in search_results %}
+                    
+                        <div class="inline-flex"><a class="text-xs text-red-600" href="{% pageurl result %}">{{ result }}/</a></div>
+                        
+                    
+                {% endfor %}
+            
+    {% else %}
+    No results
+    
+    {% endif %}
+    {% if search_results == None %}
+    no results 
+    {% endif %}

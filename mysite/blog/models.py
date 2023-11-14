@@ -3,6 +3,7 @@ from django import forms
 from taggit.models import TaggedItemBase
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+import time
 
 from readtime import of_html, of_markdown, of_text
 
@@ -17,6 +18,7 @@ from wagtail.snippets.models import register_snippet
 from wagtail import blocks
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.models import ClusterableModel
+from wagtail.search import index
 
 
 
@@ -67,9 +69,9 @@ class BlogAuthor(ClusterableModel):
         blank=False,
         related_name="+",
     )
-    facebook = models.CharField(max_length=200, blank=True, null=True)
-    twitter = models.CharField(max_length=200, blank=True, null=True)
-    instagram = models.CharField(max_length=200, blank=True, null=True)
+    facebook = models.CharField(max_length=200, blank=True, default="facebook")
+    twitter = models.CharField(max_length=200, blank=True, default="twitter")
+    instagram = models.CharField(max_length=200, blank=True, default="instagram")
     
     panels = [
     MultiFieldPanel(
@@ -144,6 +146,8 @@ class BlogListingPage(RoutablePageMixin, Page):
 
     def get_template(self, request, *args, **kwargs):
         if request.htmx and request.GET.get('elements'):
+             time.sleep(2)
+             print("htmx")
              return 'partials/blog_list_element.html'
         else:
             return 'blog/blog_listing_page.html'
@@ -152,9 +156,10 @@ class BlogListingPage(RoutablePageMixin, Page):
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
-        context["posts"] = BlogDetailPage.objects.live().public().order_by('-first_published_at')
+        context["posts"] = BlogListingPage.get_children(self).live()
         
-        paginator = Paginator(context["posts"], 4)
+        
+        paginator = Paginator(context["posts"], 2)
         page = request.GET.get("page")
         try:
            posts = paginator.page(page)
@@ -172,21 +177,14 @@ class BlogListingPage(RoutablePageMixin, Page):
         context = all_post.filter(tags__name=tag)
         print(context)   
         return self.render(request, template="partials/blog_by_tag.html", context_overrides = {'posts': context, 'tagged':tag})  
+    
+    search_fields = Page.search_fields + [
+        index.AutocompleteField('custom_title'),
+        
+    ]
    
 
-    def get_paginated_posts(self, request, qs):
-        # https://docs.djangoproject.com/en/4.0/topics/pagination/#using-paginator-in-a-view-function
-        paginator = Paginator(qs, 2)
-        page = request.GET.get("page")
-        try:
-            posts = paginator.page(page)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.object_list.none()
-
-        return posts
-
+   
         
 class BlogDetailPage(Page):
     """Blog detail page."""
@@ -207,7 +205,7 @@ class BlogDetailPage(Page):
 
     categories = ParentalManyToManyField('blog.BlogCategories', blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    summary = models.CharField(max_length=100, blank=True, null=True)
+    summary = models.CharField(max_length=100, blank=True, default="sumamry")
 
     content = StreamField(
         [
@@ -223,7 +221,7 @@ class BlogDetailPage(Page):
           
            
         ],
-        use_json_field=True)
+         use_json_field=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("custom_title"),
@@ -243,6 +241,14 @@ class BlogDetailPage(Page):
 
         
     ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('content'),
+        
+        index.AutocompleteField('custom_title'),
+        
+    ]
+   
 
     
   
@@ -267,7 +273,7 @@ class BlogDetailPage(Page):
 class BlogCategories(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     icon = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        ('home.CustomImage'), null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
 

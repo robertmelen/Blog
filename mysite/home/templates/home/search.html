@@ -1,0 +1,25 @@
+{% load wagtailroutablepage_tags %}
+
+<a  _="on load remove .translate-x-7 then set my *opacity to 80% then add .-translate-x-7 .duration-1000 to me "class="translate-x-7 opacity-0" href="/" hx-boost="true" class="inline-flex font-bold">
+  
+    
+    Back</a>
+<div class="flex-col">
+    <input _="on keydown if my value != ' ' then remove .hidden from .search-message then add .flex to .search-message"
+    id="searchbox" type="text" placeholder="Enter Search" name="search-input"  class="input input-bordered input-success w-full max-w-xs" 
+    hx-post="/blog-search/"
+    hx-trigger="keyup changed delay:500ms"
+    hx-target="#search-results"
+    hx-vals="{'search-input': 'search-input'}"
+    hx-swap="innerHTML"/>
+   
+    
+    
+</div>
+
+<div class="flex gap-4">
+<span class="font-bold">Results:</span>
+<span id="search-results"></span>
+</div>
+<div>Enter your search keyword in the box about to see results.</diV>
+

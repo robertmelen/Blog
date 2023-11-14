@@ -8,28 +8,33 @@
 
 
 
-   
 
     {% for post in posts %}
-
+    
     {% if forloop.last %}
    
     
+   {% if posts.has_next %}
    
-    <div hx-get="{% slugurl 'blogs' %}?page={{ posts.next_page_number }}" hx-vals='{"elements": "elements"}' hx-trigger="revealed" hx-swap="afterend" hx-target="this"
-    >
-   
+    <div  hx-get="{% slugurl 'blog-page' %}?page={{ posts.next_page_number }}" 
+    hx-indicator="#spinner" 
+    hx-vals='{"elements": "elements"}' 
+    hx-trigger="revealed" 
+    hx-swap="afterend" 
+    hx-target="this">
+    
+   {% endif %} 
 
 
-    
    
-    
+   
+   
     {% else %}
     
    
     {% endif %}
-
-
+    
+   
     <article _="on intersection(intersecting) having threshold 0.3
     if intersecting transition opacity to 1
     else transition opacity to 0"  class=" hover:border-green-600 p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -45,11 +50,11 @@
         </div>
         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">{{ post.title }}</a></h2>
         <p class="mb-5 font-light text-gray-500 dark:text-gray-400">Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers influence both web designers and developers.</p>
-        {% image post.blog_image width-400 as blog_photo %}
+        {% image post.specific.blog_image width-400 as blog_photo %}
         <img class="w-full h-  p-6 rounded-lg" src="{{ blog_photo.url }}">
         <div class="flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                {% for author in post.blog_authors.all %}
+                {% for author in post.specific.blog_authors.all %}
                 {% image author.author.image width-100 as photo %}
                 <img class="w-7 h-7 rounded-full" src="{{ photo.url }}" alt="Jese Leos avatar" />
                 <span class="font-thin dark:text-white">
@@ -76,7 +81,6 @@
 
 
 </div>
-
 
 
 

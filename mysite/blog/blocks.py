@@ -16,9 +16,9 @@ class TitleAndTextBlock(blocks.StructBlock):
 
 class ImageBlock(blocks.StructBlock):
 
-     small_image = ImageChooserBlock(required=False, null=True, blank=True)
-     medium_image = ImageChooserBlock(required=False, null=True, blank=True)
-     large_image = ImageChooserBlock(required=False, null=True, blank=True)
+     small_image = ImageChooserBlock(required=False, blank=True)
+     medium_image = ImageChooserBlock(required=False, blank=True)
+     large_image = ImageChooserBlock(required=False, blank=True)
      text = blocks.TextBlock(required=True, max_length=200)
 
      class Meta:  # noqa
@@ -48,7 +48,7 @@ class CodeBlock(blocks.StructBlock):
 
 
         
-        language = blocks.ChoiceBlock(choices=CODE_CHOICES, default="python")
+        language = blocks.ChoiceBlock(choices=CODE_CHOICES, default="language")
         text = blocks.TextBlock()
 
         class Meta:  # noqa

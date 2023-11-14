@@ -1,0 +1,47 @@
+{% load wagtailcore_tags snippet_tags %}   
+
+{% load static wagtailuserbar %}
+{% load static wagtailuserbar menus_tags %}
+{% load wagtailsettings_tags %}
+
+{% get_menu "footer_menu" as navigation %}
+
+
+
+        <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded mt-10">
+            <div class="grid grid-flow-col gap-4">
+              
+                {% for item in navigation.menu_items.all %}
+                <li><a href='{{ item.link_page.url }}' hx-boost="true">{{ item.link_title }}</a></li>
+                {% endfor %}
+                
+            </div>
+           
+<!-- Privacy toggle -->
+<div class="flex flex-wrap">
+    
+ 
+
+{% for item in settings.sitesettings.FooterSettings.notices.all %}
+<label for="my-modal-4{{ item.id }}" class="btn btn-info btn-xs modal-button modal-open ">{{ item.title}}</label>
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-4{{ item.id }}" class="modal-toggle">
+<label for="my-modal-4{{ item.id }}" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <h3 class="text-lg font-bold">{{ item.title}}</h3>
+    <p class="py-4">{{ item.text|richtext }}</p>
+  </label>
+</label>
+  {% endfor %}
+  <!-- Privacy modal -->
+  
+  </div>
+  
+            <div>
+              <p>Copyright © 2023 - Robert Melen</p>
+            </div>
+
+           
+        
+          </footer>

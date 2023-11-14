@@ -60,6 +60,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'wagtail_icon_picker',
     'storages',
+    'sitesettings',
+    'wagtail.contrib.settings',
+    
     
     
 ]
@@ -75,6 +78,8 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+   
+    
 ]
 
 ROOT_URLCONF = "mysite.urls"
@@ -92,6 +97,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
@@ -103,12 +109,25 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'testdb',
+        'USER': 'postgres',
+        'PASSWORD': '93739373',
+        'HOST': 'localhost',
+        'PORT':  '5432',
+    } 
 }
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
 
 
 # Password validation
@@ -182,7 +201,7 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
-    "127.0.0.1",
+    "127.0.0.1", "172.17.0.1"
 ]
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
@@ -218,4 +237,8 @@ STATIC_URL = "/static/"
 AWS_S3_FILE_OVERWRITE = False
 
 
-
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
+    }
+}

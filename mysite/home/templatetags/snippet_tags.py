@@ -9,8 +9,6 @@ register = template.Library()
 def headers(context):
     return {
         'home_page_objects': HomePage.objects.all(),
-        
-        
         'request': context['request'],
     }
 
@@ -58,3 +56,13 @@ def get_embed_url_with_parameters(url):
         return embed_url_with_parameters
     else:
         return None
+    
+
+
+@register.simple_tag(takes_context=True)
+def is_homepage(context):
+    
+    if context.request.path == "/":
+        print(context.request.path)
+        return "homepage"
+    
