@@ -146,9 +146,13 @@ class BlogListingPage(RoutablePageMixin, Page):
 
     def get_template(self, request, *args, **kwargs):
         if request.htmx and request.GET.get('elements'):
-             time.sleep(2)
+             
              print("htmx")
              return 'partials/blog_list_element.html'
+        elif request.htmx and request.GET.get('category'):
+            return 'partials/blog_by_category.html'
+        
+
         else:
             return 'blog/blog_listing_page.html'
         
@@ -156,7 +160,16 @@ class BlogListingPage(RoutablePageMixin, Page):
     def get_context(self, request, *args, **kwargs):
         """Adding custom stuff to our context."""
         context = super().get_context(request, *args, **kwargs)
-        context["posts"] = BlogListingPage.get_children(self).live()
+        if request.htmx and request.GET.get('category'):
+            category_arg = request.GET.get('category_arg', None)
+            print(category_arg)
+            category = BlogCategories.objects.get(name=category_arg)
+            context["posts"] = BlogDetailPage.objects.live().public().filter(categories__in=[category])
+        else:
+
+            context["posts"] = BlogListingPage.get_children(self).live().order_by('-first_published_at')
+            context["cats"] = BlogCategories.objects.all() 
+
         
         
         paginator = Paginator(context["posts"], 2)
@@ -182,6 +195,18 @@ class BlogListingPage(RoutablePageMixin, Page):
         index.AutocompleteField('custom_title'),
         
     ]
+
+    # @re_path(r'^category/(\w+)/$')
+    # def post_by_category(self, request, name, *args, **kwargs):
+    #     context = super().get_context(request, *args, **kwargs)
+    #     category = BlogCategories.objects.get(name=name)
+    #     context["category_posts"] = BlogDetailPage.objects.live().public().filter(categories__in=[category])
+        
+         
+    #     return self.render(request, template="partials/blog_by_category.html", context_overrides = {'category_posts': context["category_posts"]})  
+    
+   
+   
    
 
    
@@ -189,12 +214,8 @@ class BlogListingPage(RoutablePageMixin, Page):
 class BlogDetailPage(Page):
     """Blog detail page."""
 
-    custom_title = models.CharField(
-        max_length=100,
-        blank=False,
-        null=False,
-        help_text='Overwrites the default title',
-    )
+   
+    
     blog_image = models.ForeignKey(
         ('home.CustomImage'),
         blank=False,
@@ -205,7 +226,7 @@ class BlogDetailPage(Page):
 
     categories = ParentalManyToManyField('blog.BlogCategories', blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    summary = models.CharField(max_length=100, blank=True, default="sumamry")
+    summary = models.CharField(max_length=100, blank=True, default="sumamry", help_text="This appears under the blog on recent posts")
 
     content = StreamField(
         [
@@ -224,7 +245,7 @@ class BlogDetailPage(Page):
          use_json_field=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel("custom_title"),
+        
         FieldPanel("summary"),
         FieldPanel("blog_image"),
         FieldPanel("content"),
@@ -245,7 +266,8 @@ class BlogDetailPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('content'),
         
-        index.AutocompleteField('custom_title'),
+        index.AutocompleteField('slug'),
+        index.AutocompleteField('summary'),
         
     ]
    
@@ -266,7 +288,7 @@ class BlogDetailPage(Page):
     
     
     def __str__(self):
-        return self.custom_title
+        return self.title
     
     
 @register_snippet

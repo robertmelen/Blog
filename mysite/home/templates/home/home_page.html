@@ -100,18 +100,17 @@
             <article class="">
               <a href="#">
                 {% image x.blog_image fill-450x300 as photo %}
-                <img src="{{ photo.url }}" class="mb-5 w-full" alt="Image 1">
+                <img src="{{ photo.url }}" class="hover:scale-110 transition-all duration-500  mb-5 w-full" alt="Image 1">
               </a>
-              <h2 class="group mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white transition duration-300">
-                <a href="{% pageurl x %}">{{ x.custom_title }}
+              <h2 class="group mb-2 text-xl font-Poppins font-bold leading-tight text-gray-900 dark:text-white transition duration-300">
+                <a href="{% pageurl x %}">{{ x.title }}
                   <span class="block w-0 group-hover:w-20 transition-all duration-500 h-1 bg-green-600"></span></a>
               </h2>
-              <p class="mb-4 font-light text-gray-500 dark:text-gray-400">{{ x.summary|truncatewords:8 }}</p>
+              <p class="mb-4 font-light text-gray-800 dark:text-gray-800">{{ x.summary|truncatewords:8 }}</p>
               <a href="#"
                  class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
               </a>
-              {{ x.content.first_block_by_name.text_body.value.rich_text | truncatewords:10 }}
-              {{ x.content.block_by_name.text_body.value.rich_text }}
+             
             </article>
           {% endfor %}
         </div>
@@ -125,10 +124,10 @@
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center text-neutral-content">
         <div class="max-w-md">
-          <h1 class="mb-5 text-5xl font-bold">Photography</h1>
-          <p class="mb-5">This section let's me show just some of my favorite images that I have taken in my career.</p>
+          <h1 class="mb-5 font-Poppins text-6xl font-bold">Photography</h1>
+          <p class="mb-5 text-xl">Here, you can view some of my favorite images that I have taken.</p>
           <button _="on click go to middle of #text-tester smoothly "
-                  class="btn btn-primary">Click to scroll</button>
+                  class="text-white bg-gradient-to-r from-green-500  to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Click to scroll</button>
         </div>
       </div>
     </div>

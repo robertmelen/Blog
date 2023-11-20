@@ -2,6 +2,7 @@
 {% load wagtailcore_tags %}
 {% load wagtailcore_tags snippet_tags %}
 {% load wagtailimages_tags %}
+{% load wagtailroutablepage_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 {% headers %}
@@ -35,6 +36,13 @@
     {% if tagged %}
     <h1 class="text-center text-sm ">All posts tagged {{ tagged }}</h1>
     {% endif %}
+    categories
+   
+    {% for x in cats %}
+    <a  hx-get="{% pageurl page %}?category_arg={{ x.name }}" hx-vals='{"category": "category"}'>{{ x.name }}  </a>
+
+    {% endfor %}
+    <div id="cattest" class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6"></div>
   
    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
     
@@ -44,9 +52,9 @@
               
   
         
-
-            {% include 'partials/blog_list_element.html' %}
             
+            {% include 'partials/blog_list_element.html' %}
+           
 
     </div>  
 

@@ -1,6 +1,7 @@
 {% load wagtailcore_tags %}
 
 
-{{ settings.sitesettings.contactinfo.text|richtext }}
+<div _="init put 'back' into #contact-button.innerText then add @href='/' to #contact-link"class="prose prose-xl wagtail-richtext">{{ settings.sitesettings.contactinfo.text|richtext }}</div>
 
-<button href="/" hx-boost="true" >close</button>
+
+<a href="/" hx-boost="true" ><button>close</button></a>

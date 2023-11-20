@@ -12,7 +12,7 @@ Install the "flowbite-typography" NPM package to apply styles and format the art
 URL: https://flowbite.com/docs/components/typography/ 
 -->
   <!--Wrapper for detail page-->
-  <div class="hidden sm:flex justify-between m-10 fixed">
+  <div class="hidden sm:flex justify-between m-10 fixed ">
     {% if page.next_post %}
       <div class="flex-col">
         <a _="on mouseover toggle between .hidden and .flex on #nextpost then transition #nextpost opacity to 1 then on mouseleave transition #nextpost opacity to 0 and add toggle between .flex and .hidden on #nextpost"
@@ -34,11 +34,11 @@ URL: https://flowbite.com/docs/components/typography/
   </div>
   
     <div class="m-7 sm:container mx-auto lg:px-64 relative" hx-boost="true">
-      <div class="flex-col">
+      <div class="flex flex-col items-center">
         {% for block in page.content %}
           {% if block.block_type == 'title_and_text' %}
-            <div class="mt-10">
-              <h6 class="text-4xl text-black text-center font-extrabold">{{ block.value.title }}</h6>
+            <div class="mt-10 pb-5">
+              <h6 class="text-6xl font-sans text-black text-center font-bold">{{ block.value.title }}</h6>
             </div>
             <div class="inline-flex pt-2 pl-10 gap-1 flex-wrap">
               {% for author in self.blog_authors.all %}
@@ -106,7 +106,7 @@ URL: https://flowbite.com/docs/components/typography/
                   <div>
                     <a hx-boost="true"
                        href="{% routablepageurl page.get_parent.specific 'post_by_tag' tag %}"
-                       hx-target="#testtwo"
+                       hx-target="#clicktags"
                        hx-swap='innerHTML show:no-scroll'
                        hx-push-url="false"
                        class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
@@ -115,9 +115,9 @@ URL: https://flowbite.com/docs/components/typography/
                 {% endfor %}
               {% endif %}
             </div>
-            <div id="testtwo" class="flex-row"></div>
+            <div id="clicktags" class="flex-row self-start"></div>
             <hr />
-            <p class="text-lg text-gray-800 italic text-center pt-5 font-thin">{{ block.value.text }}</p>
+            <p class="text-lg text-black font-Poppins  text-center pt-5 font-thin">{{ block.value.text }}</p>
           {% endif %}
         {% endfor %}
       </div>
@@ -141,8 +141,8 @@ URL: https://flowbite.com/docs/components/typography/
                       frameborder="0"></iframe>
             </div>
           {% endif %}
-          <section class="block-{{ block.block_type }}">
-            <div class="items-center prose max-w-full mb-0 lg:prose-xl">{% include_block block %}</div>
+          <section class="block-{{ block.block_type }} ">
+            <div class="items-center prose max-w-full mb-0 lg:prose-xl wagtail-richtext p-2 sm:p-0">{% include_block block %}</div>
           </section>
         {% endfor %}
         </div>

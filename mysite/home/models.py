@@ -67,13 +67,16 @@ class CustomImage(AbstractImage):
 
     # To add a caption field:
     caption = models.CharField(max_length=1000, blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    date = models.CharField(max_length=100, blank=True)
     camera = models.CharField(max_length=255, blank=True)
     copyright = models.CharField(max_length=200, blank=True)
     shutter = models.CharField(max_length=100, blank=True)
+    aperture = models.CharField(max_length=100, blank=True)
 
     admin_form_fields = Image.admin_form_fields + (
         # Then add the field names here to make them appear in the form:
-        'caption', 'camera', 'copyright', 'shutter',
+        'caption', 'location', 'date', 'camera', 'copyright', 'shutter', 'aperture'
     )
 
     def save(self, *args, **kwargs):
@@ -99,6 +102,7 @@ class CustomImage(AbstractImage):
                     camera_model = exif_data.get(272, '')  # 272 corresponds to 'Model' tag
                     copyright = exif_data.get(33432, '')
                     shutter = exif_data.get(37377, '')
+                    aperture = exif_data.get(37378, '')
 
                     # Only update the 'caption' field if it is currently blank
                     if not self.caption:
@@ -116,6 +120,9 @@ class CustomImage(AbstractImage):
                         shutter_speed_seconds = apex_to_shutter_speed(apex_value)
                         standard_shutter_speed = convert_to_standard_shutter_speed(shutter_speed_seconds)
                         self.shutter = standard_shutter_speed 
+                    
+                    if not self.aperture:
+                        self.aperture = aperture
 
         # Save the model again to store the updated fields
         super().save(*args, **kwargs)
@@ -194,7 +201,7 @@ class HomePage(RoutablePageMixin, Page):
     @path('blog-search/')
     def blog_search(self, request,):
         if request.htmx:
-            if request.GET:
+            if request.method == 'GET':
                 return self.render(
                         request,
                         context_overrides={
@@ -202,7 +209,7 @@ class HomePage(RoutablePageMixin, Page):
                             },
                         template = "home/search.html",
                     )
-            elif request.POST:
+            if request.method == 'POST':
                     search_query = request.POST.get('search-input')
                     search_results = BlogDetailPage.objects.all().autocomplete(search_query)
                     return self.render(
