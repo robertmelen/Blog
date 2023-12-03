@@ -13,7 +13,7 @@ URL: https://flowbite.com/docs/components/typography/
 -->
   <!--Wrapper for detail page-->
   <div></div>
-  <div id="result" class="hidden lg:flex flex-col fixed">
+  <div _="" id="result" class="hidden lg:flex flex-col fixed">
     <div  class="text-lg font-bold">Table of Contents</div>
   </div>
   
@@ -129,27 +129,33 @@ URL: https://flowbite.com/docs/components/typography/
           <section class="block-{{ block.block_type }}">
             <div id="content-block" _="
             init 
-            set items to the <h2/> in me
+            set items to the <h2/> in me 
               for item in items index i
                 
                 set {id:'heading-' + i} on item then 
-                
+                  if item.textContent == ''  remove it else
                   add .scroll-mt-40 to item 
-                  put `<a _='on click remove .bg-green-200 from .link-status then add .bg-green-200 to me'
+                  put `<a _='on click remove .bg-green-200 from .link-status then add bg-gradient-to-r .from-yellow-200 to me'
                   class='link-text-${i} link-status hover:bg-gradient-to-r
                   from-green-100 to-white text-base font-sans active:bg-green-500' 
                   href=#${item.id}>${item.innerText}</a>` 
                                
-                              at the end of the #result then set text to item.textContent
+                              at the end of the #result then set text to item.textContent 
 
+
+                                    
+                            
                         
                       for s in items set it's @_ to '
                       on scroll from the window set x to my.getBoundingClientRect().top log x then set text to my.textContent 
                     
-                    if x > 0 and x < 500 set links to the <a/> in #result 
-                    for test in links 
-                    if test.textContent contains text add .bg-yellow-200 to it else remove .bg-yellow-200 from it
-                    ' end"
+                    if x > 50 and x < 300 set links to the <a/> in #result 
+                    for test in links
+                   
+                    if test.textContent contains text add .bg-gradient-to-r .from-yellow-200 to it else remove .bg-gradient-to-r .from-yellow-200 from it 
+                    ' end 
+                        
+                    "
                     
                     class="items-center prose max-w-full mb-0 lg:prose-xl wagtail-richtext p-2 sm:p-0">{% include_block block %}</div>
           </section>
