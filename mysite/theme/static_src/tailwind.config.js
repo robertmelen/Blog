@@ -135,4 +135,9 @@ module.exports = {   darkMode: 'class',
         require('flowbite-typography'),
         require("daisyui"),
     ],
+    variants: {
+      extend: {
+        backgroundColor: ['active'],
+      }
+    },
 }

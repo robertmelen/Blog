@@ -33,6 +33,9 @@ from django.utils.text import slugify
 from wagtail_icon_picker.fields import IconField
 from wagtail_icon_picker.edit_handlers import IcofontIconPickerPanel, BoxiconsPickerPanel
 
+from django_htmx.http import HttpResponseClientRefresh
+
+from django.db.models import Count
 
 
 
@@ -149,8 +152,7 @@ class BlogListingPage(RoutablePageMixin, Page):
              
              print("htmx")
              return 'partials/blog_list_element.html'
-        elif request.htmx and request.GET.get('category'):
-            return 'partials/blog_by_category.html'
+        
         
 
         else:
@@ -162,13 +164,16 @@ class BlogListingPage(RoutablePageMixin, Page):
         context = super().get_context(request, *args, **kwargs)
         if request.htmx and request.GET.get('category'):
             category_arg = request.GET.get('category_arg', None)
-            print(category_arg)
+            
+            context["category_select"] = category_arg
             category = BlogCategories.objects.get(name=category_arg)
+            context["cats"] = BlogCategories.objects.annotate(num_blogs=Count('blogdetailpage')).filter(num_blogs__gt=0)
             context["posts"] = BlogDetailPage.objects.live().public().filter(categories__in=[category])
+            
         else:
 
             context["posts"] = BlogListingPage.get_children(self).live().order_by('-first_published_at')
-            context["cats"] = BlogCategories.objects.all() 
+            context["cats"] = BlogCategories.objects.annotate(num_blogs=Count('blogdetailpage')).filter(num_blogs__gt=0)
 
         
         

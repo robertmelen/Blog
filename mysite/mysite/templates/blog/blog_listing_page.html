@@ -33,16 +33,29 @@
 
 
 <section class="bg-slate-500 dark:bg-gray-900 my-0 overflow-x-auto">
-    {% if tagged %}
+    <!-- {% if tagged %}
     <h1 class="text-center text-sm ">All posts tagged {{ tagged }}</h1>
-    {% endif %}
-    categories
-   
-    {% for x in cats %}
-    <a  hx-get="{% pageurl page %}?category_arg={{ x.name }}" hx-vals='{"category": "category"}'>{{ x.name }}  </a>
-
-    {% endfor %}
-    <div id="cattest" class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6"></div>
+    {% endif %} -->
+    <div class="flex justify-center gap-2 pt-10 flex-wrap">
+        <div class="text-lg">categories</div>    
+          <div>                                   
+            <a href="{% pageurl self %}"><button class="btn btn-xs">All</button></a>
+          </div>
+          <div>
+            {% for x in cats %}
+              <a hx-target="#body" class="{% if x.name == category_select %} badge btn-accent cursor-pointer font-semibold  {% else %} badge badge-outline cursor-pointer font-semibold {% endif %}" hx-get="{% pageurl page %}?category_arg={{ x.name }}" hx-vals='{"category": "category"}'>{{ x.name }} </a>
+            {% endfor %}
+          </div>
+      <!-- <div>
+        {% if category_select %}
+        <div class="text-xs">Filtering by:</div>
+        <div>
+        <button class="btn btn-xs btn-accent cursor-default" >{{ category_select }}</button>
+        </div>
+        {% endif %}
+      </div> -->
+    </div>
+    
   
    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
     
