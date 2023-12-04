@@ -129,13 +129,16 @@ URL: https://flowbite.com/docs/components/typography/
           <section class="block-{{ block.block_type }}">
             <div id="content-block" _="
             init 
+            set arr to ['a', 'b', 'b', 'b', 'f', 'g', 'g', 'z', 'h', 'a', 'p'] 
+           
             set items to the <h2/> in me 
               for item in items index i
-                
-                set {id:'heading-' + i} on item then 
+                set arrtwo to random in arr log arrtwo
+                set extra to item.textContent[0] log extra
+                set item.id to extra + arrtwo then 
                   if item.textContent == ''  remove it else
                   add .scroll-mt-40 to item 
-                  put `<a _='on click remove .bg-green-200 from .link-status then add bg-gradient-to-r .from-yellow-200 to me'
+                  put `<a _='on click remove .bg-green-200 from .link-status then add .bg-gradient-to-r .from-yellow-200 to me'
                   class='link-text-${i} link-status hover:bg-gradient-to-r
                   from-green-100 to-white text-base font-sans active:bg-green-500' 
                   href=#${item.id}>${item.innerText}</a>` 
@@ -147,7 +150,7 @@ URL: https://flowbite.com/docs/components/typography/
                             
                         
                       for s in items set it's @_ to '
-                      on scroll from the window set x to my.getBoundingClientRect().top log x then set text to my.textContent 
+                      on scroll from the window set x to my.getBoundingClientRect().top then set text to my.textContent 
                     
                     if x > 50 and x < 300 set links to the <a/> in #result 
                     for test in links
