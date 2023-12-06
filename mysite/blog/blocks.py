@@ -28,7 +28,7 @@ class ImageBlock(blocks.StructBlock):
 
 class WritingBlock(blocks.StructBlock):
         
-        rich_text = blocks.RichTextBlock(required=False, max_length=2000)
+        rich_text = blocks.RichTextBlock(required=False, max_length=2000, features=['h2', 'h3', 'bold', 'italic', 'link', 'code'])
 
         class Meta:  # noqa
                 template = "streams/richtext_block.html"

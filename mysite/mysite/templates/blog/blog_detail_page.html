@@ -108,7 +108,7 @@ URL: https://flowbite.com/docs/components/typography/
       <!--Main blog image-->
       <hr>
       <!--Wrapper for content-->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col">
           <!--Author-->
         
         <!--Tags-->
@@ -129,12 +129,17 @@ URL: https://flowbite.com/docs/components/typography/
           <section class="block-{{ block.block_type }}">
             <div id="content-block" _="
             init 
-            set arr to ['a', 'b', 'b', 'b', 'f', 'g', 'g', 'z', 'h', 'a', 'p'] 
+           
+
+            
+             
+
+            set arr to ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'] 
            
             set items to the <h2/> in me 
               for item in items index i
                 set arrtwo to random in arr log arrtwo
-                set extra to item.textContent[0] log extra
+                set extra to item.textContent.slice(0, 3) log extra
                 set item.id to extra + arrtwo then 
                   if item.textContent == ''  remove it else
                   add .scroll-mt-40 to item 

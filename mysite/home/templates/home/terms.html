@@ -1,16 +1,22 @@
 
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
-{% block header %}{% endblock %}
+
 
 {% block content %}
+<div class="flex justify-center">
+<div class="flex flex-col justify-center items-center">
+    <div class="terms-title ">
+        {{ self.title|richtext }}
+    </div>
 
-    <div class="flex flex-col items-center">
-         <a _="" href="/" class="text-lg text-green-400">Close</a>
-       Non partial
-            <div class="terms-title">
-                {{ self.title|richtext }}
-            </div>
+<a _="" href="/" class="text-lg text-green-400">Back</a>
+</div>
+</div>
+    <div class="flex items-center justify-center">
+         <a _="" href="/" class="text-lg text-green-400">Back</a>
+     
+          
             <div>{{ self.text|richtext }}</div>
     </div>
     
