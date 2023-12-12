@@ -243,6 +243,7 @@ class BlogDetailPage(Page):
             ('code', my_blocks.CodeBlock()),
             ('quote', my_blocks.QuoteBlock()),
             ('embed', my_blocks.EmbedBlock()),
+            ('full_width_image', my_blocks.FullWidthImage()),
           
           
            

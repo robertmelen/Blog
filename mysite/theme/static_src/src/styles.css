@@ -10,6 +10,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .link {
+    @apply hover:underline   
+    hover:text-green-500  
+    inline-block  
+    hover:duration-300  
+    cursor-pointer;
+  }
+}
+
+
+
+
 .wagtail-richtext h2 {
   @apply font-Poppins
 }
@@ -31,6 +44,19 @@
   @apply text-base
   
 }
+
+
+
+.full-width {
+	left: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	max-width: 100vw;
+	position: relative;
+	right: 50%;
+	width: 100vw;
+}
+
 
 
 .fade-in-text {

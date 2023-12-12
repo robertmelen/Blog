@@ -1,5 +1,6 @@
 from django.db import models
 from PIL import Image as PILImage
+from django.utils import timezone
 
 
 # New imports added for ParentalKey, Orderable, InlinePanel
@@ -9,9 +10,13 @@ from modelcluster.fields import ParentalKey
 
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel, FieldRowPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.forms.panels import FormSubmissionsPanel
+
 
 
 from wagtail.images.blocks import ImageChooserBlock
@@ -37,6 +42,49 @@ from io import BytesIO
 import io
 
 
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
+
+
+class FormPage(AbstractEmailForm):
+    intro = RichTextField(blank=True)
+    thank_you_text = RichTextField(blank=True)
+
+    content_panels = AbstractEmailForm.content_panels + [
+        FormSubmissionsPanel(),
+        FieldPanel('intro'),
+        InlinePanel('form_fields', label="Form fields"),
+        FieldPanel('thank_you_text'),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel('subject'),
+        ], "Email"),
+    ]
+
+    
+
+    # def serve(self, request, *args, **kwargs):
+    #     if request.htmx:
+    #         print("hello")
+    #         if request.POST.get('contact-two'):
+    #                 testname = request.POST.get('name')
+    #                 print(testname)
+    #                 test = self.get_form()
+                   
+    #                 return self.render_landing_page(request, *args, **kwargs)
+                    
+          
+    #     return super().serve(request)
+              
+      
+
+
+
+  
 
 def apex_to_shutter_speed(apex_value):
     # Calculate the shutter speed in seconds
@@ -183,13 +231,29 @@ class HomePage(RoutablePageMixin, Page):
         
     ]
 
-    subpage_types = ['blog.BlogListingPage', 'home.Terms']
+    subpage_types = ['blog.BlogListingPage', 'home.Terms', 'home.FormPage']
+
+
+    
+    
+  
 
     def get_recent_blogs(self):
         max_count = 4 # max count for displaying post
         return  BlogDetailPage.objects.all().order_by('-first_published_at')[:max_count]
 
     def get_context(self, request, *args, **kwargs):
+        def get_ip_address(request):
+            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+            now = timezone.now()
+            if x_forwarded_for:
+                ip = x_forwarded_for.split(',')[0]
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+            with open(r'C:\Users\Rob\Desktop\Coding stuff\ip logs.txt', 'a') as file:
+                    file.write(ip + " " + str(now) + '\n')
+        
+        get_ip_address(request)
         context = super().get_context(request, *args, **kwargs)
         context['menu_objects'] = BlogListingPage.objects.live().child_of(self)
         context['recent_posts'] = self.get_recent_blogs()

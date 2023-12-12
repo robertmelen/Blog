@@ -63,6 +63,11 @@ INSTALLED_APPS = [
     'sitesettings',
     'wagtail.contrib.settings',
     
+   
+   
+    'crispy_forms',
+    'crispy_tailwind',
+    
     
     
 ]
@@ -242,3 +247,7 @@ WAGTAILSEARCH_BACKENDS = {
         'BACKEND': 'wagtail.search.backends.database',
     }
 }
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"

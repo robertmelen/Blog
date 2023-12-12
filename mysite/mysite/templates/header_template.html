@@ -62,15 +62,15 @@ else if window's scrollY < 400 remove .-translate-y-6 then settle
   " >
   
     <button _="on click go to the top of the body smoothly end"
-    id="header-button" type="button"  class="hidden sm:flex invisible opacity-0 text-white bg-yellow-200
+    id="header-button" type="button"  class="hidden sm:flex invisible opacity-0 text-white bg-green-400
       hover:bg-yellow-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2
       dark:bg-blue-600 dark:hover:bg-blue-700 ocus:outline-none dark:focus:ring-blue-800 mt-5">Back to top</button>
       {% is_homepage as homepage_test %}
       
       {% if homepage_test  %}
       
-      <a id="contact-link"><button _="" id="contact-button" hx-post="{% routablepageurl page.get_site.root_page.specific 'blog_contact' %}"
-      hx-vals='{"contact": "contact"}'
+      <a id="contact-link" hx-boost="true"><button _="" id="contact-button" hx-post="/contact-me/" 
+     
       hx-target="#right-section"
       class="text-green-700 hover:text-white border border-green-200 hover:bg-green-800 focus:ring-4 focus:outline-none
        focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2

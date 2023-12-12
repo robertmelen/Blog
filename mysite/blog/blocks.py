@@ -86,9 +86,16 @@ class EmbedBlock(blocks.StructBlock):
                 label = "Embed" 
 
      
-
+class FullWidthImage(blocks.StructBlock):
        
-             
+        
+        image = ImageChooserBlock(required=False, blank=True)
+        text = blocks.TextBlock(required=True, max_length=200)
+       
+        class Meta:  # noqa
+                template = "streams/full_width_image_block.html"
+                icon = "placeholder"
+                label = "Full width Image"     
 
  
                 

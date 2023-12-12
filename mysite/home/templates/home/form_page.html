@@ -1,0 +1,18 @@
+{% load wagtailcore_tags %}
+{% load crispy_forms_tags %}
+
+
+<div _="init put 'back' into #contact-button.innerText then add @href='/' to #contact-link"class="prose prose-xl wagtail-richtext" hx-boost="true">{{ settings.sitesettings.contactinfo.text|richtext }}</div>
+
+<form hx-post="/contact-me/" hx-target="#message"  method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div id="message"></div>
+    <a id="form-link">
+    <button id="form-button" type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg" >Submit</button>
+    </a>
+  
+  </form>
+  <a id="form-success" class="hidden" href="/">
+  <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg" >back</button>
+  </a>

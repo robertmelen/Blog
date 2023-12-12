@@ -13,7 +13,7 @@ URL: https://flowbite.com/docs/components/typography/
 -->
   <!--Wrapper for detail page-->
   <div></div>
-  <div _="" id="result" class="hidden lg:flex flex-col fixed">
+  <div _="" id="result" class="hidden z-10 lg:flex flex-col fixed">
     <div  class="text-lg font-bold">Table of Contents</div>
   </div>
   
@@ -124,6 +124,13 @@ URL: https://flowbite.com/docs/components/typography/
                       src="{{ block.value.embed.url |embedurl }}"
                       frameborder="0"></iframe>
             </div>
+          {% endif %}
+          {% if block.block_type == 'full_width_image' %}
+               
+                {% image block.value.image width-2000 class="full-width" %}
+               
+                  
+                
           {% endif %}
           
           <section class="block-{{ block.block_type }}">
