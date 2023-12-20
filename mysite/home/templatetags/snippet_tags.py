@@ -65,4 +65,8 @@ def is_homepage(context):
     if context.request.path == "/":
         print(context.request.path)
         return "homepage"
-    
+
+
+@register.filter(name="cut")
+def cut(value, arg):
+    return value.replace(arg, " ")

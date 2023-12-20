@@ -189,10 +189,11 @@ class BlogListingPage(RoutablePageMixin, Page):
         return context
 
 
-    @re_path(r'^tagged/(\w+)/$')
-    def post_by_tag(self, request, tag, *args, **kwargs):
+    @re_path(r'^tagged/(?P<tag>\w+)/(?P<pk>\d+)/$')
+    def post_by_tag(self, request, tag, pk, *args, **kwargs):
         all_post = BlogDetailPage.objects.all()
-        context = all_post.filter(tags__name=tag)
+        context = all_post.filter(tags__name=tag).exclude(pk=pk)
+       
         print(context)   
         return self.render(request, template="partials/blog_by_tag.html", context_overrides = {'posts': context, 'tagged':tag})  
     
@@ -244,6 +245,7 @@ class BlogDetailPage(Page):
             ('quote', my_blocks.QuoteBlock()),
             ('embed', my_blocks.EmbedBlock()),
             ('full_width_image', my_blocks.FullWidthImage()),
+            ('strava_embed', my_blocks.StravaBlock())
           
           
            

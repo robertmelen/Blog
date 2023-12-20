@@ -4,11 +4,18 @@
     <span class="bg-green-50 hover:bg-pink-50 text-green-600 
         text-xs sm:text-sm font-medium mr-2 mt-2 px-2.5 py-0.5 rounded dark:bg-gray-700
          dark:text-blue-400 border-pink-200 transition-transform transform hover:-rotate-3">{{tagged}}</span></div> 
+
+{% if posts %}         
 {% for post in posts %}
+
 <div class="flex-col post-titles ">
     <a hx-boost="true" href="{% pageurl post%}" class="font-medium text-xs text-black dark:text-blue-500 hover:underline">{{post.title}}</a>
 </div>
 {% endfor %}
+{% else %}
+No other posts with this tag
+{% endif %}
+
 </div>
 <button _="on click hide me then 
 hide #tag-name

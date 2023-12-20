@@ -1,14 +1,16 @@
+{% load wagtailcore_tags snippet_tags %}
+
 <nav class="flex" aria-label="Breadcrumb">
   <ol class="hidden md:inline-flex items-center space-x-1 md:space-x-3">
     <li class="inline-flex items-center">
       {% for x in ancestors %}
         {% if forloop.last %}
-          <h1 style="opacity:0;"_="on load transition my opacity to 1">  {{ x.slug }}</h1>
+          <h1 class="opacity-0  bg-green-200 text-green-800 text-xs font-bold me-2 px-2.5 py-0.5 rounded-full" _="on load transition my opacity to 1">{{ x.slug|cut:"-" }}</h1>
         {% else %}
-          <a class="flex-wrap text-green-800"
+          <a class="flex-wrap bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full "
              href="{{ x.url }}"
              hx-boost="true"
-             _="on load transition opacity from 1 to 0.5 then settle on mouseover transition opacity from 0.5 to 1 then settle on mouseleave transition opacity from 1 to 0.5 then settle">{{ x.slug }}
+             _="on load transition opacity from 1 to 0.5 then settle on mouseover transition opacity from 0.5 to 1 then settle on mouseleave transition opacity from 1 to 0.5 then settle">{{ x.slug|cut:"-" }}
           </a>
         </li>
       </li>

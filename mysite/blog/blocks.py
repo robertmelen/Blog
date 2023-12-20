@@ -28,7 +28,7 @@ class ImageBlock(blocks.StructBlock):
 
 class WritingBlock(blocks.StructBlock):
         
-        rich_text = blocks.RichTextBlock(required=False, max_length=2000, features=['h2', 'h3', 'bold', 'italic', 'link', 'code'])
+        rich_text = blocks.RichTextBlock(required=False, max_length=2000, features=['h2', 'h3', 'bold', 'italic', 'link', 'code', 'embed'])
 
         class Meta:  # noqa
                 template = "streams/richtext_block.html"
@@ -95,7 +95,18 @@ class FullWidthImage(blocks.StructBlock):
         class Meta:  # noqa
                 template = "streams/full_width_image_block.html"
                 icon = "placeholder"
-                label = "Full width Image"     
+                label = "Full width Image"    
+
+
+class StravaBlock(blocks.StructBlock):
+
+       code = blocks.TextBlock(required=True, max_length=50, help_text='''Please enter the code 
+                               from data-embed-id= section of your Strava Embed code''') 
+
+       class Meta:  # noqa
+                template = "streams/strava_block.html"
+                icon = "placeholder"
+                label = "Embed Strava"
 
  
                 

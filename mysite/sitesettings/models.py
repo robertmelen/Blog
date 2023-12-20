@@ -62,3 +62,13 @@ class ContactInfo(BaseSiteSetting):
 
       FieldPanel('text'),
 
+@register_setting    
+class DataWarning(BaseSiteSetting):
+      message = models.CharField(max_length=300, blank=True)
+      policy = RichTextField() 
+      FieldPanel('message'),
+      FieldPanel('policy'),  
+
+
+
+

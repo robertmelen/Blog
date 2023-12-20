@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import mimetypes
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import environ
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'storages',
     'sitesettings',
     'wagtail.contrib.settings',
+    "debug_toolbar",
     
    
    
@@ -81,8 +82,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    'home.middleware.VisitorMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    
+    
    
     
 ]
@@ -103,6 +108,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 'wagtail.contrib.settings.context_processors.settings',
+                'home.context_processors.visited_before',
             ],
         },
     },
@@ -251,3 +257,13 @@ WAGTAILSEARCH_BACKENDS = {
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+mimetypes.add_type("application/javascript", ".js", True)
+
+DEBUG_TOOLBAR_CONFIG = {
+    "INTERCEPT_REDIRECTS": False,
+}
+
+
+
+

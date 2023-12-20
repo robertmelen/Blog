@@ -31,15 +31,12 @@ else if window's scrollY < 400 remove .-translate-y-6 then settle
       <nav id="nav" class="hidden" >
       <ul tabindex="0" id="navMenu" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
      
-        <li><a href="/" hx-boost="true">Homepage</a></li>
+        
         {% for item in navigation.menu_items.all %}
         <li><a href='{{ item.link_page.url }}' hx-boost="true">{{ item.link_title }}</a></li>
         {% endfor %}
 
-        {% for term in tandc %}
-       
-        <li><a  href="{% pageurl term %}" >{{ term.title }}</a></li>
-        {% endfor %}
+     
         
       
       </ul>
@@ -73,7 +70,7 @@ else if window's scrollY < 400 remove .-translate-y-6 then settle
      
       hx-target="#right-section"
       class="text-green-700 hover:text-white border border-green-200 hover:bg-green-800 focus:ring-4 focus:outline-none
-       focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2
+       focus:ring-green-300 font-medium rounded-sm sm:rounded-lg text-xs sm:text-sm sm:px-5 px-2 py-2.5 text-center me-2 mb-2
        ">Contact</button></a> 
       
       <div class="flex sm:pr-5">

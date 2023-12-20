@@ -13,12 +13,12 @@ URL: https://flowbite.com/docs/components/typography/
 -->
   <!--Wrapper for detail page-->
   <div></div>
-  <div _="" id="result" class="hidden z-10 lg:flex flex-col fixed">
+  <div _="" id="result" class="hidden z-10 lg:flex flex-col fixed p-10">
     <div  class="text-lg font-bold">Table of Contents</div>
   </div>
   
     <div class="m-7 sm:container mx-auto lg:px-64 relative  " hx-boost="true">
-      <div class="flex flex-col items-center bg-gradient-to-b  from-slate-100 to-white">
+      <div class="flex flex-col items-center bg-[url('https://cdn.pixabay.com/photo/2014/12/15/15/36/blue-569222_1280.jpg')]">
         {% for block in page.content %}
           {% if block.block_type == 'title_and_text' %}
             <div class="mt-10 pb-5">
@@ -88,13 +88,16 @@ URL: https://flowbite.com/docs/components/typography/
               {% if page.tags.count %}
                 {% for tag in page.tags.all %}
                   <div>
+                    
                     <a hx-boost="true"
-                       href="{% routablepageurl page.get_parent.specific 'post_by_tag' tag %}"
+                       href="{% routablepageurl page.get_parent.specific 'post_by_tag' tag page.pk %}"
                        hx-target="#clicktags"
                        hx-swap='innerHTML show:no-scroll'
                        hx-push-url="false"
                        class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
+                       
                     {{ tag }}</a>
+                    
                   </div>
                 {% endfor %}
               {% endif %}
@@ -117,6 +120,7 @@ URL: https://flowbite.com/docs/components/typography/
           <img class="shadow-2xl rounded-lg" src="{{ banner.url }}" />
         </div>
         <!--Streamfeild content-->
+        
         {% for block in page.content %}
           {% if block.block_type == 'embed' %}
             <div class="relative min-w-full" style="padding-top: 56.25%">
@@ -152,7 +156,7 @@ URL: https://flowbite.com/docs/components/typography/
                   add .scroll-mt-40 to item 
                   put `<a _='on click remove .bg-green-200 from .link-status then add .bg-gradient-to-r .from-yellow-200 to me'
                   class='link-text-${i} link-status hover:bg-gradient-to-r
-                  from-green-100 to-white text-base font-sans active:bg-green-500' 
+                  from-green-100 to-white text-sm font-sans active:bg-green-500' 
                   href=#${item.id}>${item.innerText}</a>` 
                                
                               at the end of the #result then set text to item.textContent 
@@ -164,10 +168,13 @@ URL: https://flowbite.com/docs/components/typography/
                       for s in items set it's @_ to '
                       on scroll from the window set x to my.getBoundingClientRect().top then set text to my.textContent 
                     
-                    if x > 50 and x < 300 set links to the <a/> in #result 
+                    if x > 10 and x < 200 set links to the <a/> in #result 
                     for test in links
                    
-                    if test.textContent contains text add .bg-gradient-to-r .from-yellow-200 to it else remove .bg-gradient-to-r .from-yellow-200 from it 
+                    if test.textContent matches text remove .font-extralight from it then add 
+                    .scale-125 .font-medium  .bg-gradient-to-r .from-yellow-200 to it 
+                    else remove 
+                    .scale-125 .bg-gradient-to-r .from-yellow-200 .font-medium from it then add .font-extralight to it
                     ' end 
                         
                     "

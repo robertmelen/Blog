@@ -71,9 +71,8 @@
         {% endblock %}
         
     </head>
-
-    <body id="body" _="
     
+    <body id="body" _="
     on scroll from the window
     if window's scrollY > 500 and window's innerWidth > 900
         remove .invisible from #header-button then add .inline-block to #header-button
@@ -82,13 +81,37 @@
             transition #header-button opacity to 0 then
             remove .inline-block from #header-button then add .invisible to #header-button
         end 
+   end" class="w-full h-auto overflow-x-hidden relative events " hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'  
+       hx-ext="head-support" class="{% block body_class %}{% endblock %}">
+       
+       {% if not request.COOKIES.visitor_id %}   
+    <div id="loading" _="init add .blur-effect to #body then on click from .close-warning add .hidden to me"class="m-10 p-5 top-0 z-20 fixed flex flex-col border-solid border-2 bg-green-100
+    shadow-lg rounded-md" >
+        {{ settings.sitesettings.DataWarning.message }}
+        <div _="on load add .pointer-events-none to .events then add .pointer-events-auto  to me " class="flex flex-row gap-4 ">
+            <button id="details-button" active="true" _="on click 
+             toggle between .hidden and .block on #privacy then 
+             toggle [@active='true'] if @active put 'View' into my.textContent else put 'Hide' into my.textContent" 
+            class="mt-2 px-3 py-2 text-xs font-medium text-center text-white
+             bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none
+              focus:ring-blue-300">View</button>
+            <button _="on click remove .pointer-events-none .blur-effect from #body" 
+            id="accept"
+            hx-post="{% slugurl 'home' %}" 
+            class="close-warning px-3 py-2 text-xs font-medium text-center text-white
+             bg-blue-700 rounded-lg hover:bg-blue-800 
+             focus:ring-4 focus:outline-none focus:ring-blue-300 mt-2">Accept</button>
+             <button _="on click remove .pointer-events-none .blur-effect from #body" 
+             id="decline"
+             hx-post="{% slugurl 'home' %}"
+             class="close-warning px-3 py-2 text-xs font-medium text-center text-white
+             bg-blue-700 rounded-lg hover:bg-blue-800 
+             focus:ring-4 focus:outline-none focus:ring-blue-300 mt-2">Decline</button>
+        </div>
+        <div _="init log document.cookie" id="privacy" class="hidden">{{ settings.sitesettings.DataWarning.policy|richtext }}</div>
+    </div>
+   {% endif %}
    
-    
-          
-    end
- 
-       " class=" w-full h-auto overflow-x-hidden" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'  hx-ext="head-support" class="{% block body_class %}{% endblock %}">
-    
       
         {% wagtailuserbar %}
         
@@ -116,6 +139,11 @@
                 initFlowbite();
             })
         </script>
+        <script>
+            document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+        </script>
 
         
             
@@ -125,4 +153,5 @@
         
  
     </body>
+</div>
 </html>

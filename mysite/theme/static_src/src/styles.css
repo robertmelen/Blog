@@ -45,7 +45,9 @@
   
 }
 
-
+.blur-effect > *:not(#loading) {
+  filter: opacity(0.5);
+}
 
 .full-width {
 	left: 50%;

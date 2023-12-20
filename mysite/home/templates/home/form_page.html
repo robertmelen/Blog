@@ -3,7 +3,7 @@
 
 
 <div _="init put 'back' into #contact-button.innerText then add @href='/' to #contact-link"class="prose prose-xl wagtail-richtext" hx-boost="true">{{ settings.sitesettings.contactinfo.text|richtext }}</div>
-
+{% if request.COOKIES.accepted %} 
 <form hx-post="/contact-me/" hx-target="#message"  method="POST">
     {% csrf_token %}
     {{ form|crispy }}
@@ -16,3 +16,7 @@
   <a id="form-success" class="hidden" href="/">
   <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg" >back</button>
   </a>
+  {% else %}
+  <h1 class="pt-10">Sorry, form is unavailble, please refresh page.</h1>
+  <p>To enable form, clear cookies, refresh homepage and accept cookie policy</p>
+  {% endif %}
