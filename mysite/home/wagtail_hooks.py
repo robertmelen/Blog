@@ -3,7 +3,10 @@ import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.rich_text.converters.html_to_contentstate import (
     InlineStyleElementHandler
 )
+
 from wagtail import hooks
+
+from django.http import HttpResponse
 
 
 @hooks.register("register_rich_text_features")
@@ -39,3 +42,5 @@ def register_code_styling(features):
     # Step 6. This is optional
     # This will register this feature with all richtext editors by default
     features.default_features.append(feature_name)
+
+

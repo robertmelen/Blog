@@ -86,6 +86,8 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    "home.middleware.SimpleMiddleware",
+   
     
     
    
@@ -265,5 +267,5 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 
-
+ALLOWED_HOSTS = '192.168.1.254'
 

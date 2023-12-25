@@ -43,7 +43,9 @@
           </div>
           <div>
             {% for x in cats %}
-              <a hx-target="#body" class="{% if x.name == category_select %} badge btn-accent cursor-pointer font-semibold  {% else %} badge badge-outline cursor-pointer font-semibold {% endif %}" hx-get="{% pageurl page %}?category_arg={{ x.name }}" hx-vals='{"category": "category"}'>{{ x.name }} </a>
+              <a hx-target="#body" class="{% if x.name == category_select %} badge btn-accent cursor-pointer font-semibold  {% else %} badge badge-outline cursor-pointer font-semibold {% endif %}" 
+              hx-get="{% pageurl page %}?category_arg={{ x.name }}" 
+              hx-vals='{"category": "category"}'>{{ x.name }} </a>
             {% endfor %}
           </div>
       <!-- <div>

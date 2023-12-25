@@ -1,6 +1,7 @@
 from django import template
 import re
 from home.models import Header, HomePage, Page, Gallery
+from django.utils import timezone
 
 register = template.Library()
 
@@ -70,3 +71,12 @@ def is_homepage(context):
 @register.filter(name="cut")
 def cut(value, arg):
     return value.replace(arg, " ")
+
+
+
+@register.filter(name="time_posted")
+def time_posted(value):
+    if value.first_published_at:
+        delta = timezone.now() - value.first_published_at
+        return delta.days
+    return None

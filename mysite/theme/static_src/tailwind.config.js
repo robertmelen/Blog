@@ -56,6 +56,7 @@ module.exports = {   darkMode: 'class',
           Fuggles :["Fuggles", 'cursive'],
           Crimson :['"Crimson text"', 'serif'],
           Lato :["Lato", "sans-serif"],
+          Raleway: ['Raleway', "sans-serif"]
         },
 
           animation: {typing: "typing 2s steps(14)"},

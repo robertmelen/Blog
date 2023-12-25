@@ -9,13 +9,11 @@
 
 
         <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded mt-10">
-            <div class="grid grid-flow-col gap-4">
+          
               
-                {% for item in navigation.menu_items.all %}
-                <li><a href='{{ item.link_page.url }}' hx-boost="true">{{ item.link_title }}</a></li>
-                {% endfor %}
+              
                 
-            </div>
+           
            
 <!-- Privacy toggle -->
 <div class="flex flex-wrap">
@@ -23,7 +21,7 @@
  
 
 {% for item in settings.sitesettings.FooterSettings.notices.all %}
-<label for="my-modal-4{{ item.id }}" class="btn btn-info btn-xs modal-button modal-open ">{{ item.title}}</label>
+<label for="my-modal-4{{ item.id }}" class="btn btn-outline btn-success btn-xs modal-button modal-open ">{{ item.title}}</label>
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="my-modal-4{{ item.id }}" class="modal-toggle">
@@ -35,6 +33,11 @@
 </label>
   {% endfor %}
   <!-- Privacy modal -->
+  {% for item in navigation.menu_items.all %}
+  <a href='{{ item.link_page.url }}'
+    class="btn btn-outline btn-success btn-xs" 
+    hx-boost="true">{{ item.link_title }} </a>
+  {% endfor %}
   
   </div>
   

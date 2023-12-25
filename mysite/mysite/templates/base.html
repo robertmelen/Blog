@@ -14,7 +14,8 @@
         <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/hyperscript.org@0.9.9"></script>
         <script src="https://unpkg.com/htmx.org/dist/ext/class-tools.js"></script>
-         <script src="{% static 'js/prism.js' %}"></script>
+        
+        
         <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
         <script src="https://unpkg.com/htmx.org/dist/ext/head-support.js"></script>
@@ -36,6 +37,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
         
         <meta charset="utf-8" />
 
@@ -62,11 +66,12 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/prism.css' %}">
+      
         
         
 
         {% block extra_css %}
+        <link href="{% static 'css/prism.css' %}" rel="stylesheet" />
         
         {% endblock %}
         
@@ -97,16 +102,20 @@
               focus:ring-blue-300">View</button>
             <button _="on click remove .pointer-events-none .blur-effect from #body" 
             id="accept"
-            hx-post="{% slugurl 'home' %}" 
+            hx-post="{% url 'wagtail_serve' '' %}" 
+            
             class="close-warning px-3 py-2 text-xs font-medium text-center text-white
              bg-blue-700 rounded-lg hover:bg-blue-800 
              focus:ring-4 focus:outline-none focus:ring-blue-300 mt-2">Accept</button>
+
              <button _="on click remove .pointer-events-none .blur-effect from #body" 
              id="decline"
-             hx-post="{% slugurl 'home' %}"
+             hx-post="{% url 'wagtail_serve' '' %}"
              class="close-warning px-3 py-2 text-xs font-medium text-center text-white
              bg-blue-700 rounded-lg hover:bg-blue-800 
              focus:ring-4 focus:outline-none focus:ring-blue-300 mt-2">Decline</button>
+
+            
         </div>
         <div _="init log document.cookie" id="privacy" class="hidden">{{ settings.sitesettings.DataWarning.policy|richtext }}</div>
     </div>
@@ -131,7 +140,7 @@
         <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
 
         {% block extra_js %}
-       
+        <script src="{% static 'js/prism.js' %}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
         <script>
             import 'flowbite';

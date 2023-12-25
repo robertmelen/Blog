@@ -14,11 +14,17 @@ URL: https://flowbite.com/docs/components/typography/
   <!--Wrapper for detail page-->
   <div></div>
   <div _="" id="result" class="hidden z-10 lg:flex flex-col fixed p-10">
-    <div  class="text-lg font-bold">Table of Contents</div>
+    <div  class="text-lg font-Raleway font-semibold">Table of Contents</div>
   </div>
   
     <div class="m-7 sm:container mx-auto lg:px-64 relative  " hx-boost="true">
-      <div class="flex flex-col items-center bg-[url('https://cdn.pixabay.com/photo/2014/12/15/15/36/blue-569222_1280.jpg')]">
+      {% image self.title_background width-1200 as title_photo %}
+      
+      <div style="--background-image-url: url('{{ title_photo.url }}'); 
+      background-repeat: no-repeat;" 
+      class="flex flex-col items-center bg-cover rounded-lg shadow-lg bg-[image:var(--background-image-url)] --bg-opacity-0">
+        
+     
         {% for block in page.content %}
           {% if block.block_type == 'title_and_text' %}
             <div class="mt-10 pb-5">
@@ -154,7 +160,7 @@ URL: https://flowbite.com/docs/components/typography/
                 set item.id to extra + arrtwo then 
                   if item.textContent == ''  remove it else
                   add .scroll-mt-40 to item 
-                  put `<a _='on click remove .bg-green-200 from .link-status then add .bg-gradient-to-r .from-yellow-200 to me'
+                  put `<a _='on click remove .bg-green-200 from .link-status then add .bg-gradient-to-r .from-green-200 to me'
                   class='link-text-${i} link-status hover:bg-gradient-to-r
                   from-green-100 to-white text-sm font-sans active:bg-green-500' 
                   href=#${item.id}>${item.innerText}</a>` 
@@ -172,9 +178,9 @@ URL: https://flowbite.com/docs/components/typography/
                     for test in links
                    
                     if test.textContent matches text remove .font-extralight from it then add 
-                    .scale-125 .font-medium  .bg-gradient-to-r .from-yellow-200 to it 
+                    .scale-125 .font-medium  .bg-gradient-to-r .from-green-200 to it 
                     else remove 
-                    .scale-125 .bg-gradient-to-r .from-yellow-200 .font-medium from it then add .font-extralight to it
+                    .scale-125 .bg-gradient-to-r .from-green-200 .font-medium from it then add .font-extralight to it
                     ' end 
                         
                     "

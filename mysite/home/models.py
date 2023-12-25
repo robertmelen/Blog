@@ -224,8 +224,6 @@ class HomePage(RoutablePageMixin, Page):
     subpage_types = ['blog.BlogListingPage', 'home.Terms', 'home.FormPage']
 
 
-   
-    
   
 
     def get_recent_blogs(self):
@@ -236,6 +234,8 @@ class HomePage(RoutablePageMixin, Page):
         context = super().get_context(request, *args, **kwargs)
         context['menu_objects'] = BlogListingPage.objects.live().child_of(self)
         context['recent_posts'] = self.get_recent_blogs()
+        context['id'] = request.COOKIES.get('visitor_id') 
+        
         
       
         return context

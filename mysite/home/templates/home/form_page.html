@@ -3,7 +3,7 @@
 
 
 <div _="init put 'back' into #contact-button.innerText then add @href='/' to #contact-link"class="prose prose-xl wagtail-richtext" hx-boost="true">{{ settings.sitesettings.contactinfo.text|richtext }}</div>
-{% if request.COOKIES.accepted %} 
+{% if request.COOKIES.htmxacceptedmiddleware %} 
 <form hx-post="/contact-me/" hx-target="#message"  method="POST">
     {% csrf_token %}
     {{ form|crispy }}

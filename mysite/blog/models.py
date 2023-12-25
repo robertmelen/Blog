@@ -3,7 +3,7 @@ from django import forms
 from taggit.models import TaggedItemBase
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-import time
+
 
 from readtime import of_html, of_markdown, of_text
 
@@ -187,6 +187,10 @@ class BlogListingPage(RoutablePageMixin, Page):
            posts = paginator.page(paginator.num_pages)
         context["posts"] = posts
         return context
+    
+    
+   
+    
 
 
     @re_path(r'^tagged/(?P<tag>\w+)/(?P<pk>\d+)/$')
@@ -220,7 +224,13 @@ class BlogListingPage(RoutablePageMixin, Page):
 class BlogDetailPage(Page):
     """Blog detail page."""
 
-   
+    title_background = models.ForeignKey(
+        ('home.CustomImage'),
+        blank=True,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
     
     blog_image = models.ForeignKey(
         ('home.CustomImage'),
@@ -228,11 +238,14 @@ class BlogDetailPage(Page):
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
+        help_text='''This is the main blog image appearing at the top of the post 
+        and it's 'thumbnail; across the site'''
     )
 
     categories = ParentalManyToManyField('blog.BlogCategories', blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    summary = models.CharField(max_length=100, blank=True, default="sumamry", help_text="This appears under the blog on recent posts")
+    summary = models.CharField(max_length=100, blank=True, default="sumamry", help_text='''This appears under the blog on 
+                               recent posts section of the Homepage''')
 
     content = StreamField(
         [
@@ -254,6 +267,7 @@ class BlogDetailPage(Page):
 
     content_panels = Page.content_panels + [
         
+        FieldPanel("title_background"),
         FieldPanel("summary"),
         FieldPanel("blog_image"),
         FieldPanel("content"),

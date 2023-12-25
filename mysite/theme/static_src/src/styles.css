@@ -24,11 +24,11 @@
 
 
 .wagtail-richtext h2 {
-  @apply font-Poppins
+  @apply font-Raleway
 }
 
 .wagtail-richtext h3 {
-  @apply font-Poppins
+  @apply font-Raleway
 }
 
 .wagtail-richtext h4 {
@@ -109,3 +109,6 @@
 }
 
 
+#days-date {
+  opacity: 0.3;
+}

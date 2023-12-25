@@ -4451,25 +4451,25 @@ html {
   outline: 2px solid hsl(var(--a));
 }
 
-.btn-info {
+.btn-success {
   --tw-border-opacity: 1;
-  border-color: hsl(var(--in) / var(--tw-border-opacity));
+  border-color: hsl(var(--su) / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
-  background-color: hsl(var(--in) / var(--tw-bg-opacity));
+  background-color: hsl(var(--su) / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
-  color: hsl(var(--inc, var(--nc)) / var(--tw-text-opacity));
+  color: hsl(var(--suc, var(--nc)) / var(--tw-text-opacity));
 }
 
-.btn-info:hover,
-    .btn-info.btn-active {
+.btn-success:hover,
+    .btn-success.btn-active {
   --tw-border-opacity: 1;
-  border-color: hsl(var(--in) / var(--tw-border-opacity));
+  border-color: hsl(var(--su) / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
-  background-color: hsl(var(--in) / var(--tw-bg-opacity));
+  background-color: hsl(var(--su) / var(--tw-bg-opacity));
 }
 
-.btn-info:focus-visible {
-  outline: 2px solid hsl(var(--in));
+.btn-success:focus-visible {
+  outline: 2px solid hsl(var(--su));
 }
 
 .btn.glass:hover,
@@ -4500,6 +4500,53 @@ html {
   outline: 2px solid currentColor;
 }
 
+.btn-outline {
+  border-color: currentColor;
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: hsl(var(--bc) / var(--tw-text-opacity));
+}
+
+.btn-outline:hover,
+    .btn-outline.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--bc) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--bc) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--b1) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-primary {
+  --tw-text-opacity: 1;
+  color: hsl(var(--p) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-primary:hover,
+      .btn-outline.btn-primary.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--pf, var(--p)) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--pf, var(--p)) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--pc) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-secondary {
+  --tw-text-opacity: 1;
+  color: hsl(var(--s) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-secondary:hover,
+      .btn-outline.btn-secondary.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--sf, var(--s)) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--sf, var(--s)) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--sc) / var(--tw-text-opacity));
+}
+
 .btn-outline.btn-accent {
   --tw-text-opacity: 1;
   color: hsl(var(--a) / var(--tw-text-opacity));
@@ -4515,6 +4562,21 @@ html {
   color: hsl(var(--ac) / var(--tw-text-opacity));
 }
 
+.btn-outline.btn-success {
+  --tw-text-opacity: 1;
+  color: hsl(var(--su) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-success:hover,
+      .btn-outline.btn-success.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--su) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--su) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--suc, var(--nc)) / var(--tw-text-opacity));
+}
+
 .btn-outline.btn-info {
   --tw-text-opacity: 1;
   color: hsl(var(--in) / var(--tw-text-opacity));
@@ -4528,6 +4590,36 @@ html {
   background-color: hsl(var(--in) / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: hsl(var(--inc, var(--nc)) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-warning {
+  --tw-text-opacity: 1;
+  color: hsl(var(--wa) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-warning:hover,
+      .btn-outline.btn-warning.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--wa) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--wa) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--wac, var(--nc)) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-error {
+  --tw-text-opacity: 1;
+  color: hsl(var(--er) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-error:hover,
+      .btn-outline.btn-error.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--er) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--er) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--erc, var(--nc)) / var(--tw-text-opacity));
 }
 
 .btn-disabled,
@@ -4641,8 +4733,8 @@ html {
   outline: 2px solid hsl(var(--a));
 }
 
-.drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-info {
-  outline: 2px solid hsl(var(--in));
+.drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-success {
+  outline: 2px solid hsl(var(--su));
 }
 
 .drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-ghost {
@@ -5628,11 +5720,6 @@ html {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.-translate-x-5 {
-  --tw-translate-x: -1.25rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .-translate-x-7 {
   --tw-translate-x: -1.75rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -5693,10 +5780,6 @@ html {
 
 .scroll-mt-40 {
   scroll-margin-top: 10rem;
-}
-
-.grid-flow-col {
-  grid-auto-flow: column;
 }
 
 .grid-cols-2 {
@@ -5934,8 +6017,8 @@ html {
   --tw-bg-opacity: 0.6;
 }
 
-.bg-\[url\(\'https\:\/\/cdn\.pixabay\.com\/photo\/2014\/12\/15\/15\/36\/blue-569222_1280\.jpg\'\)\] {
-  background-image: url('https://cdn.pixabay.com/photo/2014/12/15/15/36/blue-569222_1280.jpg');
+.bg-\[image\:var\(--background-image-url\)\] {
+  background-image: var(--background-image-url);
 }
 
 .bg-gradient-to-b {
@@ -5962,6 +6045,12 @@ html {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-green-200 {
+  --tw-gradient-from: #bbf7d0 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(187 247 208 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .from-green-50 {
   --tw-gradient-from: #f0fdf4 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(240 253 244 / 0) var(--tw-gradient-to-position);
@@ -5971,12 +6060,6 @@ html {
 .from-green-500 {
   --tw-gradient-from: #22c55e var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(34 197 94 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.from-yellow-200 {
-  --tw-gradient-from: #fef08a var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(254 240 138 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -5990,6 +6073,10 @@ html {
 
 .to-white {
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
+}
+
+.bg-cover {
+  background-size: cover;
 }
 
 .bg-clip-text {
@@ -6129,6 +6216,10 @@ html {
   font-family: Poppins, sans-serif;
 }
 
+.font-Raleway {
+  font-family: Raleway, sans-serif;
+}
+
 .font-sans {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, system-ui, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
@@ -6141,11 +6232,6 @@ html {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
 }
 
 .text-5xl {
@@ -6208,6 +6294,10 @@ html {
 
 .italic {
   font-style: italic;
+}
+
+.leading-3 {
+  line-height: .75rem;
 }
 
 .leading-normal {
@@ -6383,11 +6473,11 @@ html {
 }
 
 .wagtail-richtext h2 {
-  font-family: Poppins, sans-serif;
+  font-family: Raleway, sans-serif;
 }
 
 .wagtail-richtext h3 {
-  font-family: Poppins, sans-serif;
+  font-family: Raleway, sans-serif;
 }
 
 .wagtail-richtext h4 {
@@ -6444,6 +6534,10 @@ html {
 
 .htmx-request.spinner{
   display: inline;
+}
+
+#days-date {
+  opacity: 0.3;
 }
 
 @media (min-width: 640px) {
@@ -7103,5 +7197,3 @@ html {
     gap: 4rem;
   }
 }
-
-

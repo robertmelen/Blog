@@ -22,9 +22,9 @@
                 {% image img.images width-1200 jpegquality-100 as gallery_photos %}
                 <div class="flex flex-col max-w-4xl">
                     <div>
-                    <h1 id="text-tester" class="image-text -translate-x-10 text-3xl sm:text-6xl text-black font-thin font-sans dark:text-white">{{ img.title }} /
-                        <small class="translate-x-10 ml-2 font-Poppins text-slate-800 text-4xl sm:text-3xl">
-                        {{ img.caption }} /</small><small class="text-lg">{{ img.images.location }} {{ img.images.date }}</small></h1>
+                    <h1 id="text-tester" class="pt-10 image-text -translate-x-10 text-3xl sm:text-6xl text-black font-thin font-sans dark:text-white">{{ img.title }}
+                        <small class="translate-x-10 ml-2 font-Raleway text-slate-800 text-2xl sm:text-3xl leading-3">
+                        {{ img.caption }}</small><small class="text-sm m-10">{{ img.images.location }}{{ img.images.date }}</small></h1>
                 
                     </div>
                     
@@ -56,12 +56,12 @@
             </div>
                 
                 
-            <img id="image" _="on intersection(intersecting) having threshold 0.2 if intersecting remove .-translate-x-10 from the previous <h1.image-text/> then add .translate-x-5 .duration-1000 to the previous <h1.image-text/>
-            then remove .translate-x-5 from me then add .-translate-x-5 .duration-1000"
-             class="p-2 border-solid border-2 border-gray-500 sm:translate-x-5 w-30 rounded-lg shadow-lg items-center" src="{{ gallery_photos.url }}" alt="">
-             
-            
-        </div>
+            <img id="image" _="on intersection(intersecting) having threshold 0.2 
+            if intersecting remove .-translate-x-10 from the previous <h1.image-text/> 
+            then add .translate-x-5 .duration-1000 to the previous <h1.image-text/>"
+             class="p-2 border-solid border-2 border-gray-500 sm:translate-x-5 
+             w-30 rounded-lg shadow-lg items-center" src="{{ gallery_photos.url }}" alt="">
+             </div>
         
        
         {% endfor %}
