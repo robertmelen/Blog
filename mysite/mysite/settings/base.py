@@ -122,13 +122,37 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+live_deploy = False
+if live_deploy == True:
+
+    ALLOWED_HOSTS = ['*', '']
+
+    CSRF_TRUSTED_ORIGINS = ['*']
+
+    DATABASES = {
+        'default': {
+            'NAME': env("DATABASE_NAME"),
+            'ENGINE': 'django.db.backends.postgresql',
+            'USER': env('DATABASE_USER'),
+            'PASSWORD': env('DATABASE_PASSWORD'),
+            'HOST': env("DATABASE_HOST"),
+            'PORT': env("DATABASE_PORT"),
+        }
+    }
+
+
+elif live_deploy == False:
+
+    ALLOWED_HOSTS = ['127.0.0.1']
+
+
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'testdb',
-        'USER': 'postgres',
-        'PASSWORD': '93739373',
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASS'),
         'HOST': 'localhost',
         'PORT':  '5432',
     } 
