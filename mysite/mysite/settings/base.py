@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'storages',
     'sitesettings',
     'wagtail.contrib.settings',
-    "debug_toolbar",
+   
     
    
    
@@ -83,7 +83,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     'home.middleware.VisitorMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
     "home.middleware.SimpleMiddleware",
