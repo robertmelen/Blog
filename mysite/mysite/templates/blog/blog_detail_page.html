@@ -18,17 +18,18 @@ URL: https://flowbite.com/docs/components/typography/
   </div>
   
     <div class="m-7 sm:container mx-auto lg:px-64 relative  " hx-boost="true">
+
       {% image self.title_background width-1200 as title_photo %}
       
       <div style="--background-image-url: url('{{ title_photo.url }}'); 
       background-repeat: no-repeat;" 
-      class="flex flex-col items-center bg-cover rounded-lg shadow-lg bg-[image:var(--background-image-url)] --bg-opacity-0">
+      class="flex flex-col items-center {% if self.background %} bg-cover rounded-lg shadow-lg bg-[image:var(--background-image-url)] --bg-opacity-0 {% endif %}">
         
      
         {% for block in page.content %}
           {% if block.block_type == 'title_and_text' %}
             <div class="mt-10 pb-5">
-              <h6 class="text-6xl font-sans text-black text-center font-bold">{{ block.value.title }}</h6>
+              <h6 class="text-6xl font-Raleway text-black text-center font-bold">{{ block.value.title }}</h6>
             </div>
             <div class="inline-flex pt-2 pl-10 gap-1 flex-wrap">
               {% for author in self.blog_authors.all %}
@@ -110,7 +111,7 @@ URL: https://flowbite.com/docs/components/typography/
             </div>
             <div id="clicktags" class="flex-row self-start"></div>
             <hr />
-            <p class="text-lg text-black font-Poppins  text-center pt-5 font-thin">{{ block.value.text }}</p>
+            <p class="text-lg text-black font-Raleway  text-center pt-5 font-thin">{{ block.value.text }}</p>
           {% endif %}
         {% endfor %}
       </div>

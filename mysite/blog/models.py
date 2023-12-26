@@ -231,6 +231,8 @@ class BlogDetailPage(Page):
         related_name="+",
         on_delete=models.SET_NULL,
     )
+
+    background = models.BooleanField(default=True)
     
     blog_image = models.ForeignKey(
         ('home.CustomImage'),
@@ -241,8 +243,9 @@ class BlogDetailPage(Page):
         help_text='''This is the main blog image appearing at the top of the post 
         and it's 'thumbnail; across the site'''
     )
-
+    
     categories = ParentalManyToManyField('blog.BlogCategories', blank=True)
+    type = ParentalManyToManyField('blog.BlogType', blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     summary = models.CharField(max_length=100, blank=True, default="sumamry", help_text='''This appears under the blog on 
                                recent posts section of the Homepage''')
@@ -266,13 +269,21 @@ class BlogDetailPage(Page):
          use_json_field=True)
 
     content_panels = Page.content_panels + [
+
+        MultiFieldPanel(
+            [
+                 FieldPanel("title_background"),
+                 FieldPanel("background"),
+            ]
+        ),
         
-        FieldPanel("title_background"),
+        
         FieldPanel("summary"),
         FieldPanel("blog_image"),
         FieldPanel("content"),
         FieldPanel("tags"),
         FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
+        FieldPanel("type", widget=forms.CheckboxSelectMultiple),
         
          MultiFieldPanel(
             [
@@ -331,3 +342,20 @@ class BlogCategories(models.Model):
 
     class Meta:
         verbose_name_plural = 'blog categories'
+
+
+@register_snippet
+class BlogType(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+   
+
+    panels = [
+        FieldPanel('name'),
+       
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'blog type'

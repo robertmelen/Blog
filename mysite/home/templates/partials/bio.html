@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
 
 
-<div  id="button" hx-swap-oob="true" hx-swap="innerHTML" hx-boost="true" href="/">Thanks for looking!</div>
+
 
 
 
@@ -15,7 +15,7 @@ class="w-full dark:hidden rounded-lg shadow-2xl" src="{{ photo.url }}" alt="">
 <hr>
 <div class="flex">
 <h1 style="opacity:0;"_="on load transition my opacity to 1" class="font-thin p-10">{{ block.value.about }}</h1>
-<a  _="on load remove .translate-x-7 then set my *opacity to 80% then add .-translate-x-7 .duration-1000 to me "class="translate-x-7 opacity-0" href="/" hx-boost="true" class="inline-flex font-bold">
+<a  _="on load remove .translate-x-7 then set my *opacity to 80% then add .-translate-x-7 .duration-1000 to me " class="translate-x-7 opacity-0" href="/" hx-boost="true" class="inline-flex font-bold">
   
     
     Back</a>
