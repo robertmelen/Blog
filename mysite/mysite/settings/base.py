@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import mimetypes
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
     'storages',
     'sitesettings',
     'wagtail.contrib.settings',
+    "django.contrib.sitemaps",
    
     
    
@@ -75,7 +77,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
+    
     "django.middleware.common.CommonMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -292,4 +296,10 @@ DEBUG_TOOLBAR_CONFIG = {
 
 
 ALLOWED_HOSTS = '192.168.1.254'
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=500,
+        conn_health_checks=True,
+    )
 
