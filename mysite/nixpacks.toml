@@ -2,6 +2,9 @@ providers = ["node", "python"]
 
 
 
+[start]
+cmd = 'node server/dist/main'
+
 
 
 
