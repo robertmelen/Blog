@@ -2,3 +2,6 @@ providers = ["...", "python"]
 
 [start]
 cmd = 'npm start --prefix "theme/static_src"'
+
+[phase.name]
+  cmds = ['python manage.py tailwind build']
