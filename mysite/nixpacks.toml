@@ -1,6 +1,2 @@
-[phases.setup]
-nixPkgs = ["python", "node"]
-
-
-[phases.build]
-cmds = ["npm python manage.py tailwind build"]
+[start]
+cmd = 'yarn run server:start'
