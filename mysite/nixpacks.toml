@@ -1,3 +1,6 @@
 [start]
 cmd = 'npm start --prefix "theme/static_src"'
 
+
+[varibles]
+NODE_ENV= 'development'
