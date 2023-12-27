@@ -3,7 +3,7 @@ providers = ["node", "python"]
 
 
 [start]
-cmd = 'node server/dist/main'
+cmd = 'npm start'
 
 
 
