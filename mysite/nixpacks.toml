@@ -1,9 +1,9 @@
 
 [phases.setup]
-nixPkgs = ['python']
+nixPkgs = ['python', 'node']
 
 [phases.build]
-cmds = ['npm install cross-env']
+cmds = [' npm run build']
 
 [start]
 cmd = 'npm start --prefix "theme/static_src"'
