@@ -144,7 +144,7 @@ if live_deploy == True:
         }
     }
 
-#use in deployment
+
 elif live_deploy == False:
 
     ALLOWED_HOSTS = ['127.0.0.1']
