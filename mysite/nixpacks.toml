@@ -1,9 +1,7 @@
 providers = ["...", "python"]
 
-[phase.name]
-  cmds = ['npm install']
 
 [start]
-cmd = 'npm start --prefix "theme/static_src"'
+cmd = 'npm start'
 
 
