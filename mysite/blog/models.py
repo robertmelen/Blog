@@ -30,8 +30,7 @@ from django.http import HttpResponse
 
 from django.utils.text import slugify
 
-from wagtail_icon_picker.fields import IconField
-from wagtail_icon_picker.edit_handlers import IcofontIconPickerPanel, BoxiconsPickerPanel
+
 
 from django_htmx.http import HttpResponseClientRefresh
 
