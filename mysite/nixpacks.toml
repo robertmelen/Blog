@@ -1,6 +1,6 @@
 providers = ["...", "python"]
 
 [start]
-cmd = 'npm start --prefix "theme/static_src", "npm install"'
+cmd = ['npm start --prefix "theme/static_src', 'npm install']
 
 
