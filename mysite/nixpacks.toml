@@ -1,2 +1,5 @@
 [start]
 cmd = 'npm start --prefix "theme/static_src"'
+
+[variables]
+NODE_ENV = 'production'
