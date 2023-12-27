@@ -3,7 +3,7 @@
 nixPkgs = ["...", "python3"]
 
 [phases.build]
-cmds = ['npm install', 'npm install cross-env',, 'npm i -D postcss postcss-cli']
+cmds = ['npm install', 'npm install cross-env', 'npm i -D postcss postcss-cli']
 
 
 [start]
