@@ -1,7 +1,6 @@
 providers = ["...", "python"]
 
 
-[start]
-cmd = 'npm start'
+
 
 
