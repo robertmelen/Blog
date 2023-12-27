@@ -1,4 +1,15 @@
 /.venv
+
+#railway
+**/theme
+nixpacks.toml
+package-lock.json
+package.json
+
+
+
+
+
 # Django #
 *.log
 *.pot
