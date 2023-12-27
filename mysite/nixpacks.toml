@@ -1,2 +1,2 @@
 [start]
-cmd = 'npm start'
+cmd = '--prefix '\theme\static_src\package.json''
