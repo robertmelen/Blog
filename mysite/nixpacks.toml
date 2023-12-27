@@ -1,6 +1,6 @@
 [phases.setup]
-nixPkgs = ['python, 'node']
+nixPkgs = ["python", "node"]
 
 
 [phases.build]
-cmds = ['npm python manage.py tailwind build']
+cmds = ["npm python manage.py tailwind build"]
