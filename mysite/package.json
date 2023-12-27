@@ -4,15 +4,10 @@
 
 
 {
-  "name": "your_project",
-  "version": "1.0.0",
-  "description": "Dummy package.json to point the Heroku buildpack at the correct one.",
   "scripts": {
-    "postinstall": "cd theme/static_src && npm install"
+    "dev": "npx tailwindcss -i ./css/tailwind.css  -o ./dist/style.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "cacheDirectories": [
-    "theme/static_src/node_modules"
-  ],
   
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
