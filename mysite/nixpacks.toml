@@ -3,8 +3,8 @@
 nixPkgs = ["...", "python3"]
 
 [phases.build]
-cmds = ['npm install']
-cmds = ['npm install cross-env']
+cmds = ['npm install', 'npm install cross-env']
+
 
 [start]
 cmd = 'npm start --prefix "theme/static_src"'
