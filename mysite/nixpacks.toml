@@ -1,10 +1,16 @@
 providers = ["node", "python"]
 
-
+[phases.build]
+  commands = [
+    'python manage.py collectstatic --noinput', 
+    'npm ci', 
+    'npm run build',
+  ]
 
 [start]
 cmd = 'npm start'
 
 
-
+[variables]
+  NODE_ENV = 'production'
 
