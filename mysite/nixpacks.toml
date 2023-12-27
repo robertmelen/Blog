@@ -1,2 +1,2 @@
 [start]
-cmd = 'yarn run server:start'
+cmd = 'npm start'
