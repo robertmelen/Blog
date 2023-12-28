@@ -148,7 +148,9 @@ if live_deploy == True:
 elif live_deploy == False:
 
     ALLOWED_HOSTS = ['127.0.0.1']
-
+    CSRF_TRUSTED_ORIGINS = [
+    'https://blog-production-bbba.up.railway.app'
+]
 
 
     DATABASES = {
