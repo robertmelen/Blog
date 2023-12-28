@@ -1,7 +1,5 @@
 
 
-
-
 {
     "$schema": "https://schema.up.railway.app/railway.schema.json",
     "build": {
@@ -11,7 +9,7 @@
             "phases": {
                 "setup": {
                     "nixPkgs": ["...", "nodejs"],
-                    "cmds": ["export NPM_BIN_PATH=$(which npm)", "echo NPM_BIN_PATH"]
+                    "cmds": ["export NPM_BIN_PATH=$(which npm)", "echo $NPM_BIN_PATH"]
                 },
                 "npm:ci": {
                     "dependsOn": ["setup"],
