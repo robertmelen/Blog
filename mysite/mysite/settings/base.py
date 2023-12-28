@@ -129,7 +129,7 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 live_deploy = True
 if live_deploy == True:
 
-    ALLOWED_HOSTS = ['*', '']
+    ALLOWED_HOSTS = ['*', ]
 
     
 
