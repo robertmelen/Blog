@@ -10,7 +10,8 @@
             "providers": ["python"],
             "phases": {
                 "setup": {
-                    "nixPkgs": ["...", "nodejs"]
+                    "nixPkgs": ["...", "nodejs"],
+                    "cmds": ["export NPM_BIN_PATH=$(which npm)", "echo NPM_BIN_PATH"]
                 },
                 "npm:ci": {
                     "dependsOn": ["setup"],
