@@ -11,7 +11,7 @@ import wagtail.images.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0084_query_searchpromotion_querydailyhits'),
+        ('wagtailcore', '0083_workflowcontenttype'),
         ('home', '0043_customimage_date_customimage_location'),
     ]
 
