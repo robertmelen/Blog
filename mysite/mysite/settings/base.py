@@ -137,10 +137,10 @@ if live_deploy == True:
         'default': {
             'NAME': env("DATABASE_NAME"),
             'ENGINE': 'django.db.backends.postgresql',
-            'USER': env('DATABASE_USER'),
-            'PASSWORD': env('DATABASE_PASSWORD'),
-            'HOST': env("DATABASE_HOST"),
-            'PORT': env("DATABASE_PORT"),
+            'USER': env('PGUSER'),
+            'PASSWORD': env('PGPASSWORD'),
+            'HOST': env("PGHOST"),
+            'PORT': env("PGPORT"),
         }
     }
 
@@ -151,16 +151,16 @@ elif live_deploy == False:
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testdb',
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASS'),
-        'HOST': 'localhost',
-        'PORT':  '5432',
-    } 
-}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'testdb',
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASS'),
+            'HOST': 'localhost',
+            'PORT':  '5432',
+        } 
+    }
 
 
 # DATABASES = {
