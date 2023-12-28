@@ -126,12 +126,12 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-live_deploy = False
+live_deploy = True
 if live_deploy == True:
 
     ALLOWED_HOSTS = ['*', '']
 
-    CSRF_TRUSTED_ORIGINS = ['*']
+    
 
     DATABASES = {
         'default': {
