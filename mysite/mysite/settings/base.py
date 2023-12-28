@@ -79,6 +79,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     
     "django.middleware.common.CommonMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -129,7 +130,16 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 live_deploy = True
 if live_deploy == True:
 
-    ALLOWED_HOSTS = ['*', ]
+    ALLOWED_HOSTS = ['https://blog-production-bbba.up.railway.app', ]
+
+    CORS_ALLOWED_ORIGINS = [
+    "https://blog-production-bbba.up.railway.app",
+    # Add other allowed origins as needed
+]
+    
+    CSRF_TRUSTED_ORIGINS = [
+    "https://blog-production-bbba.up.railway.app"
+]
 
     
 
@@ -147,11 +157,9 @@ if live_deploy == True:
 
 elif live_deploy == False:
 
-    ALLOWED_HOSTS = ['127.0.0.1', 'https://blog-production-bbba.up.railway.app']
+    ALLOWED_HOSTS = ['127.0.0.1',]
     
-    CSRF_TRUSTED_ORIGINS = [
-    'https://blog-production-bbba.up.railway.app'
-]
+   
 
 
     DATABASES = {
