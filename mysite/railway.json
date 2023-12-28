@@ -1,6 +1,5 @@
 
-mope, live ive said, overwrite the providers
-```json
+
 {
     "$schema": "https://schema.up.railway.app/railway.schema.json",
     "build": {
@@ -13,4 +12,3 @@ mope, live ive said, overwrite the providers
         "startCommand": "python manage.py migrate && python manage.py collectstatic --no-input && gunicorn locallibrary.wsgi"
     }
 }
-```
