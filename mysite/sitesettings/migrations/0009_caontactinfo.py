@@ -8,7 +8,7 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0084_query_searchpromotion_querydailyhits'),
+        ('wagtailcore', '0083_workflowcontenttype'),
         ('sitesettings', '0008_footernotices_title'),
     ]
 
