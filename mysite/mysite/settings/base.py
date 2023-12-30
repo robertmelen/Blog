@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    'whitenoise.runserver_nostatic',
+   
     "django.contrib.staticfiles",
     "django_htmx",
     'compressor', 
@@ -67,7 +69,7 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     'tailwind',
     'theme',
-   
+    
     
    
    
