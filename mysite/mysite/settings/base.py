@@ -285,8 +285,8 @@ PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/app/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "/app/static")
+STATIC_URL = "/static/"
 
 
 
