@@ -330,4 +330,3 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 TAILWIND_APP_NAME = 'theme'
 
 
-print([os.path.join(BASE_DIR, '/static')])
