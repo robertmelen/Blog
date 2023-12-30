@@ -4,13 +4,9 @@
  * If you need the full config, get it from here:
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
-const colors = require('tailwindcss/colors')
 
-
-
-module.exports = {   darkMode: 'class',
+module.exports = {
     content: [
-        "./node_modules/flowbite/**/*.js",
         /**
          * HTML. Paths to Django template files that will contain Tailwind CSS classes.
          */
@@ -44,85 +40,11 @@ module.exports = {   darkMode: 'class',
          * and make sure the pattern below matches your project structure.
          */
         // '../../**/*.py'
-        
     ],
     theme: {
-
-     
-        extend: {
-            fontFamily:{
-          Poppins: ["Poppins", "sans-serif"],
-          Cursive :["Pacifico", "cursive"],
-          Fuggles :["Fuggles", 'cursive'],
-          Crimson :['"Crimson text"', 'serif'],
-          Lato :["Lato", "sans-serif"],
-          Raleway: ['Raleway', "sans-serif"]
-        },
-
-          animation: {typing: "typing 2s steps(14)"},
-          keyframes: {typing: {
-            from: { width: "0" },
-            to: { width: "14ch" }
-          }},
-
-
-          
-          colors: {
-            transparent: 'transparent',
-            current: 'currentColor',
-            black: colors.black,
-            white: colors.white,
-            gray: colors.gray,
-            emerald: colors.emerald,
-            indigo: colors.indigo,
-            yellow: colors.yellow,
-            green: colors.green,
-            blue: colors.blue,
-          }
-        },
-        fontFamily: {
-
-          weird:['Noto Sans Linear B', "sans-serif"],
-
-       
-
-          'body': [
-        'Inter', 
-        'ui-sans-serif', 
-        'system-ui', 
-        '-apple-system', 
-        'system-ui', 
-        'Segoe UI', 
-        'Roboto', 
-        'Helvetica Neue', 
-        'Arial', 
-        'Noto Sans', 
-        'sans-serif', 
-        'Apple Color Emoji', 
-        'Segoe UI Emoji', 
-        'Segoe UI Symbol', 
-        'Noto Color Emoji'
-      ],
-          'sans': [
-        'Inter', 
-        'ui-sans-serif', 
-        'system-ui', 
-        '-apple-system', 
-        'system-ui', 
-        'Segoe UI', 
-        'Roboto', 
-        'Helvetica Neue', 
-        'Arial', 
-        'Noto Sans', 
-        'sans-serif', 
-        'Apple Color Emoji', 
-        'Segoe UI Emoji', 
-        'Segoe UI Symbol', 
-        'Noto Color Emoji'
-      ]
-        }
-      },
-    plugins: [
+        extend: {},
+    },
+    plugins: [ 
         /**
          * '@tailwindcss/forms' is the forms plugin that provides a minimal styling
          * for forms. If you don't like it or have own styling for forms,
@@ -132,13 +54,7 @@ module.exports = {   darkMode: 'class',
         require('@tailwindcss/typography'),
         require('@tailwindcss/line-clamp'),
         require('@tailwindcss/aspect-ratio'),
-        require('flowbite/plugin'),
-        require('flowbite-typography'),
-        require("daisyui"),
+        [require("daisyui")],
+        
     ],
-    variants: {
-      extend: {
-        backgroundColor: ['active'],
-      }
-    },
 }

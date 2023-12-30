@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import mimetypes
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
@@ -54,8 +55,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_htmx",
-    'tailwind',
-    'theme',
+    'compressor', 
+    
     'django_browser_reload',
     "wagtail.contrib.routable_page",
     'django_extensions',
@@ -64,6 +65,8 @@ INSTALLED_APPS = [
     'sitesettings',
     'wagtail.contrib.settings',
     "django.contrib.sitemaps",
+    'tailwind',
+    'theme',
    
     
    
@@ -250,7 +253,7 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
-TAILWIND_APP_NAME = 'theme'
+
 
 INTERNAL_IPS = [
     "127.0.0.1", "172.17.0.1"
@@ -314,3 +317,10 @@ if 'DATABASE_URL' in os.environ:
         conn_health_checks=True,
     )
 
+COMPRESS_ROOT = os.path.join(BASE_DIR, 'static')
+
+COMPRESS_ENABLED = True
+
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
+TAILWIND_APP_NAME = 'theme'

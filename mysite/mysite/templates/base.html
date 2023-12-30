@@ -4,6 +4,7 @@
 {% load static %}
 
 
+
 <!-- if window's scrollY > 400 add .-translate-y-6 .duration-300  to #header-fade 
     else remove .-translate-y-6 from #header-fade 
     end -->
@@ -17,9 +18,9 @@
         
         
         <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+       
         <script src="https://unpkg.com/htmx.org/dist/ext/head-support.js"></script>
-        
+     
         
       
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,12 +67,15 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
+       
       
         
         
 
         {% block extra_css %}
         <link href="{% static 'css/prism.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{% static 'src/output.css' %}">
+        
         
         {% endblock %}
         
@@ -125,12 +129,13 @@
         {% wagtailuserbar %}
         
         {% block header %}
+        
         {% include 'header_template.html' %}
         {% endblock %}
         
-       
+      
         {% block content %}
-        
+       
         
         
         {% endblock %}
