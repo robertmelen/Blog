@@ -136,16 +136,13 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 live_deploy = True
 if live_deploy == True:
 
-    ALLOWED_HOSTS = ['https://blog-production-bbba.up.railway.app', ]
+    
 
     CORS_ALLOWED_ORIGINS = [
     "https://blog-production-bbba.up.railway.app",
     # Add other allowed origins as needed
 ]
     
-    CSRF_TRUSTED_ORIGINS = [
-    "https://blog-production-bbba.up.railway.app"
-]
 
     
 
