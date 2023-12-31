@@ -9,6 +9,6 @@
         }
     },
     "deploy": {
-        "startCommand": "python manage.py makemigrations && python manage.py migrate &&  python manage.py collectstatic --no-input && gunicorn mysite.wsgi"
+        "startCommand": "python manage.py makemigrations && python manage.py migrate &&  python manage.py collectstatic --no-input && gunicorn mysite.wsgi --timeout 600 --dubug"
     }
 }
