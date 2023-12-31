@@ -253,7 +253,11 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
+ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+        "https://blog-production-bbba.up.railway.app"
+]
 
 INTERNAL_IPS = [
     "127.0.0.1", "172.17.0.1"
