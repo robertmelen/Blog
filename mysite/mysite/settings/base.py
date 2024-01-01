@@ -157,12 +157,7 @@ if live_deploy == True:
         }
     }
 
-    ALLOWED_HOSTS = ['*']
-
-    CSRF_TRUSTED_ORIGINS = [
-        "https://blog-production-bbba.up.railway.app"
-    ]
-    
+   
 
 
 elif live_deploy == False:
