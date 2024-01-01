@@ -157,6 +157,13 @@ if live_deploy == True:
         }
     }
 
+    ALLOWED_HOSTS = ['*']
+
+    CSRF_TRUSTED_ORIGINS = [
+        "https://blog-production-bbba.up.railway.app"
+    ]
+    
+
 
 elif live_deploy == False:
 
@@ -331,9 +338,3 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 TAILWIND_APP_NAME = 'theme'
 
 
-ALLOWED_HOSTS = ['*']
-
-CSRF_TRUSTED_ORIGINS = [
-        "https://blog-production-bbba.up.railway.app"
-]
-    
