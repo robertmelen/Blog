@@ -70,7 +70,7 @@ class FormPage(AbstractEmailForm):
 
     def serve(self, request, *args, **kwargs):
         
-        get_ip_address(request)
+        
         #THIS WAS TO TEST COOKIES IN VIEWS BUT WASN'NEEDED AS
         #TEMPLATE CONDITIONAL DID THE JOB. I'll keep this here for 
         #reference.
