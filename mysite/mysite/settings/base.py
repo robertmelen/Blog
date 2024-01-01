@@ -137,12 +137,7 @@ live_deploy = True
 if live_deploy == True:
 
     
-    ALLOWED_HOSTS = ['*']
 
-    CSRF_TRUSTED_ORIGINS = [
-        "https://blog-production-bbba.up.railway.app"
-]
-    
     CORS_ALLOWED_ORIGINS = [
     "https://blog-production-bbba.up.railway.app",
     # Add other allowed origins as needed
@@ -336,3 +331,9 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 TAILWIND_APP_NAME = 'theme'
 
 
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+        "https://blog-production-bbba.up.railway.app"
+]
+    
