@@ -337,8 +337,8 @@ ADMINS = (
     ('rob', 'robert_melen@yahoo.co.uk'),
 )
 
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = env('EMAIL_PORT')
-EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_HOST_USER = 'robert_melen@yahoo.co.uk'
+EMAIL_HOST_PASSWORD = 'gfdfgfdgdfg'
+EMAIL_PORT = 4566
+EMAIL_USE_TLS = True
