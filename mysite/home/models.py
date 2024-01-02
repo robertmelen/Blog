@@ -91,7 +91,7 @@ def get_ip_address(request):
             else:
                 ip = request.META.get('REMOTE_ADDR')
             id = request.COOKIES.get('visitor_id')
-            with open(r'C:\Users\Rob\Desktop\Coding stuff\ip logs.txt', 'a') as file:
+            with open(r'/files/ip_logs.txt', 'a') as file:
                     file.write('message' + " " + ip + " " + str(time_stamp) + "" + str(id) + '\n')
             return ip
               

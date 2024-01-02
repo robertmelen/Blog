@@ -21,7 +21,7 @@
  
 
 {% for item in settings.sitesettings.FooterSettings.notices.all %}
-<label for="my-modal-4{{ item.id }}" class="btn btn-outline btn-success btn-xs modal-button modal-open ">{{ item.title}}</label>
+<label for="my-modal-4{{ item.id }}" class="btn btn-outline btn-success btn-xs ">{{ item.title}}</label>
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="my-modal-4{{ item.id }}" class="modal-toggle">
