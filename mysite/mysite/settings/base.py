@@ -333,7 +333,3 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 TAILWIND_APP_NAME = 'theme'
 
 
-ADMINS = (
-    ('rob', 'robert_melen@yahoo.co.uk'),
-)
-
