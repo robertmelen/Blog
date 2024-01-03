@@ -73,7 +73,7 @@ else if window's scrollY < 400 remove .-translate-y-6 then settle
        focus:ring-green-300 font-medium rounded-lg sm:rounded-lg text-xs sm:text-sm sm:px-5 px-2 py-2.5 text-center me-2 mb-2
        ">Contact</button></a> 
       
-      <div class="flex sm:pr-5">
+      <div _="on click go to the top of the body" class="flex sm:pr-5">
         <button class="sm:inline-flex btn btn-ghost btn-circle" 
         hx-get="{% routablepageurl page.get_site.root_page.specific 'blog_search' %}"
         hx-vals='{"search-button": "search-button"}'

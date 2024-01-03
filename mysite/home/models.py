@@ -3,6 +3,7 @@ from PIL import Image as PILImage
 from django.utils import timezone
 
 
+
 # New imports added for ParentalKey, Orderable, InlinePanel
 from blog.models import BlogListingPage
 
@@ -71,6 +72,7 @@ class FormPage(AbstractEmailForm):
     def serve(self, request, *args, **kwargs):
         
         get_ip_address(request)
+        
         #THIS WAS TO TEST COOKIES IN VIEWS BUT WASN'NEEDED AS
         #TEMPLATE CONDITIONAL DID THE JOB. I'll keep this here for 
         #reference.
