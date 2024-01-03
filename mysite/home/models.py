@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image as PILImage
 from django.utils import timezone
+from mysite.settings.base import live_deploy
 
 
 
@@ -70,8 +71,9 @@ class FormPage(AbstractEmailForm):
     
 
     def serve(self, request, *args, **kwargs):
-        
-        get_ip_address(request)
+
+        if live_deploy is True:
+            get_ip_address(request)
         
         #THIS WAS TO TEST COOKIES IN VIEWS BUT WASN'NEEDED AS
         #TEMPLATE CONDITIONAL DID THE JOB. I'll keep this here for 
