@@ -11,7 +11,7 @@ from readtime import of_html, of_markdown, of_text
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.fields import StreamField
-from wagtail.models import Page, Orderable
+from wagtail.models import Page, Orderable, PageManager
 from wagtail.images.blocks import ImageChooserBlock 
 from django.shortcuts import render
 from wagtail.snippets.models import register_snippet
@@ -214,14 +214,26 @@ class BlogListingPage(RoutablePageMixin, Page):
          
     #     return self.render(request, template="partials/blog_by_category.html", context_overrides = {'category_posts': context["category_posts"]})  
     
-   
-   
+#related posts was referenceing this https://www.yellowduck.be/posts/showing-related-pages-similar-tags-wagtail/   
+class BlogPostManager(PageManager):
+    def related_posts(self, post, max_items=5):
+        type = post.type.all()
+        
+
+        matches = BlogDetailPage.objects.filter(type__in=type).live()
+      
+        matches = matches.exclude(pk=post.pk)
+
+        related = matches.order_by('-last_published_at')
+        return related[:max_items]
+
    
 
    
         
 class BlogDetailPage(Page):
     """Blog detail page."""
+    objects = BlogPostManager()
 
     title_background = models.ForeignKey(
         ('home.CustomImage'),
@@ -276,7 +288,6 @@ class BlogDetailPage(Page):
             ]
         ),
         
-        
         FieldPanel("summary"),
         FieldPanel("blog_image"),
         FieldPanel("content"),
@@ -302,7 +313,11 @@ class BlogDetailPage(Page):
         index.AutocompleteField('summary'),
         
     ]
-   
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(BlogDetailPage, self).get_context(request)
+        context['related_posts'] = BlogDetailPage.objects.related_posts(self)
+        return context
 
     
   
