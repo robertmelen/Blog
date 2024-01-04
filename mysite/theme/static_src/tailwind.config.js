@@ -42,7 +42,14 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: { 
+                test: ['Rubik Scribble', 'system-ui'],
+                Raleway : ["Raleway", "sans-serif"],
+                Poppins: ["Poppins", "sans-serif"],
+                Gothic: ["Nanum Gothic", "sans-serif"],
+            } 
+        },
     },
     plugins: [ 
         /**

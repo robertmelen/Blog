@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.wagtail-richtext p {
+    
+    @apply font-Raleway
+  }
+
+.wagtail-richtext h2 {
+    
+    @apply font-Gothic underline decoration-green-500 decoration-1 underline-offset-4
+  }
