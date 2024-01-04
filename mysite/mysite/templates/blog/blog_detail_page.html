@@ -187,17 +187,36 @@ URL: https://flowbite.com/docs/components/typography/
                     "
                     
                     class="items-center prose max-w-full mb-0 lg:prose-xl wagtail-richtext p-2 sm:p-0">{% include_block block %}</div>
+
+
+                  
+
           </section>
+
         {% endfor %}
-        {% if related_posts %}
-    <h1 class="related">Related Posts</h1
-    <ul>
-        {% for post in related_posts %}
-            <li><a href="{% pageurl post %}">{{ post.title }}</a></li>
-        {% endfor %}
-    </ul>
-{% endif %}
+
+
+
+
         </div>
+        {% if related_posts %}
+        <div  class="divider divider-success">Realted Posts</div>
+        <div class="flex gap-5">
+        {% for post in related_posts %}
+        {% image post.blog_image width-400 as photo %}
+        <div class="card card-compact w-96 bg-base-100 shadow-xl">
+          <figure><img src="{{ photo.url }}" alt="Shoes" /></figure>
+          <div class="card-body">
+            <a href="{% pageurl post %}"><h2 class="card-title">{{ post.title }}</h2></a>
+            <p>{{ post.summary }}</p>
+            <div class="card-actions justify-end">
+              <a href="{% pageurl post %}"><button class="btn bg-green-300">Read</button></a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
