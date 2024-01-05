@@ -122,10 +122,10 @@
     </div>
     {% image self.specific.gallery_image original as gallery_image %}
     <div class="flex">
+      <img class="h-auto max-w-full" src="{{ gallery_image.url }}" alt="image description">
     <div id="gallery"
-    style="--background-image-url: url('{{ gallery_image.url }}')"
-         class="hero min-h-screen bg-[image:var(--background-image-url)]"
-         >
+         class="hero min-h-screen "
+         style="background-image: url('{{ gallery_image.url }}');">
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center text-neutral-content">
         <div class="max-w-md">
