@@ -4460,6 +4460,11 @@ input.tab:checked + .tab-content,
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
 }
@@ -4529,6 +4534,10 @@ input.tab:checked + .tab-content,
 .bg-clip-text {
   -webkit-background-clip: text;
           background-clip: text;
+}
+
+.bg-center {
+  background-position: center;
 }
 
 .fill-blue-700 {
@@ -4716,6 +4725,11 @@ input.tab:checked + .tab-content,
   line-height: 1rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -4866,6 +4880,10 @@ input.tab:checked + .tab-content,
 
 .opacity-0 {
   opacity: 0;
+}
+
+.opacity-50 {
+  opacity: 0.5;
 }
 
 .shadow {
