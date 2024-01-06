@@ -5,41 +5,30 @@
 
 
 
-<div id="Gallery-section"  class="container mx-auto overflow-hidden pt-10">
-
-   
-    
-
-    <div class="flex flex-col ">
+<div id="Gallery-section" class="container mx-auto overflow-hidden pt-10">
+    <div class="flex flex-col items-center ">
         {% for img in gallery %}
-      
-        
-        <div class="mx-auto">
-        
-          
-         
-            
-                {% image img.images width-1200 jpegquality-100 as gallery_photos %}
-                <div class="flex flex-col max-w-4xl">
-                    <div>
-                    <h1 id="text-tester" class="pt-2 image-text -translate-x-10 text-3xl sm:text-6xl text-slate-800 font-Raleway dark:text-white">{{ img.title }}
-                        <small class="translate-x-10 ml-2 font-Raleway text-zinc-700 text-sm sm:text-3xl leading-3">
-                        {{ img.caption }}</small><small class="text-sm m-10 text-green-600 ">{{ img.images.location }}{{ img.images.date }}</small></h1>
-                
-                    </div>
-                    
-           <div class="inline-flex gap-2 p-2">
-                    
+            {% image img.images width-1200 jpegquality-100 as gallery_photos %}
+            <div class="flex flex-col items-center max-w-4xl">
+                <div class="text-center">
+                    <h1 class="sm:pt-2 -translate-x-20 image-text text-3xl sm:text-6xl text-slate-800 font-Raleway dark:text-white">{{ img.title }}
+                        <p class="ml-2 font-Raleway text-zinc-700 text-sm sm:text-3xl leading-3">
+                            {{ img.caption }}
+                        </p>
+                        <p class="text-sm text-green-600 ">{{ img.images.location }}{{ img.images.date }}</p>
+                    </h1>
+                </div>
+                <div class="hidden sm:inline-flex gap-2 p-2 self-start">
                     <button _="on click toggle between .hidden and .inline-flex on next <div.exif/>" class="hover:scale-125 text-green-800 font-extralight text-xs ml-10">
-                    Image exif data
-                    
-                    <svg class="hover:scale-125 inline-block  w-5 h-5  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 3h-2l-.447-.894A2 2 0 0 0 12.764 1H7.236a2 2 0 0 0-1.789 1.106L5 3H3a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V5a2 2 0 0 0-2-2Z"/>
-                </svg>
-                </button>
-            </div>
-                <div id="" class="sm:gap-2 hidden exif">
+                        Image exif data
+                        
+                        <svg class="hover:scale-125 inline-block  w-5 h-5  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 3h-2l-.447-.894A2 2 0 0 0 12.764 1H7.236a2 2 0 0 0-1.789 1.106L5 3H3a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V5a2 2 0 0 0-2-2Z"/>
+                    </svg>
+                    </button>
+                </div>
+                <div class="sm:gap-2 hidden exif">
                     {% if img.images.camera %}
                     <div id="exif-data" class="text-xs font-Poppins">Camera: {{ img.images.camera }},</div>
                     {% endif %}
@@ -53,19 +42,13 @@
                     <div class="text-xs font-Poppins">Aperture:{{ img.images.aperture}},</div>
                     {% endif %}
                 </div>
+                <img id="image" _="on intersection(intersecting) having threshold 0.2 
+                if intersecting remove .-translate-x-20 from the previous <h1.image-text/> 
+                then add .duration-1000 to the previous <h1.image-text/>"
+                     class="p-2 border-solid border-2 border-gray-500 sm:translate-x-5 
+                     rounded-lg shadow-lg items-center" src="{{ gallery_photos.url }}" alt="">
             </div>
-                
-                
-            <img id="image" _="on intersection(intersecting) having threshold 0.2 
-            if intersecting remove .-translate-x-10 from the previous <h1.image-text/> 
-            then add .translate-x-4 .duration-1000 to the previous <h1.image-text/>"
-             class="p-2 border-solid border-2 border-gray-500 sm:translate-x-5 
-             w-30 rounded-lg shadow-lg items-center" src="{{ gallery_photos.url }}" alt="">
-             </div>
-             <div class="divider"></div> 
-       
+            <div class="divider"></div>
         {% endfor %}
     </div>
-
-
 </div>
