@@ -15,5 +15,5 @@
 
   .wagtail-richtext code {
     
-    @apply text-blue-300 underline bg-white
+    @apply text-black  bg-slate-400
   }
