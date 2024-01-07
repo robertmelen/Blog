@@ -91,7 +91,8 @@
         
     </head>
     
-    <body id="body" _="
+    <body id="body" _="on load add @oncontextmenu='return false;' to <img/> then
+    
     on scroll from the window
     if window's scrollY > 500 and window's innerWidth > 900
         remove .invisible from #header-button then add .inline-block to #header-button
@@ -102,7 +103,7 @@
         end 
    end" class="w-full h-auto overflow-visible relative events " hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'  
        hx-ext="head-support" class="{% block body_class %}{% endblock %}">
-       
+       <div id="clickmessage" class="invisible absolute" style="top:; left:; ">clicked</div>
        {% if not request.COOKIES.visitor_id %}   
     <div id="loading" _="init add .blur-effect to #body then on click from .close-warning add .hidden to me"class="m-10 p-5 top-0 z-20 fixed flex flex-col border-solid border-2 bg-green-100
     shadow-lg rounded-md" >
@@ -143,7 +144,7 @@
         {% include 'header_template.html' %}
         {% endblock %}
         
-      
+       
         {% block content %}
        
         
