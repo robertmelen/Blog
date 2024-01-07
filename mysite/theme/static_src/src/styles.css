@@ -17,3 +17,10 @@
     
     @apply text-black  bg-slate-200
   }
+
+  .wagtail-richtext #output {
+    
+    @apply text-black  bg-gray-200
+  }
+
+  
