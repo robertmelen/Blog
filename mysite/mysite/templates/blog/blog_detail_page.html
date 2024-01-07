@@ -28,7 +28,7 @@ URL: https://flowbite.com/docs/components/typography/
       
       <div style="--background-image-url: url('{{ title_photo.url }}'); 
       background-repeat: no-repeat;" 
-      class="flex flex-col items-center {% if self.background %} bg-cover rounded-lg shadow-lg bg-[image:var(--background-image-url)] --bg-opacity-0 {% endif %}">
+      class="flex flex-col items-center {% if self.background %} bg-cover bg-[image:var(--background-image-url)] --bg-opacity-0 {% endif %}">
         
      
         {% for block in page.content %}
