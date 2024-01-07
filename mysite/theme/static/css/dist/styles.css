@@ -4942,6 +4942,14 @@ input.tab:checked + .tab-content,
   text-underline-offset: 4px;
 }
 
+.wagtail-richtext code {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(147 197 253 / var(--tw-text-opacity));
+  text-decoration-line: underline;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
