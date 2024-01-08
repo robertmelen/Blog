@@ -80,3 +80,12 @@ def time_posted(value):
         delta = timezone.now() - value.first_published_at
         return delta.days
     return None
+
+
+
+@register.filter
+def get_first_text_body(blocks):
+    for block in blocks:
+        if block.block_type == 'text_body':
+            return block.value.get('rich_text', '')
+    return ''

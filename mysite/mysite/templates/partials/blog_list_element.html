@@ -64,7 +64,11 @@
             </div>
         </div>
         <h2 class="mb-2 text-3xl font-Raleway tracking-tight text-green-800 dark:text-white"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        <p class="mb-5 font-light text-gray-500 dark:text-gray-400">Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers influence both web designers and developers.</p>
+        {% with first_text_body=post.specific.content|get_first_text_body %}
+        <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
+            {{ first_text_body | striptags | truncatechars:200 }}.
+        </p>
+    {% endwith %}
         {% image post.specific.blog_image width-400 as blog_photo %}
         <img class="w-full h-  p-6 rounded-lg" src="{{ blog_photo.url }}">
         <div class="flex justify-between items-center">
