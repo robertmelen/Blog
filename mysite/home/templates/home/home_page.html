@@ -125,12 +125,13 @@
       
     <div id="gallery"
          class="hero min-h-screen "
-         style="background: url(https://wagtailblog.s3.amazonaws.com/images/test3.width-800.png); 
-         background-attachment: fixed;
+         style="background-image: url('{{ gallery_image.url }}'); 
+         background-repeat: no-repeat;
+        
          -o-background-size: cover;
          -moz-background-size: cover;
          -webkit-background-size: cover;
-         background-repeat: no-repeat;
+         
          ">
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center text-neutral-content">
