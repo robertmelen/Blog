@@ -115,7 +115,7 @@ URL: https://flowbite.com/docs/components/typography/
               {% endif %}
             </div>
             <div id="clicktags" class="flex-row self-start"></div>
-            <div class="divider"></div> 
+            <div class="divider mb-0"></div> 
             <p class="text-lg text-black font-Raleway text-center font-thin p-2 sm:p-0">{{ block.value.text }}</p>
           {% endif %}
         {% endfor %}
@@ -161,7 +161,8 @@ URL: https://flowbite.com/docs/components/typography/
            
             set items to the <h2/> in me 
               for item in items index i
-                set arrtwo to random in arr log arrtwo
+                add .heading to item then
+                set arrtwo to random in arr 
                 set extra to item.textContent.slice(0, 3) log extra
                 set item.id to extra + arrtwo then 
                   if item.textContent == ''  remove it else
@@ -188,6 +189,7 @@ URL: https://flowbite.com/docs/components/typography/
                     else remove 
                     .scale-100 .bg-gradient-to-r .from-green-200 .font-medium from it then add .font-extralight to it
                     ' end 
+                   
                         
                     "
                     

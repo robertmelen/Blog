@@ -10,7 +10,7 @@
 
 .wagtail-richtext h2 {
     
-    @apply font-Gothic underline decoration-green-500 decoration-1 underline-offset-4
+    @apply font-Gothic mb-1
   }
 
   .wagtail-richtext code {

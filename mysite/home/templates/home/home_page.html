@@ -96,16 +96,16 @@
     <aside aria-label="Related articles"
            class="py-8 lg:py-24 bg-gradient-to-b from-green-100 dark:bg-gray-800 flex-grow">
       <div class="px-4 mx-auto max-w-screen-xl">
-        <h2 class="mb-8 text-2xl font-Lato text-black dark:text-white">Recent posts.....</h2>
+        <h2 class="mb-8 text-2xl font-Raleway font-bold text-black dark:text-white">Recent posts.....</h2>
         
         <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {% for x in recent_posts %}
             <article class="">
               <a href="#">
                 {% image x.blog_image fill-450x300 as photo %}
-                <img src="{{ photo.url }}" class="hover:scale-110 transition-all duration-500  mb-5 w-full" alt="Image 1">
+                <img src="{{ photo.url }}" class="hover:scale-110 transition-all duration-500  mb-5 w-full rounded-lg" alt="Image 1">
               </a>
-              <h2 class="group mb-2 text-xl font-Raleway leading-tight text-gray-900 dark:text-white transition duration-300">
+              <h2 class="group mb-2 text-xl font-Raleway font-semibold leading-tight text-gray-800 dark:text-white transition duration-300">
                 <a href="{% pageurl x %}">{{ x.title }}
                   <span class="block w-0 group-hover:w-20 transition-all duration-500 h-1 bg-green-600"></span></a>
               </h2>
@@ -125,7 +125,13 @@
       
     <div id="gallery"
          class="hero min-h-screen "
-         style="background-image: url('{{ gallery_image.url }}');">
+         style="background-image: url('{{ gallery_image.url }}'); 
+         background-attachment: fixed;
+         -o-background-size: cover;
+         -moz-background-size: cover;
+         -webkit-background-size: cover;
+         background-repeat: no-repeat;
+         ">
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center text-neutral-content">
         <div class="max-w-md">

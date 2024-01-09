@@ -3921,6 +3921,10 @@ input.tab:checked + .tab-content,
   margin: 1.75rem;
 }
 
+.m-0 {
+  margin: 0px;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -4777,6 +4781,11 @@ input.tab:checked + .tab-content,
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -4935,11 +4944,8 @@ input.tab:checked + .tab-content,
 }
 
 .wagtail-richtext h2 {
+  margin-bottom: 0.25rem;
   font-family: Nanum Gothic, sans-serif;
-  text-decoration-line: underline;
-  text-decoration-color: #22c55e;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
 }
 
 .wagtail-richtext code {
