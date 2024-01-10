@@ -3921,10 +3921,6 @@ input.tab:checked + .tab-content,
   margin: 1.75rem;
 }
 
-.m-0 {
-  margin: 0px;
-}
-
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -4075,10 +4071,6 @@ input.tab:checked + .tab-content,
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-full {
-  min-height: 100%;
 }
 
 .w-0 {
@@ -4483,6 +4475,10 @@ input.tab:checked + .tab-content,
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
 
+.bg-\[url\(\'\.\.\/public\/assets\/images\/banner\.svg\'\)\] {
+  background-image: url('../public/assets/images/banner.svg');
+}
+
 .from-gray-700 {
   --tw-gradient-from: #374151 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(55 65 81 / 0) var(--tw-gradient-to-position);
@@ -4783,11 +4779,6 @@ input.tab:checked + .tab-content,
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
