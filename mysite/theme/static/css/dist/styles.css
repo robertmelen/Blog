@@ -4475,8 +4475,6 @@ input.tab:checked + .tab-content,
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
 
-
-
 .from-gray-700 {
   --tw-gradient-from: #374151 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(55 65 81 / 0) var(--tw-gradient-to-position);
