@@ -8,10 +8,10 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: define the correct hosts in production!
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['blog-production-bbba.up.railway.app', 'www.robs-blog.co.uk', 'robs-blog.co.uk']
 
 CSRF_TRUSTED_ORIGINS = [
-        "https://blog-production-bbba.up.railway.app"
+        "https://blog-production-bbba.up.railway.app", "https://*.robs-blog.co.uk"
     ]
     
 

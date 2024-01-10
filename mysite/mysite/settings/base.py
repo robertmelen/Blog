@@ -139,7 +139,7 @@ if live_deploy == True:
     
 
     CORS_ALLOWED_ORIGINS = [
-    "https://blog-production-bbba.up.railway.app",
+    "https://blog-production-bbba.up.railway.app", 'https://*.robs-blog.co.uk'
     # Add other allowed origins as needed
 ]
     
