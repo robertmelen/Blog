@@ -272,7 +272,8 @@ class BlogDetailPage(Page):
             ('quote', my_blocks.QuoteBlock()),
             ('embed', my_blocks.EmbedBlock()),
             ('full_width_image', my_blocks.FullWidthImage()),
-            ('strava_embed', my_blocks.StravaBlock())
+            ('strava_embed', my_blocks.StravaBlock()),
+            ('text', blocks.CharBlock()),
           
           
            
