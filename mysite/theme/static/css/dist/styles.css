@@ -4475,9 +4475,7 @@ input.tab:checked + .tab-content,
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
 
-.bg-\[url\(\'\.\.\/public\/assets\/images\/banner\.svg\'\)\] {
-  background-image: url('../public/assets/images/banner.svg');
-}
+
 
 .from-gray-700 {
   --tw-gradient-from: #374151 var(--tw-gradient-from-position);
