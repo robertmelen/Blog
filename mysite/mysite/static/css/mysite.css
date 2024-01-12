@@ -20,10 +20,10 @@
     opacity:0;
     transition: opacity 500ms ease-in;
 }
-.htmx-request .spinnertest{
+.htmx-request .htmx-indicator{
     opacity:1
 }
-.htmx-request.spinnertest{
+.htmx-request.htmx-indicator{
     opacity:1
 }
 
