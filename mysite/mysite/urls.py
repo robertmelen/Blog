@@ -9,10 +9,14 @@ from wagtail.contrib.sitemaps.views import sitemap
 
 from search import views as search_views
 
+import environ
+env = environ.Env()
+environ.Env.read_env()
+
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path('sitemap.xml', sitemap),
-    path("admin/", include(wagtailadmin_urls)),
+    path(env('ADMIN_URL') + "/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path("__reload__/", include("django_browser_reload.urls")),
