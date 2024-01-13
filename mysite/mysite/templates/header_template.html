@@ -14,9 +14,7 @@
         
 if window's scrollY > 600 and window's innerWidth > 600
 add .-translate-x-12 to #header-button then add .-translate-y-6 .duration-300 to #header-fade
-else if window's scrollY < 400 remove .-translate-y-6 then settle
-
-" id="header-fade" class="navbar shadow-md  bg-white sticky top-0 z-10 w-screen">
+else if window's scrollY < 400 remove .-translate-y-6 then settle" id="header-fade" class="navbar shadow-md  bg-white sticky top-0 z-10 ">
   <div class="navbar-start">
     <div class="dropdown">
       <div class="flex dark:bg-black">
@@ -73,7 +71,7 @@ else if window's scrollY < 400 remove .-translate-y-6 then settle
        focus:ring-green-300 font-medium rounded-lg sm:rounded-lg text-xs sm:text-sm sm:px-5 px-2 py-2.5 text-center me-2 mb-2
        ">Contact</button></a> 
       
-      <div _="on click go to the top of the body" class="flex sm:pr-5">
+      <div _="on click go to the top of the body" class="flex sm:">
         <button class="sm:inline-flex btn btn-ghost btn-circle" 
         hx-get="{% routablepageurl page.get_site.root_page.specific 'blog_search' %}"
         hx-vals='{"search-button": "search-button"}'
