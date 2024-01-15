@@ -3913,16 +3913,20 @@ input.tab:checked + .tab-content,
   z-index: 20;
 }
 
+.col-start-2 {
+  grid-column-start: 2;
+}
+
+.col-end-3 {
+  grid-column-end: 3;
+}
+
 .m-10 {
   margin: 2.5rem;
 }
 
 .m-7 {
   margin: 1.75rem;
-}
-
-.m-0 {
-  margin: 0px;
 }
 
 .mx-1 {
@@ -4113,10 +4117,6 @@ input.tab:checked + .tab-content,
   width: 100%;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
 .min-w-full {
   min-width: 100%;
 }
@@ -4224,6 +4224,10 @@ input.tab:checked + .tab-content,
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -4276,6 +4280,10 @@ input.tab:checked + .tab-content,
   gap: 2rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.25rem * var(--tw-space-x-reverse));
@@ -4302,6 +4310,10 @@ input.tab:checked + .tab-content,
 
 .overflow-visible {
   overflow: visible;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .overflow-x-auto {
@@ -4566,10 +4578,6 @@ input.tab:checked + .tab-content,
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .px-2 {
@@ -5396,6 +5404,10 @@ input.tab:checked + .tab-content,
     display: inline-flex;
   }
 
+  .sm\:grid {
+    display: grid;
+  }
+
   .sm\:h-6 {
     height: 1.5rem;
   }
@@ -5506,6 +5518,10 @@ input.tab:checked + .tab-content,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .md\:space-x-3 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
     margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -5530,6 +5546,10 @@ input.tab:checked + .tab-content,
 
   .lg\:flex {
     display: flex;
+  }
+
+  .lg\:grid {
+    display: grid;
   }
 
   .lg\:grid-cols-2 {
