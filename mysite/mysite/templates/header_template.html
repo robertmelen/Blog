@@ -16,7 +16,7 @@ if window's scrollY > 600 and window's innerWidth > 600
 add .-translate-x-12 to #header-button then add .-translate-y-6 .duration-300 to #header-fade
 else if window's scrollY < 400 remove .-translate-y-6 then settle" id="header-fade" class="navbar shadow-md  bg-white sticky top-0 z-10 ">
   <div class="navbar-start">
-    <div class="dropdown">
+    <div class="dropdown" style="z-index: 1000;">
       <div class="flex dark:bg-black">
       <label tabindex="0" class="btn btn-ghost btn-circle">
         <button _="on click toggle between .hidden and .flex on #nav">    
