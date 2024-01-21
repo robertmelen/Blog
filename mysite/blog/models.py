@@ -25,6 +25,7 @@ from wagtail.search import index
 from blog import blocks as my_blocks
 
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path, route, re_path
+from wagtailmetadata.models import MetadataPageMixin
 
 from django.http import HttpResponse
 
@@ -132,7 +133,7 @@ class AuthorSocials(Orderable):
 
     
 
-class BlogListingPage(RoutablePageMixin, Page):
+class BlogListingPage(MetadataPageMixin, RoutablePageMixin, Page):
     """Listing page lists all the Blog Detail Pages."""
 
     custom_title = models.CharField(
@@ -231,7 +232,7 @@ class BlogPostManager(PageManager):
 
    
         
-class BlogDetailPage(Page):
+class BlogDetailPage(MetadataPageMixin, Page):
     """Blog detail page."""
     objects = BlogPostManager()
 

@@ -38,6 +38,7 @@ from django_htmx.http import push_url
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path, re_path
 
 from wagtail.images.models import Image, AbstractImage, AbstractRendition
+from wagtailmetadata.models import MetadataPageMixin
 
 import math
 from fractions import Fraction
@@ -192,7 +193,7 @@ class HeroBlock(blocks.StructBlock):
    
 
 
-class HomePage(RoutablePageMixin, Page):
+class HomePage(MetadataPageMixin, RoutablePageMixin, Page):
     home_header = models.ForeignKey('home.Header', null=True,
           blank=True,
           on_delete=models.SET_NULL,

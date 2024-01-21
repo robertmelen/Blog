@@ -6,7 +6,15 @@
 {% load wagtailroutablepage_tags %}
 {% block body_class %}template-homepage{% endblock %}
 {% block content %}
+{% load wagtailmetadata_tags %}
+
+{% block meta_tag %}
+  {% meta_tags %}
+{% endblock %}
   <!-- 
+
+
+
 Install the "flowbite-typography" NPM package to apply styles and format the article content: 
 
 URL: https://flowbite.com/docs/components/typography/ 
