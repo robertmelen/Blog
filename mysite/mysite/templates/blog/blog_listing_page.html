@@ -3,16 +3,13 @@
 {% load wagtailcore_tags snippet_tags %}
 {% load wagtailimages_tags %}
 {% load wagtailroutablepage_tags %}
-
+{% load wagtailmetadata_tags %}
 {% block body_class %}template-homepage{% endblock %}
 {% headers %}
 {% block content %}
-{% load wagtailmetadata_tags %}
-
 {% block meta_tag %}
   {% meta_tags %}
 {% endblock %}
-  <!-- 
 
 
 
