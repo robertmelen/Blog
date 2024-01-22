@@ -23,7 +23,7 @@
   
    
    
-    <div hx-get="{% slugurl 'blog-page' %}?page={{ posts.next_page_number }}" 
+    <div hx-get="{% slugurl 'blog-posts' %}?page={{ posts.next_page_number }}" 
     hx-indicator="#spinnertest" 
     hx-vals='{"elements": "elements"}' 
     hx-trigger="revealed" 
