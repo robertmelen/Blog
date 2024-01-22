@@ -5279,6 +5279,10 @@ input.tab:checked + .tab-content,
   text-transform: capitalize;
 }
 
+.first-letter\:italic::first-letter {
+  font-style: italic;
+}
+
 .first\:text-4xl:first-child {
   font-size: 2.25rem;
   line-height: 2.5rem;
