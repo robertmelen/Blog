@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('home', '0045_homepage_search_image'),
-        ('wagtailcore', '0084_query_searchpromotion_querydailyhits'),
+        ('wagtailcore', '0083_workflowcontenttype'),
         ('sitesettings', '0011_datawarning'),
     ]
 
