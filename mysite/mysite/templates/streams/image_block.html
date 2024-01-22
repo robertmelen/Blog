@@ -22,11 +22,28 @@
             {% image self.large_image width-1200 as photo %}
             <div _="on intersection(intersecting) having threshold 0.5
             if intersecting add .-translate-y-10 .duration-1000 to <img/> in me"  class="">
-            <div class="text-sm pb-3 font-semibold italic ">{{ self.text }}</div>   
-           <img  class="rounded-lg border-cyan-900 object-cover w-full h-full align-bottom"
-                 src="{{ photo.url }}"
-                 alt="image description">
-                 </div>
+             <div>
+                <div class="text-sm pb-3 font-semibold italic ">
+                    
+                </div>  
+              <div class="relative">  
+            <img  class="rounded-lg border-cyan-900 object-cover w-full h-full align-bottom"
+                    src="{{ photo.url }}"
+                    alt="image description">
+                    
+                    <div class="hidden sm:block absolute bottom-3 right-0">
+                    {% if self.large_image.tags %}
+                        {% for tag in self.large_image.tags.all %}
+                        <div class="badge badge-outline  sm:gap-5">{{ tag }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                    <div class="absolute bottom-3 text-sm font-Raleway">
+                        {{ self.text }}
+                    </div>
+              </div>
+            </div>
+                
           
                  
                  

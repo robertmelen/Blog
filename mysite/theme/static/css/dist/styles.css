@@ -3905,6 +3905,22 @@ input.tab:checked + .tab-content,
   top: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
+.bottom-3 {
+  bottom: 0.75rem;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.left-0 {
+  left: 0px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -3913,12 +3929,8 @@ input.tab:checked + .tab-content,
   z-index: 20;
 }
 
-.col-start-2 {
-  grid-column-start: 2;
-}
-
-.col-end-3 {
-  grid-column-end: 3;
+.z-50 {
+  z-index: 50;
 }
 
 .m-10 {
@@ -4109,10 +4121,6 @@ input.tab:checked + .tab-content,
   width: 1.75rem;
 }
 
-.w-96 {
-  width: 24rem;
-}
-
 .w-full {
   width: 100%;
 }
@@ -4224,10 +4232,6 @@ input.tab:checked + .tab-content,
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -4268,6 +4272,10 @@ input.tab:checked + .tab-content,
   gap: 0.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -4278,10 +4286,6 @@ input.tab:checked + .tab-content,
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-3 {
-  gap: 0.75rem;
 }
 
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -4310,10 +4314,6 @@ input.tab:checked + .tab-content,
 
 .overflow-visible {
   overflow: visible;
-}
-
-.overflow-scroll {
-  overflow: scroll;
 }
 
 .overflow-x-auto {
@@ -5392,8 +5392,16 @@ input.tab:checked + .tab-content,
 }
 
 @media (min-width: 640px) {
+  .sm\:absolute {
+    position: absolute;
+  }
+
   .sm\:ml-2 {
     margin-left: 0.5rem;
+  }
+
+  .sm\:block {
+    display: block;
   }
 
   .sm\:flex {
@@ -5402,10 +5410,6 @@ input.tab:checked + .tab-content,
 
   .sm\:inline-flex {
     display: inline-flex;
-  }
-
-  .sm\:grid {
-    display: grid;
   }
 
   .sm\:h-6 {
@@ -5443,6 +5447,10 @@ input.tab:checked + .tab-content,
 
   .sm\:gap-2 {
     gap: 0.5rem;
+  }
+
+  .sm\:gap-5 {
+    gap: 1.25rem;
   }
 
   .sm\:rounded-lg {
@@ -5518,10 +5526,6 @@ input.tab:checked + .tab-content,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
   .md\:space-x-3 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
     margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -5546,10 +5550,6 @@ input.tab:checked + .tab-content,
 
   .lg\:flex {
     display: flex;
-  }
-
-  .lg\:grid {
-    display: grid;
   }
 
   .lg\:grid-cols-2 {
