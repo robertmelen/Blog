@@ -124,7 +124,12 @@ URL: https://flowbite.com/docs/components/typography/
             </div>
             <div id="clicktags" class="flex-row self-start"></div>
             <div class="divider mb-0"></div> 
-            <p class="text-lg text-black font-Raleway text-center font-thin p-2 sm:p-0">{{ block.value.text }}</p>
+            <p class="text-lg font-Raleway 
+            text-center 
+            p-2 sm:p-0 
+            text-green-800
+            first-letter:text-2xl
+            first-letter:font-serif italic">{{ block.value.text }}</p>
           {% endif %}
         {% endfor %}
       </div>
