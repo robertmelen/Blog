@@ -69,6 +69,13 @@ class DataWarning(BaseSiteSetting):
       FieldPanel('message'),
       FieldPanel('policy'),  
 
-
-
-
+@register_setting
+class FaviconSetting(BaseSiteSetting):
+    favicon = models.ForeignKey(
+        ('home.CustomImage'),
+        blank=True,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    FieldPanel('favicon')

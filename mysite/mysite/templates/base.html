@@ -2,6 +2,7 @@
 {% load static tailwind_tags %}
 {% load wagtailcore_tags snippet_tags %}   
 {% load static %}
+{% load wagtailimages_tags %}
 
 
 
@@ -23,8 +24,8 @@
        <!-- Google adsense  -->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372696478873192"
      crossorigin="anonymous"></script>
-     
-        
+     {% image settings.sitesettings.FaviconSetting.favicon width-100 as favicon %}
+     <link rel="icon" type="image/png" href="{{ favicon.url }}"/>
       
         <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
