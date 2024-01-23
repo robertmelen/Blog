@@ -4789,6 +4789,14 @@ input.tab:checked + .tab-content,
   line-height: 1.25;
 }
 
+.leading-4 {
+  line-height: 1rem;
+}
+
+.leading-5 {
+  line-height: 1.25rem;
+}
+
 .tracking-normal {
   letter-spacing: 0em;
 }
