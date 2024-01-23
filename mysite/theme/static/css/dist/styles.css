@@ -3099,6 +3099,12 @@ input.tab:checked + .tab-content,
   gap: 1rem;
 }
 
+.divider-neutral:before,
+  .divider-neutral:after {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
+}
+
 .divider-success:before,
   .divider-success:after {
   --tw-bg-opacity: 1;

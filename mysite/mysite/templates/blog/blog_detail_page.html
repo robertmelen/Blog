@@ -91,7 +91,7 @@ URL: https://flowbite.com/docs/components/typography/
                     </a>
                   {% endif %}
                 {% endfor %}
-                <div class="inline-block text-xs sm:text-base">{{ self.last_published_at|date:"F d, Y" }}</div>
+                <div class="inline-block text-xs sm:text-base">{{ self.first_published_at|date:"F d, Y" }}</div>
               </div>
             {% endfor %}
             <div class="inline-flex pl-10 sm:pl-0 gap-1 flex-wrap">
@@ -141,12 +141,12 @@ URL: https://flowbite.com/docs/components/typography/
           <!--Author-->
         
         <!--Tags-->
-        {% image self.blog_image width-1200 as banner %}
+        {% image self.blog_image width-800 as banner %}
         <div class="flex justify-center drop-shadow-xl border-x-lime-300 p-5 sm:pt-5">
           <img class="shadow-2xl rounded-lg" src="{{ banner.url }}" />
         </div>
         <!--Streamfeild content-->
-        
+        <div class="divider divider-success p-2 font-Raleway text-sm">Updated: {{ self.last_published_at|date:"F d, Y" }}</div>
         {% for block in page.content %}
           {% if block.block_type == 'embed' %}
             <div class="relative min-w-full" style="padding-top: 56.25%">
