@@ -10,7 +10,7 @@
 
 .wagtail-richtext h2 {
     
-    @apply font-Gothic mb-1
+    @apply font-Gothic mb-1 mt-1
   }
 
   .wagtail-richtext code {
@@ -28,3 +28,6 @@
     @apply m-auto
   
   }
+
+  
+  
