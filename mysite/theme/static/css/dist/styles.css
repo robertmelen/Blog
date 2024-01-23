@@ -4361,9 +4361,9 @@ input.tab:checked + .tab-content,
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
-.border-gray-500 {
+.border-gray-800 {
   --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
 
 .border-green-200 {
@@ -4384,16 +4384,6 @@ input.tab:checked + .tab-content,
 .border-pink-200 {
   --tw-border-opacity: 1;
   border-color: rgb(251 207 232 / var(--tw-border-opacity));
-}
-
-.border-gray-800 {
-  --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity));
-}
-
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .border-x-lime-300 {
@@ -4569,6 +4559,10 @@ input.tab:checked + .tab-content,
   padding: 0.5rem;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -4579,10 +4573,6 @@ input.tab:checked + .tab-content,
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
 }
 
 .px-2 {
@@ -4645,6 +4635,10 @@ input.tab:checked + .tab-content,
   padding-bottom: 2rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
 .pb-3 {
   padding-bottom: 0.75rem;
 }
@@ -4667,10 +4661,6 @@ input.tab:checked + .tab-content,
 
 .pt-2 {
   padding-top: 0.5rem;
-}
-
-.pb-2 {
-  padding-bottom: 0.5rem;
 }
 
 .text-left {
@@ -4773,10 +4763,6 @@ input.tab:checked + .tab-content,
   font-style: italic;
 }
 
-.leading-3 {
-  line-height: .75rem;
-}
-
 .leading-normal {
   line-height: 1.5;
 }
@@ -4787,14 +4773,6 @@ input.tab:checked + .tab-content,
 
 .leading-tight {
   line-height: 1.25;
-}
-
-.leading-4 {
-  line-height: 1rem;
-}
-
-.leading-5 {
-  line-height: 1.25rem;
 }
 
 .tracking-normal {
@@ -4886,10 +4864,6 @@ input.tab:checked + .tab-content,
 
 .underline {
   text-decoration-line: underline;
-}
-
-.decoration-1 {
-  text-decoration-thickness: 1px;
 }
 
 .underline-offset-4 {
@@ -4988,6 +4962,10 @@ input.tab:checked + .tab-content,
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.wagtail-richtext img {
+  margin: auto;
 }
 
 @media (min-width: 640px) {
@@ -5733,5 +5711,3 @@ input.tab:checked + .tab-content,
     --tw-ring-color: rgb(22 101 52 / var(--tw-ring-opacity));
   }
 }
-
-  

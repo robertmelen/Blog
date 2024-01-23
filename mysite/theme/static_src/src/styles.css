@@ -23,4 +23,8 @@
     @apply text-black  bg-gray-200 
   }
 
+  .wagtail-richtext img {
+    
+    @apply m-auto
   
+  }
