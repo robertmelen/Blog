@@ -4663,6 +4663,10 @@ input.tab:checked + .tab-content,
   padding-top: 0.5rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
 .text-left {
   text-align: left;
 }
