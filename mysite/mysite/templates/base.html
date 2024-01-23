@@ -61,14 +61,14 @@
             {% block title %}
             {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
             {% endblock %}
-            {% meta_tags %}
+            
             {% block title_suffix %}
             {% wagtail_site as current_site %}
             {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
             {% endblock %}
 
         </title>
-        
+        {% meta_tags %}
         {% if page.tags %}
         
         
