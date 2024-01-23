@@ -4386,6 +4386,16 @@ input.tab:checked + .tab-content,
   border-color: rgb(251 207 232 / var(--tw-border-opacity));
 }
 
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
 .border-x-lime-300 {
   --tw-border-opacity: 1;
   border-left-color: rgb(190 242 100 / var(--tw-border-opacity));
@@ -4571,6 +4581,10 @@ input.tab:checked + .tab-content,
   padding: 1.5rem;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -4655,8 +4669,8 @@ input.tab:checked + .tab-content,
   padding-top: 0.5rem;
 }
 
-.pb-0 {
-  padding-bottom: 0px;
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .text-left {
@@ -4864,6 +4878,10 @@ input.tab:checked + .tab-content,
 
 .underline {
   text-decoration-line: underline;
+}
+
+.decoration-1 {
+  text-decoration-thickness: 1px;
 }
 
 .underline-offset-4 {
@@ -5249,43 +5267,13 @@ input.tab:checked + .tab-content,
   }
 }
 
-.first-letter\:font-Gothic::first-letter {
-  font-family: Nanum Gothic, sans-serif;
-}
-
-.first-letter\:font-Poppins::first-letter {
-  font-family: Poppins, sans-serif;
-}
-
-.first-letter\:font-test::first-letter {
-  font-family: Rubik Scribble, system-ui;
-}
-
 .first-letter\:font-serif::first-letter {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-}
-
-.first-letter\:text-4xl::first-letter {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
 }
 
 .first-letter\:text-2xl::first-letter {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.first-letter\:capitalize::first-letter {
-  text-transform: capitalize;
-}
-
-.first-letter\:italic::first-letter {
-  font-style: italic;
-}
-
-.first\:text-4xl:first-child {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
 }
 
 .hover\:-rotate-3:hover {
