@@ -275,6 +275,7 @@ class BlogDetailPage(MetadataPageMixin, Page):
             ('full_width_image', my_blocks.FullWidthImage()),
             ('strava_embed', my_blocks.StravaBlock()),
             ('text', blocks.CharBlock()),
+            ('slideshow', my_blocks.Slideshowblock())
           
           
            

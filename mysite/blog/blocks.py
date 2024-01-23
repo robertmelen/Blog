@@ -111,6 +111,15 @@ class StravaBlock(blocks.StructBlock):
                 label = "Embed Strava"
 
  
+class Slideshowblock(blocks.StructBlock):
+      
+      slide_images = blocks.ListBlock(ImageChooserBlock)
+      slide_heading = blocks.TextBlock(max_length=200)
+
+      class Meta:  # noqa
+                template = "streams/slide_block.html"
+                icon = "placeholder"
+                label = "Slideshow"
                 
         
  

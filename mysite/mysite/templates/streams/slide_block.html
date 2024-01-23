@@ -1,33 +1,9 @@
 {% load wagtailimages_tags %}
-
-
-    {{ self.gallery_heading }}
-   
-    
-    
-
-
-
-
-    
-<div class="grid grid-cols-2 m-0 gap-2 ">
-    {% for imgg in self.gallery_images %}
-    {% image imgg fill-600x400 as img %}
-    <div class="mb-0">
-    
-        <img class="h-auto max-w-full rounded-lg shadow-2xl not-prose" src="{{ img.url }}" alt="">
-        
-    </div>
-    {% endfor %}
-</div>
-
-
-
-
+{{ self.slide_heading }}
 <div id="custom-controls-gallery" class="relative w-full pt-5" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-        {% for imgg in self.gallery_images %}
+        {% for imgg in self.slide_images %}
         {% image imgg fill-600x400 as img %}
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="{{ img.url }}" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
@@ -53,7 +29,3 @@
         </button>
     </div>
 </div>
-
-
-
-    
