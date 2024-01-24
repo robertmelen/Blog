@@ -11,7 +11,7 @@
   <section id="main"
            class="bg-gradient-to-t from-green-50 dark:bg-gray-900 min-w-full">
            
-    <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+    <div hx-ext="preload" class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
       {% for block in page.hero %}
         {% if block.block_type == 'hero' %}
           {% image block.value.image width-800 as photo %}
@@ -34,7 +34,7 @@
               </h3>
             </div>
             {% for post in page.get_children %}
-              <a href="{% slugurl 'blog-posts' %}"
+              <a href="{% slugurl 'blog-posts' %}" preload preload-images="true"
                  hx-boost="true"
                  {% endfor %}
                  class="mb-2 cursor-pointer inline-flex items-center text-black bg-green-400 hover:bg-yellow-500 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 transition-transform transform hover:-rotate-3">
@@ -71,12 +71,18 @@
           </span>
           <span>
             <a _="on click toggle between .inline-flex and .hidden on me"
-               hx-get="{% routablepageurl page 'blog_bio' %}"
+               hx-get="{% routablepageurl page 'blog_bio' %}" preload preload-images="true"
                hx-vals='{"bio": "bio"}'
                hx-target="#main-text"
                hx-swap="outerHTML"
                href=""
-               class=" cursor-pointer inline-flex items-center text-black bg-green-400 hover:bg-yellow-300 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 transition-transform transform hover:-rotate-6">
+               class=" cursor-pointer inline-flex items-center
+                text-black 
+                bg-green-400
+                 hover:bg-yellow-300 
+                 focus:ring-4 focus:ring-primary-300 
+                 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+                 dark:focus:ring-primary-900 transition-transform transform hover:-rotate-6">
               <span id="button" href="" class="pr-2">My Bio</span>
               <svg class=" text-gray-800 dark:text-white"
                    aria-hidden="true"

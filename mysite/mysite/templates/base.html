@@ -18,7 +18,7 @@
         <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/hyperscript.org@0.9.9"></script>
         <script src="https://unpkg.com/htmx.org/dist/ext/class-tools.js"></script>
-        
+        <script src="https://unpkg.com/htmx.org/dist/ext/preload.js"></script>
         
         <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
        
@@ -129,7 +129,7 @@
             remove .inline-block from #header-button then add .invisible to #header-button
         end 
    end" class="w-full h-auto overflow-visible relative events " hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'  
-       hx-ext="head-support" class="{% block body_class %}{% endblock %}">
+       hx-ext="head-support" hx-ext="preload" class="{% block body_class %}{% endblock %}">
        <div id="clickmessage" class="invisible absolute" style="top:; left:; ">clicked</div>
        {% if not request.COOKIES.visitor_id %}   
     <div id="loading" _="init add .blur-effect to #body then on click from .close-warning add .hidden to me"class="m-10 p-5 top-0 z-20 fixed flex flex-col border-solid border-2 bg-green-100
