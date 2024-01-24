@@ -89,3 +89,13 @@ def get_first_text_body(blocks):
         if block.block_type == 'text_body':
             return block.value.get('rich_text', '')
     return ''
+
+
+
+
+
+@register.filter(name='render_head_tags')
+def render_head_tags(tags):
+    keyword_list = [tag.name for tag in tags]
+    keywords_string = ', '.join(keyword_list)
+    return f'<meta name="keywords" content="{keywords_string}">'

@@ -219,19 +219,13 @@ class BlogListingPage(MetadataPageMixin, RoutablePageMixin, Page):
 class BlogPostManager(PageManager):
     def related_posts(self, post, max_items=5):
         type = post.type.all()
-        
-
         matches = BlogDetailPage.objects.filter(type__in=type).live()
-      
         matches = matches.exclude(pk=post.pk)
-
         related = matches.order_by('-last_published_at')
         return related[:max_items]
-
-   
-
-   
-        
+    
+  
+    
 class BlogDetailPage(MetadataPageMixin, Page):
     """Blog detail page."""
     objects = BlogPostManager()
@@ -318,8 +312,10 @@ class BlogDetailPage(MetadataPageMixin, Page):
     ]
 
     def get_context(self, request, *args, **kwargs):
+        
         context = super(BlogDetailPage, self).get_context(request)
         context['related_posts'] = BlogDetailPage.objects.related_posts(self)
+        context['head_tags'] = self.specific.tags.all()
         return context
 
     

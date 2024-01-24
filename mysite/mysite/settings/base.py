@@ -1,3 +1,4 @@
+
 """
 Django settings for mysite project.
 
@@ -123,6 +124,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 'wagtail.contrib.settings.context_processors.settings',
                 'home.context_processors.visited_before',
+                
+                
             ],
         },
     },
