@@ -122,4 +122,12 @@ class Slideshowblock(blocks.StructBlock):
                 label = "Slideshow"
                 
         
- 
+class ImageGroupBlock(blocks.StructBlock):
+       group_images = blocks.ListBlock(ImageChooserBlock, max_num = 2)
+
+       class Meta:  # noqa
+                template = "streams/image_group_block.html"
+                icon = "placeholder"
+                label = "Image group"
+
+      
