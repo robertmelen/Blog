@@ -15,12 +15,12 @@
 
   .wagtail-richtext code {
     
-    @apply text-black  bg-slate-200
+    @apply text-black 
   }
 
   .wagtail-richtext #output {
     
-    @apply text-black  bg-gray-200 
+     
   }
 
   .wagtail-richtext img {
