@@ -1,6 +1,6 @@
 from django import template
 import re
-from home.models import Header, HomePage, Page, Gallery
+from home.models import Header, HomePage, Page, Gallery, BlogListingPage
 from django.utils import timezone
 
 register = template.Library()
@@ -99,3 +99,7 @@ def render_head_tags(tags):
     keyword_list = [tag.name for tag in tags]
     keywords_string = ', '.join(keyword_list)
     return f'<meta name="keywords" content="{keywords_string}">'
+
+
+
+

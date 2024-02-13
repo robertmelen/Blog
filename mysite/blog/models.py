@@ -174,7 +174,7 @@ class BlogListingPage(MetadataPageMixin, RoutablePageMixin, Page):
 
             context["posts"] = BlogListingPage.get_children(self).live().order_by('-first_published_at')
             context["cats"] = BlogCategories.objects.annotate(num_blogs=Count('blogdetailpage')).filter(num_blogs__gt=0)
-
+           
         
         
         paginator = Paginator(context["posts"], 2)

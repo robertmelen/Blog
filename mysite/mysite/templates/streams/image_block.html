@@ -21,7 +21,7 @@
         {% if large_image_block %}
             {% image self.large_image width-1200 as photo %}
             <div _="on intersection(intersecting) having threshold 0.5
-            if intersecting add .-translate-y-10 .duration-1000 to <img/> in me"  class="">
+            if intersecting add .-translate-y-12 .duration-1000 to <img/> in me"  class="">
              <div>
                 <div class="text-sm pb-3 font-semibold italic ">
                     
@@ -38,8 +38,8 @@
                         {% endfor %}
                     {% endif %}
                     </div>
-                    <div class="absolute bottom-3 text-sm font-Raleway">
-                        {{ self.text }}
+                    <div class="absolute bottom-3 text-xs sm:text-sm font-Raleway">
+                        <div class="mt-10">{{ self.text }}</div>
                     </div>
               </div>
             </div>
