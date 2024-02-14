@@ -2,6 +2,7 @@ from django import template
 import re
 from home.models import Header, HomePage, Page, Gallery, BlogListingPage
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -103,3 +104,10 @@ def render_head_tags(tags):
 
 
 
+@register.simple_tag(takes_context=True)
+def canonical(context):
+    page = context.get('page')
+    if not page:
+        return ''
+    else:
+        return mark_safe(f'<link rel="canonical" href="{page.full_url}">')
