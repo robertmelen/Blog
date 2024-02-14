@@ -1,9 +1,12 @@
 {% load wagtailimages_tags %}
 
-<div class="flex gap-2">
+<div class="flex justify-center">
     {% for img in self.group_images %}
-    {% image img width-600 as img %}
-    <img class="w-auto rounded-lg shadow-2xl not-prose" src="{{ img.url }}" alt="">
+    {% image img width-300 as img %}
+    <div class="p-1">
+    <img class="object-contain shadow-xl not-prose" src="{{ img.url }}" alt="">
+    
+    </div>
     {% endfor %}
 
 </div>
