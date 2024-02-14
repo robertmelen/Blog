@@ -1,12 +1,18 @@
 {% load wagtailimages_tags %}
 
-<div class="flex justify-center">
+<div _="on intersection(intersecting) having threshold 0.9
+if intersecting add .-translate-x-12 .duration-1000 to <img/> in me"  class="flex justify-center">
     {% for img in self.group_images %}
-    {% image img width-300 as img %}
-    <div class="p-1">
-    <img class="object-contain shadow-xl not-prose" src="{{ img.url }}" alt="">
+    {% image img width-600 as img %}
+    <div class="translate-x-12 p-1">
+    <img class="shadow-xl not-prose" src="{{ img.url }}" alt="">
     
     </div>
+   
+       
+        
+       
+      
     {% endfor %}
 
 </div>
