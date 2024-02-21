@@ -1,11 +1,13 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.contrib.sitemaps.views import sitemap
+from home.models import RobotsView
+
 
 from search import views as search_views
 
@@ -20,6 +22,7 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path("__reload__/", include("django_browser_reload.urls")),
+    path('robots.txt', RobotsView.as_view(), name='robots'),
     
    
 ]
